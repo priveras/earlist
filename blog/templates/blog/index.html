@@ -1,0 +1,241 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--<div class="profile-header text-center"
+     style="background-image: url({% static 'blog/assets/img/iceland.jpg' %});">
+  <div class="container">
+    <div class="container-inner">
+      <img class="img-circle media-object" src="{% static 'blog/assets/img/avatar-dhg.png' %}">
+      <h3 class="profile-header-user">Earlist</h3>
+      <p class="profile-header-bio">
+        I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.
+      </p>
+    </div>
+  </div>
+
+  <nav class="profile-header-nav">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#">All</a>
+      </li>
+      <li>
+        <a href="#">Techstars</a>
+      </li>
+      <li>
+        <a href="#">YCombinator</a>
+      </li>
+      <li>
+        <a href="#">500 Startups</a>
+      </li>
+    </ul>
+  </nav>
+</div>-->
+  <div class="row">
+    <div class="col-md-1">
+      <!--<div class="panel panel-default panel-profile m-b-md">
+        <div class="panel-heading" style="background-image: url(assets/img/iceland.jpg);"></div>
+        <div class="panel-body text-center">
+          <a href="profile/index.html">
+            <img
+              class="panel-profile-img"
+              src="assets/img/avatar-dhg.png">
+          </a>
+
+          <h5 class="panel-title">
+            <a class="text-inherit" href="profile/index.html">Dave Gamache</a>
+          </h5>
+
+          <p class="m-b-md">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+
+          <ul class="panel-menu">
+            <li class="panel-menu-item">
+              <a href="#userModal" class="text-inherit" data-toggle="modal">
+                Friends
+                <h5 class="m-y-0">12M</h5>
+              </a>
+            </li>
+
+            <li class="panel-menu-item">
+              <a href="#userModal" class="text-inherit" data-toggle="modal">
+                Enemies
+                <h5 class="m-y-0">1</h5>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel panel-default visible-md-block visible-lg-block">
+        <div class="panel-body">
+          <h5 class="m-t-0">About <small>· <a href="#">Edit</a></small></h5>
+          <ul class="list-unstyled list-spaced">
+            <li><span class="text-muted icon icon-calendar m-r"></span>Went to <a href="#">Oh, Canada</a>
+            <li><span class="text-muted icon icon-users m-r"></span>Became friends with <a href="#">Obama</a>
+            <li><span class="text-muted icon icon-github m-r"></span>Worked at <a href="#">Github</a>
+            <li><span class="text-muted icon icon-home m-r"></span>Lives in <a href="#">San Francisco, CA</a>
+            <li><span class="text-muted icon icon-location-pin m-r"></span>From <a href="#">Seattle, WA</a>
+          </ul>
+        </div>
+      </div>
+
+       <div class="panel panel-default visible-md-block visible-lg-block">
+        <div class="panel-body">
+          <h5 class="m-t-0">Photos <small>· <a href="#">Edit</a></small></h5>
+          <div data-grid="images" data-target-height="150">
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_5.jpg">
+            </div>
+
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_6.jpg">
+            </div>
+
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_7.jpg">
+            </div>
+
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_8.jpg">
+            </div>
+
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_9.jpg">
+            </div>
+
+            <div>
+              <img data-width="640" data-height="640" data-action="zoom" src="assets/img/instagram_10.jpg">
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+
+    <div class="col-md-7">
+      <ul class="list-group media-list media-list-stream">
+      	{% for post in posts_list %}
+	        <li class="media list-group-item p-a">
+	          <a class="media-left" href="#">
+              <div class="thumbnail">
+                <div style="
+                        background: url('{{post.image_url}}');
+                        background-size:cover;
+                        background-position:center;
+                        ">
+                </div>
+              </div>
+	          </a>
+	          <div class="media-body">
+	            <div class="media-heading">
+	              <small class="pull-right text-muted">4 min</small>
+	              <h4>{{post.title}}</h4>
+	            </div>
+              <div class="row">
+                <div class="col-lg-8">
+                  <p>{{post.body}}</p>
+                </div>
+                <div class="col-lg-4 text-right">
+                  {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
+                  {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+                </div>
+              </div>
+	            {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
+	          </div>
+	        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <div class="alert alert-warning alert-dismissible hidden-xs" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking too good.
+      </div>
+
+      <div class="panel panel-default m-b-md hidden-xs">
+        <div class="panel-body">
+          <h5 class="m-t-0">Sponsored</h5>
+          <a href="http://angularmexico.com/workshops/">
+            <div data-grid="images" >
+              <img class="media-object" data-width="640" data-height="640" src="http://angularmexico.com/i/coco.jpg">
+            </div>
+          </a>
+          <p><strong>1er Workshop de Angular Mexico</strong><br>El Workshop es impartido por Josué Gutiérrez, Google Developer Expert en Tecnologías Web y entusiasta en la transformación de la educación.</p>
+          <button class="btn btn-primary-outline btn-sm">Inscribirse</button>
+        </div>
+      </div>
+
+      <div class="panel panel-default m-b-md hidden-xs">
+        <div class="panel-body">
+          <h5 class="m-t-0">Sponsored</h5>
+          <a href="http://angularmexico.com/workshops/">
+            <div data-grid="images" >
+              <img class="media-object" data-width="640" data-height="640" src="https://beerhousemx.s3-us-west-1.amazonaws.com/BH-belga-thumbnail.jpg">
+            </div>
+          </a>
+          <p><strong>Beerhouse.mx</strong><br>Las mejores cervezas de México y el mundo directo a tu casa</p>
+          <button class="btn btn-primary-outline btn-sm">Visitar el Sitio</button>
+        </div>
+      </div>
+
+      <div class="panel panel-default m-b-md hidden-xs">
+        <div class="panel-body">
+        <h5 class="m-t-0">Síguenos <small>· <a href="#">View All</a></small></h5>
+        <ul class="media-list media-list-stream">
+          <li class="media m-b">
+            <a class="media-left" href="#">
+              <img
+                class="media-object img-circle"
+                src="https://pbs.twimg.com/profile_images/545651910485610497/1ZygXyzd_400x400.png">
+            </a>
+            <div class="media-body">
+              <strong>Earlist</strong> @earlistco
+              <div class="media-body-actions">
+                <button class="btn btn-primary-outline btn-sm">
+                  <span class="icon icon-add-user"></span> Follow</button>
+              </div>
+            </div>
+          </li>
+           <li class="media">
+            <a class="media-left" href="#">
+              <img
+                class="media-object img-circle"
+                src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+            </a>
+            <div class="media-body">
+              <strong>Pablo Rivera</strong> @priverass
+              <div class="media-body-actions">
+                <button class="btn btn-primary-outline btn-sm">
+                  <span class="icon icon-add-user"></span> Follow</button></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+        </div>
+        <div class="panel-footer">
+          Dave really likes these nerds, no one knows why though.
+        </div>
+      </div>
+
+      <div class="panel panel-default panel-link-list">
+        <div class="panel-body">
+          © 2015 Bootstrap
+
+          <a href="#">About</a>
+          <a href="#">Help</a>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+          <a href="#">Ads </a>
+
+          <a href="#">info</a>
+          <a href="#">Brand</a>
+          <a href="#">Blog</a>
+          <a href="#">Status</a>
+          <a href="#">Apps</a>
+          <a href="#">Jobs</a>
+          <a href="#">Advertise</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
