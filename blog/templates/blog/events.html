@@ -5,75 +5,26 @@
   <div class="col-md-1"></div>
   <div class="col-md-7">
     <div class="row">
+      {% for event in events_list %}
       <div class="col-md-4">
         <div class="panel panel-default panel-profile">
-          <div class="panel-heading" style="background-image: url(https://pbs.twimg.com/profile_banners/18560574/1418254278/1500x500);"></div>
+          <div class="panel-heading" style="background-image: url({{event.cover_url}});"></div>
           <div class="panel-body text-center">
-            <img class="panel-profile-img" src="https://pbs.twimg.com/profile_images/510145983863205890/T-q-vr0-_400x400.jpeg">
-            <h5 class="panel-title">Jacob Thornton</h5>
-            <p class="m-b-md">Big belly rude boy, million dollar hustler. Unemployed.</p>
-            <button class="btn btn-primary-outline btn-sm">
-              <span class="icon icon-add-user"></span> Mas información
-            </button>
+            <img class="panel-profile-img" src="{{event.image_url}}">
+            <h5 class="panel-title">{{event.title}}</h5>
+            <p class="text-primary"><strong>{{event.event_date}}</strong></p>
+            <p class="m-b-md">
+              {{event.body}}
+            </p>
+            <a href="{{event.link}}">
+              <button class="btn btn-primary-outline btn-sm" style="bottom:0px;">
+                <span class="icon icon-add-user"></span> Mas información
+              </button>
+            </a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="panel panel-default panel-profile">
-          <div class="panel-heading" style="background-image: url(https://pbs.twimg.com/profile_banners/7315022/1449682624/1500x500);"></div>
-          <div class="panel-body text-center">
-            <img class="panel-profile-img" src="https://pbs.twimg.com/profile_images/609412633708462080/R_zyo4n8_400x400.png">
-            <h5 class="panel-title">Mark Otto</h5>
-            <p class="m-b-md">GitHub and Bootstrap. Formerly at Twitter.</p>
-            <button class="btn btn-primary-outline btn-sm">
-              <span class="icon icon-add-user"></span> Mas información
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default panel-profile">
-          <div class="panel-heading" style="background-image: url(https://pbs.twimg.com/profile_banners/3085118674/1447962151/1500x500);"></div>
-          <div class="panel-body text-center">
-            <img class="panel-profile-img" src="https://pbs.twimg.com/profile_images/636231913305427969/cBueMAx5_400x400.jpg">
-            <h5 class="panel-title">Mark Otto</h5>
-            <p class="m-b-md">GitHub and Bootstrap. Formerly at Twitter.</p>
-            <button class="btn btn-primary-outline btn-sm">
-              <span class="icon icon-add-user"></span> Mas información
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <h5>8 - 14 Febrero, 2015</h5>
-      <hr>
-      <div class="col-md-4">
-        <div class="panel panel-default panel-profile">
-          <div class="panel-heading" style="background-image: url(https://pbs.twimg.com/profile_banners/18560574/1418254278/1500x500);"></div>
-          <div class="panel-body text-center">
-            <img class="panel-profile-img" src="https://pbs.twimg.com/profile_images/510145983863205890/T-q-vr0-_400x400.jpeg">
-            <h5 class="panel-title">Jacob Thornton</h5>
-            <p class="m-b-md">Big belly rude boy, million dollar hustler. Unemployed.</p>
-            <button class="btn btn-primary-outline btn-sm">
-              <span class="icon icon-add-user"></span> Mas información
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="panel panel-default panel-profile">
-          <div class="panel-heading" style="background-image: url(https://igcdn-photos-h-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-15/11240760_365538423656311_112029877_n.jpg);"></div>
-          <div class="panel-body text-center">
-            <img class="panel-profile-img" src="https://pbs.twimg.com/profile_images/378800000735769929/b0a9faf47bd9d75a6717f5a4433df82b_400x400.jpeg">
-            <h5 class="panel-title">Mark Otto</h5>
-            <p class="m-b-md">GitHub and Bootstrap. Formerly at Twitter.</p>
-            <button class="btn btn-primary-outline btn-sm">
-              <span class="icon icon-add-user"></span> Mas información
-            </button>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
   <div class="col-md-3">

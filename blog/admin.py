@@ -1,13 +1,21 @@
 from django.contrib import admin
 
-from .models import Post, Category
+from .models import Post, Event, Job
 
 class PostAdmin(admin.ModelAdmin):
     exclude = ['created_at']
     prepopulated_fields = {'slug': ('title',)}
 
-class CategoryAdmin(admin.ModelAdmin):
+# class CategoryAdmin(admin.ModelAdmin):
+#     prepopulated_fields = {'slug': ('title',)}
+
+class EventAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
+class JobAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('company','title')}
+
 admin.site.register(Post, PostAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Event, EventAdmin)
+admin.site.register(Job, JobAdmin)
+# admin.site.register(Category, CategoryAdmin)

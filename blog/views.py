@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Post
+from .models import Post, Event, Job
 
 class PostListView(generic.ListView):
 	template_name = 'blog/index.html'
@@ -18,14 +18,14 @@ class ProfileView(generic.TemplateView):
 
 class EventListView(generic.ListView):
 	template_name = 'blog/events.html'
-	context_object_name = 'posts_list'
+	context_object_name = 'events_list'
 
 	def get_queryset(self):
-		return Post.objects.order_by('-created_at')[:5]
+		return Event.objects.order_by('-event_date')[:5]
 
 class JobListView(generic.ListView):
 	template_name = 'blog/jobs.html'
-	context_object_name = 'posts_list'
+	context_object_name = 'jobs_list'
 
 	def get_queryset(self):
-		return Post.objects.order_by('-created_at')[:5]
+		return Job.objects.order_by('-created_at')[:5]
