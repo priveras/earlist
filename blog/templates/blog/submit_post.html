@@ -1,0 +1,8 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<form action="{% url 'blog:post' %}" method="post">{% csrf_token %}
+  {{ form }}
+  <input type='submit' value='Submit' />
+</form>
+{% endblock %}
