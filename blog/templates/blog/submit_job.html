@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+        	<form action="{% url 'blog:job' %}" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="title">Título del puesto</label>
+					{{ form.title|attr:"placeholder:ej: AngularJS Software Engineer"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="slogan">Compañía</label>
+					{{ form.company|attr:"placeholder:ej: Beerhouse"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Página con descripción del puesto</label>
+					{{ form.link|attr:"value:http://"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Logo de la compañía</label>
+					{{ form.image_url|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<input type='submit' value='Submit' class ="btn btn-primary w-full" />
+				</div>
+			</form>
+        </div>
+</div>
+{% endblock %}

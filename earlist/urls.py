@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
 	url(r'^', include('blog.urls')),
-    url(r'^accounts/profile/', login_required(views.ProfileView.as_view(template_name="blog/profile.html"))),
-    url(r'^(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
+    url(r'^accounts/profile/', login_required(views.ProfileListView.as_view(template_name="blog/profile.html")), name='profile'),
+    url(r'^post/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
 ]

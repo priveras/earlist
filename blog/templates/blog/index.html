@@ -8,7 +8,7 @@
       <ul class="list-group media-list media-list-stream">
       	{% for post in posts_list %}
 	        <li class="media list-group-item p-a">
-	          <a class="media-left" href="#">
+	          <a class="media-left" href="{% url 'detail' post.slug %}">
               <div class="thumbnail">
                 <div style="
                         background: url('{{post.image_url}}');
@@ -20,8 +20,8 @@
 	          </a>
 	          <div class="media-body">
 	            <div class="media-heading">
-	              <small class="pull-right text-muted">4 min</small>
-	              <h4>{{post.title}}</h4>
+	              <small class="pull-right text-muted">{{post.created_at}}</small>
+	              <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
 	            </div>
               <div class="row">
                 <div class="col-lg-8">
@@ -42,7 +42,7 @@
     <div class="col-md-3">
       <div class="alert alert-warning alert-dismissible hidden-xs" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking too good.
+        <a class="alert-link" href="profile/index.html">Visit your profile! </a> Check your self, you aren't looking too good.
       </div>
 
       <div class="panel panel-default m-b-md hidden-xs">

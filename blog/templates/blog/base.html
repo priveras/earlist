@@ -35,8 +35,6 @@
 
 	<body class="with-top-navbar">
 
-	<div class="growl" id="app-growl"></div>
-
 	<nav class="navbar navbar-inverse navbar-fixed-top app-navbar">
 	  <div class="container">
 	    <div class="navbar-header">
@@ -46,7 +44,7 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="index.html">
+	      <a class="navbar-brand" href="">
 	        <img src="{% static 'blog/assets/img/brand-white.png' %}" alt="brand">
 	      </a>
 	    </div>
@@ -64,6 +62,9 @@
 	          </li>
 	          <li>
 	            <a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>
+	          </li>
+	          <li>
+	            <a data-toggle="modal" href="{% url 'profile' %}">Contribuir</a>
 	          </li>
 	        </ul>
 
@@ -97,8 +98,8 @@
 	        </ul>
 
 	        <ul class="nav navbar-nav hidden">
-	          <li><a href="#" data-action="growl">My Perfil</a></li>
-	          <li><a href="login/index.html">Cerrar Sesión</a></li>
+	          <li><a href="{% url 'profile' %}">My Perfil</a></li>
+	          <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>
 	  </div>

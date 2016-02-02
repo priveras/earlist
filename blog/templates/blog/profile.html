@@ -13,7 +13,7 @@
           </a>
 
           <h5 class="panel-title">
-            <a class="text-inherit" href="profile/index.html">Pablo Rivera</a>
+            <a class="text-inherit" href="profile/index.html">{{first_name}} {{last_name}}</a>
           </h5>
 
           <p class="m-b-md">Fortune favours the bold. Making shit happen at http://beerhouse.mx/ </p>
@@ -38,15 +38,39 @@
 
       <div class="panel panel-default visible-md-block visible-lg-block">
         <div class="panel-body">
-          <h5 class="m-t-0">Trabajos <small>· <a href="#">Ver Todos</a></small></h5>
+          <h5 class="m-t-0">Trabajos <small>· <a href="{% url 'blog:jobs' %}">Ver Todos</a></small></h5>
           <ul class="list-unstyled list-spaced">
-            <li><span class="text-muted icon icon-arrow-right m-r"></span>Angular Developer <a href="#">Beerhouse</a>
-            <li><span class="text-muted icon icon-arrow-right m-r"></span>Financial Analyst <a href="#">Beerhouse</a>
-            <li><span class="text-muted icon icon-arrow-right m-r"></span>Marketing Manager <a href="#">Uber</a>
-            <li><span class="text-muted icon icon-arrow-right m-r"></span>Community Manager <a href="#">Centraal</a>
-            <li><span class="text-muted icon icon-arrow-right m-r"></span>Back End Developer <a href="#">Bolettos</a>
+            {% for job in jobs_list %}
+            <li><span class="text-muted icon icon-arrow-right m-r"></span>{{job.title}} <a href="#">{{job.company}}</a>
+            {% endfor %}
           </ul>
-          <div class="btn btn-primary w-full">Publicar Nuevo</div>
+          <hr>
+          <h5 class="m-t-0">Publicados por mi <small>· <a href="">Ver Todos</a></small></h5>
+          <ul class="list-unstyled list-spaced">
+            {% for job in my_jobs_list %}
+            <li><span class="text-muted icon icon-arrow-right m-r"></span>{{job.title}} <a href="#">{{job.company}}</a>
+            {% endfor %}
+          </ul>
+          <a href="{% url 'blog:job' %}"><div class="btn btn-primary w-full">Publicar Puesto</div></a>
+        </div>
+      </div>
+
+      <div class="panel panel-default visible-md-block visible-lg-block">
+        <div class="panel-body">
+          <h5 class="m-t-0">Eventos <small>· <a href="{% url 'blog:events'%}">Ver Todos</a></small></h5>
+          <ul class="list-unstyled list-spaced">
+            {% for event in events_list %}
+            <li><span class="text-muted icon icon-arrow-right m-r"></span>{{event.title}}
+            {% endfor %}
+          </ul>
+          <hr>
+          <h5 class="m-t-0">Publicados por mi <small>· <a href="#">Ver Todos</a></small></h5>
+          <ul class="list-unstyled list-spaced">
+            {% for event in my_events_list %}
+            <li><span class="text-muted icon icon-arrow-right m-r"></span>{{event.title}}
+            {% endfor %}
+          </ul>
+          <a href="{% url 'blog:event' %}"><div class="btn btn-primary w-full">Publicar Evento</div></a>
         </div>
       </div>
     </div>
@@ -55,14 +79,14 @@
       <ul class="list-group media-list media-list-stream">
 
         <li class="media list-group-item p-a">
-          <button type="button" class="btn btn-primary w-full">Agregar Producto</button>
+          <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full">Agregar Producto</button></a>
         </li>
-
+        {% for post in posts_list %}
         <li class="media list-group-item p-a">
-            <a class="media-left" href="#">
+            <a class="media-left" href="{% url 'detail' post.slug %}">
               <div class="thumbnail">
                 <div style="
-                        background: url('https://ph-files.imgix.net/c838ab4f-179a-4739-aa11-74e345b1be0f?auto=format&w=430&h=570&fit=max');
+                        background: url('{{post.image_url}}');
                         background-size:cover;
                         background-position:center;
                         ">
@@ -71,12 +95,12 @@
             </a>
             <div class="media-body">
               <div class="media-heading">
-                <small class="pull-right text-muted">4 min</small>
-                <h4>Airbnb</h4>
+                <small class="pull-right text-muted">{{post.created_at}}</small>
+                <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
               </div>
               <div class="row">
                 <div class="col-lg-8">
-                  <p>Rent unique accommodations from local hosts in 190+ countries. Feel at home anywhere you go in the world with Airbnb.</p>
+                  <p>{{post.body}}</p>
                 </div>
                 <div class="col-lg-4 text-right">
                   {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
@@ -86,6 +110,7 @@
               {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
             </div>
         </li>
+        {% endfor %}
       </ul>
     </div>
     

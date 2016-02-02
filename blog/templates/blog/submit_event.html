@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row">
+	<div class="col-sm-3"></div>
+        <div class="col-sm-6">
+        	<form action="{% url 'blog:event' %}" method="post">
+				{% csrf_token %}
+				<div class="form-group">
+					<label for="title">Nombre del evento</label>
+					{{ form.title|attr:"placeholder:ej: AngularJS México"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="slogan">Describe el evento en una oración</label>
+					{{ form.body|attr:"placeholder:ej: Beerhouse"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Página del evento</label>
+					{{ form.link|attr:"value:http://"|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Logo del evento</label>
+					{{ form.image_url|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Imagen de fondo par el evento</label>
+					{{ form.cover_url|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<label for="body">Fecha del evento</label>
+					{{ form.event_date|add_class:"form-control" }}
+				</div>
+				<div class="form-group">
+					<input type='submit' value='Submit' class ="btn btn-primary w-full" />
+				</div>
+			</form>
+        </div>
+</div>
+{% endblock %}
