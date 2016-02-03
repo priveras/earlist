@@ -24,4 +24,5 @@ urlpatterns = [
 	url(r'^', include('blog.urls')),
     url(r'^accounts/profile/', login_required(views.ProfileListView.as_view(template_name="blog/profile.html")), name='profile'),
     url(r'^post/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
+    url(r'^accounts/', include('allauth.urls')),
 ]
