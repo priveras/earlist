@@ -23,17 +23,18 @@ class DetailView(generic.DetailView):
 class ProfileListView(generic.ListView):
     model = Post
     template_name = 'blog/profile.html'
-    context_object_name = 'user'
+    context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileListView, self).get_context_data(**kwargs)
         context['posts_list'] = Post.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+        
         context['events_list'] = Event.objects.order_by('-created_at')[:5]
         context['my_events_list'] = Event.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+
         context['jobs_list'] = Job.objects.order_by('-created_at')[:5]
         context['my_jobs_list'] = Job.objects.filter(user=self.request.user).order_by('-created_at')[:5]
-        context['first_name'] = self.request.user.first_name
-        context['last_name'] = self.request.user.last_name
+        
         return context
 
 class EventListView(generic.ListView):

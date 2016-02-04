@@ -4,38 +4,37 @@
   <div class="row">
     <div class="col-md-3">
       <div class="panel panel-default panel-profile m-b-md">
-        <div class="panel-heading" style="background-image: url('https://pbs.twimg.com/profile_banners/155616221/1389724511/1500x500');"></div>
+        {% for account in user.socialaccount_set.all %}
+        <div class="panel-heading" style="background-image: url('{{ account.extra_data.profile_banner_url }}');"></div>
         <div class="panel-body text-center">
           <a href="profile/index.html">
-            <img
-              class="panel-profile-img"
-              src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+                <img class="panel-profile-img" src="{{ account.get_avatar_url }}">
           </a>
 
           <h5 class="panel-title">
             <a class="text-inherit" href="profile/index.html">{{first_name}} {{last_name}}</a>
           </h5>
 
-          <p class="m-b-md">Fortune favours the bold. Making shit happen at http://beerhouse.mx/ </p>
+          <p class="m-b-md">{{account.extra_data.description}}</p>
 
           <ul class="panel-menu">
             <li class="panel-menu-item">
               <a href="#userModal" class="text-inherit" data-toggle="modal">
-                Friends
-                <h5 class="m-y-0">12M</h5>
+                Followers
+                <h5 class="m-y-0">{{account.extra_data.followers_count}}</h5>
               </a>
             </li>
 
             <li class="panel-menu-item">
               <a href="#userModal" class="text-inherit" data-toggle="modal">
-                Enemies
+                Posts
                 <h5 class="m-y-0">1</h5>
               </a>
             </li>
           </ul>
         </div>
+        {% endfor %}
       </div>
-
       <div class="panel panel-default visible-md-block visible-lg-block">
         <div class="panel-body">
           <h5 class="m-t-0">Trabajos <small>· <a href="{% url 'blog:jobs' %}">Ver Todos</a></small></h5>
