@@ -17,6 +17,8 @@
     {% load staticfiles %}
     {% load socialaccount %}
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link href="{% static 'blog/assets/css/toolkit.css' %}" rel="stylesheet">
     
@@ -85,7 +87,7 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="{% provider_login_url "twitter" %}">Login con Twitter</a>
+	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
 	          </li>
 	          {% endif %}
 	        </ul>

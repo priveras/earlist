@@ -13,19 +13,21 @@ class PostListView(generic.ListView):
 	context_object_name = 'posts_list'
 
 	def get_queryset(self):
-		return Post.objects.order_by('-created_at')[:5]
+		return Post.objects.order_by('-created_at')
 
 
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'blog/detail.html'
 
+
 class PanelListView(generic.ListView):
-    template_name = 'blog/index.html'
+    template_name = 'blog/panel.html'
     context_object_name = 'posts_list'
 
     def get_queryset(self):
-        return Post.objects.order_by('-created_at')[:5]
+        return Post.objects.order_by('-created_at')
+
 
 class ProfileListView(generic.ListView):
     model = Post
@@ -44,12 +46,14 @@ class ProfileListView(generic.ListView):
         
         return context
 
+
 class EventListView(generic.ListView):
 	template_name = 'blog/events.html'
 	context_object_name = 'events_list'
 
 	def get_queryset(self):
 		return Event.objects.order_by('event_date')[:5]
+
 
 class JobListView(generic.ListView):
 	template_name = 'blog/jobs.html'
@@ -58,8 +62,10 @@ class JobListView(generic.ListView):
 	def get_queryset(self):
 		return Job.objects.order_by('-created_at')[:5]
 
+
 def logout_view(request):
     logout(request)
+    
 
 def post(request):
     if request.method == 'GET':

@@ -7,6 +7,7 @@
     <div class="col-md-7">
       <ul class="list-group media-list media-list-stream">
       	{% for post in posts_list %}
+          {% if post.approved == 1 %}
 	        <li class="media list-group-item p-a">
 	          <a class="media-left" href="{% url 'detail' post.slug %}">
               <div class="thumbnail">
@@ -22,12 +23,21 @@
 	            <div class="media-heading">
 	              <small class="pull-right text-muted">{{post.created_at}}</small>
 	              <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+                <h5>{{post.slogan}}</h5>
+                <div class="media">
+                  <a class="media-left" href="#">
+                    <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+                  </a>
+                  <div class="media-body">
+                    <small>@priverass</small>
+                  </div>
+                </div>
 	            </div>
               <div class="row">
-                <div class="col-lg-8">
-                  <p>{{post.body}}</p>
+                <div class="col-sm-8">
+                  {# <p>{{post.body}}</p> #}
                 </div>
-                <div class="col-lg-4 text-right">
+                <div class="col-sm-4 text-right">
                   {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
                   {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
                 </div>
@@ -35,6 +45,7 @@
 	            {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
 	          </div>
 	        </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </div>
@@ -89,7 +100,7 @@
               </div>
             </div>
           </li>
-           <li class="media">
+          <li class="media">
             <a class="media-left" href="#">
               <img
                 class="media-object img-circle"
@@ -97,6 +108,34 @@
             </a>
             <div class="media-body">
               <strong>Pablo Rivera</strong> @priverass
+              <div class="media-body-actions">
+                <button class="btn btn-primary-outline btn-sm">
+                  <span class="icon icon-add-user"></span> Follow</button></button>
+              </div>
+            </div>
+          </li>
+          <li class="media">
+            <a class="media-left" href="#">
+              <img
+                class="media-object img-circle"
+                src="https://pbs.twimg.com/profile_images/673723930654314496/ZjkCi9BU_400x400.jpg">
+            </a>
+            <div class="media-body">
+              <strong>Josue Gutierrez</strong> @eusoj
+              <div class="media-body-actions">
+                <button class="btn btn-primary-outline btn-sm">
+                  <span class="icon icon-add-user"></span> Follow</button></button>
+              </div>
+            </div>
+          </li>
+          <li class="media">
+            <a class="media-left" href="#">
+              <img
+                class="media-object img-circle"
+                src="https://pbs.twimg.com/profile_images/632604490126852096/TDiLqs2f_400x400.jpg">
+            </a>
+            <div class="media-body">
+              <strong>David Peña</strong> @dpena31
               <div class="media-body-actions">
                 <button class="btn btn-primary-outline btn-sm">
                   <span class="icon icon-add-user"></span> Follow</button></button>
