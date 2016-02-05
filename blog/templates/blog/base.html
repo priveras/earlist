@@ -108,6 +108,9 @@
 
 	        <ul class="nav navbar-nav hidden">
 	          <li><a href="{% url 'profile' %}">My Perfil</a></li>
+	          {% if user.is_staff %}
+	          <li><a href="{% url 'panel' %}">Panel</a></li>
+	          {% endif %}
 	          <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>

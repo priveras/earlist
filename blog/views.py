@@ -20,6 +20,13 @@ class DetailView(generic.DetailView):
     model = Post
     template_name = 'blog/detail.html'
 
+class PanelListView(generic.ListView):
+    template_name = 'blog/index.html'
+    context_object_name = 'posts_list'
+
+    def get_queryset(self):
+        return Post.objects.order_by('-created_at')[:5]
+
 class ProfileListView(generic.ListView):
     model = Post
     template_name = 'blog/profile.html'
@@ -146,5 +153,4 @@ def event(request):
     return render(request, 'blog/submit_event.html', {
         'form': form,
     })
-
 
