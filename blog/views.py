@@ -7,6 +7,7 @@ from .forms import PostForm, JobForm,EventForm
 from django.utils.text import slugify
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 class PostListView(generic.ListView):
 	template_name = 'blog/index.html'
@@ -65,6 +66,13 @@ class JobListView(generic.ListView):
 
 def logout_view(request):
     logout(request)
+
+
+class SuccessPostView(generic.TemplateView):
+    template_name = 'blog/success-post.html'
+
+class ContributeView(generic.TemplateView):
+    template_name = 'blog/contribute.html'
     
 
 def post(request):
@@ -90,9 +98,13 @@ def post(request):
                 body = body,
             	link = link,
                 image_url = image_url,
+                approved = 0,
             	created_at = timezone.now()
             	)
-            return HttpResponseRedirect('/accounts/profile')
+
+            url = reverse('success-post', kwargs={'post': post.slug})
+
+            return HttpResponseRedirect(url)
  
     return render(request, 'blog/submit_post.html', {
         'form': form,
