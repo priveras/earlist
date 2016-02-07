@@ -1,8 +1,9 @@
 {% extends "blog/base.html" %}
 {% block content %}
-	<div class="row text-center">
-		<div class="col-sm-1"></div>
-		<div class="col-sm-7">
+<div class="col-sm-1"></div>
+<div class="col-sm-7">
+	<div class="panel panel-default">
+		<div class="panel-body text-center">
 			<h1>{{ post.title }}</h1>
 			<p class="lead m-t">{{ post.slogan }}</p>
 			<div class="thumbnail m-t-md" style="background-color:white">
@@ -14,86 +15,9 @@
                 </div>
 			</div>
 			<p class="lead m-t-md">{{post.body}}</p>
-			<p>{{post.created_at}}</p>
+			<p>{{post.created_at}}</p>	
 		</div>
-		<div class="col-sm-3">
-	      <div class="alert alert-warning alert-dismissible hidden-xs" role="alert">
-	        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <a class="alert-link" href="profile/index.html">Visit your profile!</a> Check your self, you aren't looking too good.
-	      </div>
-
-	      <div class="panel panel-default m-b-md hidden-xs">
-	        <div class="panel-body">
-	          <h5 class="m-t-0">Sponsored</h5>
-	          <a href="http://angularmexico.com/workshops/">
-	            <div data-grid="images" >
-	              <img class="media-object" data-width="640" data-height="640" src="http://angularmexico.com/i/coco.jpg">
-	            </div>
-	          </a>
-	          <p><strong>1er Workshop de Angular Mexico</strong><br>El Workshop es impartido por Josué Gutiérrez, Google Developer Expert en Tecnologías Web y entusiasta en la transformación de la educación.</p>
-	          <button class="btn btn-primary-outline btn-sm">Inscribirse</button>
-	        </div>
-	      </div>
-
-	      <div class="panel panel-default m-b-md hidden-xs">
-	        <div class="panel-body">
-	        <h5 class="m-t-0">Síguenos <small>· <a href="#">View All</a></small></h5>
-	        <ul class="media-list media-list-stream">
-	          <li class="media m-b">
-	            <a class="media-left" href="#">
-	              <img
-	                class="media-object img-circle"
-	                src="https://pbs.twimg.com/profile_images/545651910485610497/1ZygXyzd_400x400.png">
-	            </a>
-	            <div class="media-body">
-	              <strong>Earlist</strong> @earlistco
-	              <div class="media-body-actions">
-	                <button class="btn btn-primary-outline btn-sm">
-	                  <span class="icon icon-add-user"></span> Follow</button>
-	              </div>
-	            </div>
-	          </li>
-	           <li class="media">
-	            <a class="media-left" href="#">
-	              <img
-	                class="media-object img-circle"
-	                src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
-	            </a>
-	            <div class="media-body">
-	              <strong>Pablo Rivera</strong> @priverass
-	              <div class="media-body-actions">
-	                <button class="btn btn-primary-outline btn-sm">
-	                  <span class="icon icon-add-user"></span> Follow</button></button>
-	              </div>
-	            </div>
-	          </li>
-	        </ul>
-	        </div>
-	        <div class="panel-footer">
-	          Dave really likes these nerds, no one knows why though.
-	        </div>
-	      </div>
-
-	      <div class="panel panel-default panel-link-list">
-	        <div class="panel-body">
-	          © 2015 Bootstrap
-
-	          <a href="#">About</a>
-	          <a href="#">Help</a>
-	          <a href="#">Terms</a>
-	          <a href="#">Privacy</a>
-	          <a href="#">Cookies</a>
-	          <a href="#">Ads </a>
-
-	          <a href="#">info</a>
-	          <a href="#">Brand</a>
-	          <a href="#">Blog</a>
-	          <a href="#">Status</a>
-	          <a href="#">Apps</a>
-	          <a href="#">Jobs</a>
-	          <a href="#">Advertise</a>
-	        </div>
-	      </div>
-	    </div>
 	</div>
+</div>
+{% include 'blog/right-col.html' %}
 {% endblock %}

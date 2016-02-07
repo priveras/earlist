@@ -1,5 +1,76 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
-{{post.title}}
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <div class="panel panel-default">
+  	<div class="panel-body text-center m-t">
+		<h2>¡Publicación exitosa!</h2>
+		<i class="fa fa-hand-peace-o fa-5x text-primary m-t-md"></i>
+		<div class="row m-t-md m-b-md">
+			<div class="col-lg-1"></div>
+			<div class="col-lg-10">
+				<p class="lead">Gracias por formar parte integral de esta comunidad. A continuación puedes ver el resultado de tu publicación.</p>
+			</div>
+		</div>
+	</div>
+  </div>
+  <p class="inline-text-custom lead m-t-lg"><span>Vista Inicio</span></p>
+  <ul class="list-group media-list media-list-stream m-t-lg">
+      <li class="media list-group-item p-a">
+        <a class="media-left" href="{% url 'detail' post.slug %}">
+          <div class="thumbnail-custom">
+            <div style="
+                    background: url('{{post.image_url}}');
+                    background-size:cover;
+                    background-position:center;
+                    ">
+            </div>
+          </div>
+        </a>
+        <div class="media-body">
+          <div class="media-heading">
+            <small class="pull-right text-muted">{{post.created_at}}</small>
+            <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+            <h5>{{post.slogan}}</h5>
+            <div class="media">
+              <a class="media-left" href="#">
+                <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+              </a>
+              <div class="media-body">
+                <small>@priverass</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              {# <p>{{post.body}}</p> #}
+            </div>
+            <div class="col-sm-4 text-right">
+              {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
+              {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+            </div>
+          </div>
+          {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
+        </div>
+      </li>
+  </ul>
+  <p class="inline-text-custom lead m-t-lg"><span>Vista Detalle</span></p>
+  <div class="panel panel-default m-t-lg">
+  	<div class="panel-body text-center">
+  		<h1>{{ post.title }}</h1>
+  		<p class="lead m-t">{{ post.slogan }}</p>
+		<div class="thumbnail m-t-md" style="background-color:white">
+			<div style="
+                    background: url('{{post.image_url}}');
+                    background-size:cover;
+                    background-position:center;
+                    ">
+            </div>
+		</div>
+		<p class="lead m-t-md">{{post.body}}</p>
+		<p>{{post.created_at}}</p>	
+	</div>
+  </div>
+</div>
 {% endblock content %}

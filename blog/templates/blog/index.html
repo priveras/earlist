@@ -1,169 +1,51 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-1"></div>
-
-    <div class="col-md-7">
-      <ul class="list-group media-list media-list-stream">
-      	{% for post in posts_list %}
-          {% if post.approved == 1 %}
-	        <li class="media list-group-item p-a">
-	          <a class="media-left" href="{% url 'detail' post.slug %}">
-              <div class="thumbnail">
-                <div style="
-                        background: url('{{post.image_url}}');
-                        background-size:cover;
-                        background-position:center;
-                        ">
-                </div>
-              </div>
-	          </a>
-	          <div class="media-body">
-	            <div class="media-heading">
-	              <small class="pull-right text-muted">{{post.created_at}}</small>
-	              <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
-                <h5>{{post.slogan}}</h5>
-                <div class="media">
-                  <a class="media-left" href="#">
-                    <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
-                  </a>
-                  <div class="media-body">
-                    <small>@priverass</small>
-                  </div>
-                </div>
-	            </div>
-              <div class="row">
-                <div class="col-sm-8">
-                  {# <p>{{post.body}}</p> #}
-                </div>
-                <div class="col-sm-4 text-right">
-                  {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
-                  {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
-                </div>
-              </div>
-	            {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
-	          </div>
-	        </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-
-    <div class="col-md-3">
-      <div class="alert alert-warning alert-dismissible hidden-xs" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <a class="alert-link" href="profile/index.html">Visit your profile! </a> Check your self, you aren't looking too good.
-      </div>
-
-      <div class="panel panel-default m-b-md hidden-xs">
-        <div class="panel-body">
-          <h5 class="m-t-0">Sponsored</h5>
-          <a href="http://angularmexico.com/workshops/">
-            <div data-grid="images" >
-              <img class="media-object" data-width="640" data-height="640" src="http://angularmexico.com/i/coco.jpg">
+<div class="col-md-1"></div>
+<div class="col-md-7">
+  <ul class="list-group media-list media-list-stream">
+  	{% for post in posts_list %}
+      {% if post.approved == 1 %}
+      <li class="media list-group-item p-a">
+        <a class="media-left" href="{% url 'detail' post.slug %}">
+          <div class="thumbnail-custom">
+            <div style="
+                    background: url('{{post.image_url}}');
+                    background-size:cover;
+                    background-position:center;
+                    ">
             </div>
-          </a>
-          <p><strong>1er Workshop de Angular Mexico</strong><br>El Workshop es impartido por Josué Gutiérrez, Google Developer Expert en Tecnologías Web y entusiasta en la transformación de la educación.</p>
-          <button class="btn btn-primary-outline btn-sm">Inscribirse</button>
+          </div>
+        </a>
+        <div class="media-body">
+          <div class="media-heading">
+            <small class="pull-right text-muted">{{post.created_at}}</small>
+            <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+            <h5>{{post.slogan}}</h5>
+            <div class="media">
+              <a class="media-left" href="#">
+                <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+              </a>
+              <div class="media-body">
+                <small>@priverass</small>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              {# <p>{{post.body}}</p> #}
+            </div>
+            <div class="col-sm-4 text-right">
+              {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
+              {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+            </div>
+          </div>
+          {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
         </div>
-      </div>
-
-      <div class="panel panel-default m-b-md hidden-xs">
-        <div class="panel-body">
-          <h5 class="m-t-0">Sponsored</h5>
-          <a href="http://angularmexico.com/workshops/">
-            <div data-grid="images" >
-              <img class="media-object" data-width="640" data-height="640" src="https://beerhousemx.s3-us-west-1.amazonaws.com/BH-belga-thumbnail.jpg">
-            </div>
-          </a>
-          <p><strong>Beerhouse.mx</strong><br>Las mejores cervezas de México y el mundo directo a tu casa</p>
-          <button class="btn btn-primary-outline btn-sm">Visitar el Sitio</button>
-        </div>
-      </div>
-
-      <div class="panel panel-default m-b-md hidden-xs">
-        <div class="panel-body">
-        <h5 class="m-t-0">Síguenos <small>· <a href="#">View All</a></small></h5>
-        <ul class="media-list media-list-stream">
-          <li class="media m-b">
-            <a class="media-left" href="#">
-              <img
-                class="media-object img-circle"
-                src="https://pbs.twimg.com/profile_images/545651910485610497/1ZygXyzd_400x400.png">
-            </a>
-            <div class="media-body">
-              <strong>Earlist</strong> @earlistco
-              <div class="media-body-actions">
-                <button class="btn btn-primary-outline btn-sm">
-                  <span class="icon icon-add-user"></span> Follow</button>
-              </div>
-            </div>
-          </li>
-          <li class="media">
-            <a class="media-left" href="#">
-              <img
-                class="media-object img-circle"
-                src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
-            </a>
-            <div class="media-body">
-              <strong>Pablo Rivera</strong> @priverass
-              <div class="media-body-actions">
-                <button class="btn btn-primary-outline btn-sm">
-                  <span class="icon icon-add-user"></span> Follow</button></button>
-              </div>
-            </div>
-          </li>
-          <li class="media">
-            <a class="media-left" href="#">
-              <img
-                class="media-object img-circle"
-                src="https://pbs.twimg.com/profile_images/673723930654314496/ZjkCi9BU_400x400.jpg">
-            </a>
-            <div class="media-body">
-              <strong>Josue Gutierrez</strong> @eusoj
-              <div class="media-body-actions">
-                <button class="btn btn-primary-outline btn-sm">
-                  <span class="icon icon-add-user"></span> Follow</button></button>
-              </div>
-            </div>
-          </li>
-          <li class="media">
-            <a class="media-left" href="#">
-              <img
-                class="media-object img-circle"
-                src="https://pbs.twimg.com/profile_images/632604490126852096/TDiLqs2f_400x400.jpg">
-            </a>
-            <div class="media-body">
-              <strong>David Peña</strong> @dpena31
-              <div class="media-body-actions">
-                <button class="btn btn-primary-outline btn-sm">
-                  <span class="icon icon-add-user"></span> Follow</button></button>
-              </div>
-            </div>
-          </li>
-        </ul>
-        </div>
-        <div class="panel-footer">
-          Dave really likes these nerds, no one knows why though.
-        </div>
-      </div>
-
-      <div class="panel panel-default panel-link-list">
-        <div class="panel-body">
-          © 2016 Earlist
-
-          <a href="#">Nosotros</a>
-          <a href="#">Ayuda</a>
-          <a href="#">Blog</a>
-          <a href="#">Contacto</a>
-          <a href="#">Apps</a>
-          <a href="#">Talento</a>
-          <a href="#">Advertise</a>
-          <a href="#">Términos y Condiciones</a>
-          <a href="#">Privacidad</a>
-        </div>
-      </div>
-    </div>
-  </div>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% include 'blog/right-col.html' %}
 {% endblock %}

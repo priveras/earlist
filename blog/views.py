@@ -68,7 +68,8 @@ def logout_view(request):
     logout(request)
 
 
-class SuccessPostView(generic.TemplateView):
+class SuccessPostView(generic.DetailView):
+    model = Post
     template_name = 'blog/success-post.html'
 
 class ContributeView(generic.TemplateView):
@@ -102,7 +103,7 @@ def post(request):
             	created_at = timezone.now()
             	)
 
-            url = reverse('success-post', kwargs={'post': post.slug})
+            url = reverse('success-post', kwargs={'slug':post.slug})
 
             return HttpResponseRedirect(url)
  

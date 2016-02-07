@@ -1,106 +1,105 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-1"></div>
+<div class="col-md-1"></div>
 
-    <div class="col-md-10">
-      <ul class="nav nav-pills nav-justified">
-        <li role="presentation" class="active"><a href="#">Posts <span class="badge">3</a></li>
-        <li role="presentation"><a href="#">Events <span class="badge">10</a></li>
-        <li role="presentation"><a href="#">Jobs <span class="badge">14</span></a></li>
-      </ul>
+<div class="col-md-10">
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation" class="active"><a href="#">Posts <span class="badge">3</a></li>
+    <li role="presentation"><a href="#">Events <span class="badge">10</a></li>
+    <li role="presentation"><a href="#">Jobs <span class="badge">14</span></a></li>
+  </ul>
 
-      <ul class="list-group media-list media-list-stream m-t">
-      	{% for post in posts_list %}
-	        <li class="media list-group-item p-a">
-	          <a class="media-left" href="{% url 'detail' post.slug %}">
-              <div class="thumbnail">
-                <div style="
-                        background: url('{{post.image_url}}');
-                        background-size:cover;
-                        background-position:center;
-                        ">
-                </div>
-              </div>
-	          </a>
-	          <div class="media-body">
-	            <div class="media-heading">
-	              <small class="pull-right text-muted">{{post.created_at}}</small>
-	              <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
-                <h5>{{post.slogan}}</h5>
-	            </div>
-              <div class="row">
-                <div class="col-sm-8">
-                  <p class="hidden-xs">{{post.body}}</p>
-                </div>
-                <div class="col-sm-4 text-right">
-                  <div class="row text-right">
-                    {% if post.approved == 1 %}
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-success btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
-                    </div>
-                    {% elif post.approved == 2 %}
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-danger btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-down"></i></button>
-                    </div>
-                    {% else %}
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
-                    </div>
-                    <div class="col-sm-6">
-                      <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
-                    </div>
-                    {% endif %}
-                  </div>
-                </div>
-              </div>
-	          </div>
-	        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="modal fade thumbs-down-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header modal-header-danger text-center">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Thumbs Down</h4>
-          </div>
-          <div class="modal-body">
-            <div class="checkbox custom-control custom-checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="custom-control-indicator"></span>
-                Necesita editar
-              </label>
-            </div>
-            <div class="checkbox custom-control custom-checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="custom-control-indicator"></span>
-                Ofrecer sponsor
-              </label>
-            </div>
-            <div class="checkbox custom-control custom-checkbox">
-              <label>
-                <input type="checkbox">
-                <span class="custom-control-indicator"></span>
-                No pertenece
-              </label>
+  <ul class="list-group media-list media-list-stream m-t">
+  	{% for post in posts_list %}
+      <li class="media list-group-item p-a">
+        <a class="media-left" href="{% url 'detail' post.slug %}">
+          <div class="thumbnail">
+            <div style="
+                    background: url('{{post.image_url}}');
+                    background-size:cover;
+                    background-position:center;
+                    ">
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success">Enviar</button>
+        </a>
+        <div class="media-body">
+          <div class="media-heading">
+            <small class="pull-right text-muted">{{post.created_at}}</small>
+            <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+            <h5>{{post.slogan}}</h5>
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+              <p class="hidden-xs">{{post.body}}</p>
+            </div>
+            <div class="col-sm-4 text-right">
+              <div class="row text-right">
+                {% if post.approved == 1 %}
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-success btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
+                </div>
+                {% elif post.approved == 2 %}
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-danger btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-down"></i></button>
+                </div>
+                {% else %}
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
+                </div>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="modal fade thumbs-down-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header modal-header-danger text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Thumbs Down</h4>
+      </div>
+      <div class="modal-body">
+        <div class="checkbox custom-control custom-checkbox">
+          <label>
+            <input type="checkbox">
+            <span class="custom-control-indicator"></span>
+            Necesita editar
+          </label>
+        </div>
+        <div class="checkbox custom-control custom-checkbox">
+          <label>
+            <input type="checkbox">
+            <span class="custom-control-indicator"></span>
+            Ofrecer sponsor
+          </label>
+        </div>
+        <div class="checkbox custom-control custom-checkbox">
+          <label>
+            <input type="checkbox">
+            <span class="custom-control-indicator"></span>
+            No pertenece
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success">Enviar</button>
       </div>
     </div>
+  </div>
+</div>
 {% endblock %}

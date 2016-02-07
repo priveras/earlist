@@ -120,9 +120,11 @@
 	</nav>
 
 	<div class="container p-t-md">
-		{% block content %}
-
-		{% endblock %}
+		<div class="row">
+			{% block content %}
+			
+			{% endblock %}
+		</div>
 	</div>
 	
     <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
