@@ -134,16 +134,3 @@ button:focus {
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
 }
-
-.inline-text-custom {
-   width: 100%; 
-   text-align: center; 
-   border-bottom: 1px dashed #3097d1; 
-   line-height: 0.1em;
-   margin: 10px 0 20px; 
-} 
-
-.inline-text-custom span { 
-    background:#f5f8fa; 
-    padding:0 20px; 
-}

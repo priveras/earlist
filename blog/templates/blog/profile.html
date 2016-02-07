@@ -95,19 +95,25 @@
           <div class="media-heading">
             <small class="pull-right text-muted">{{post.created_at}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+            <h5>{{post.slogan}}</h5>
+            <div class="media">
+              <div class="media-body">
+                <button type="button" class="btn btn-xs btn-primary-outline"><i class="fa fa-pencil"></i> Editar</button>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="col-lg-8">
-              <p>{{post.body}}</p>
+            <div class="col-sm-8">
+              {# <p>{{post.body}}</p> #}
             </div>
-            <div class="col-lg-4 text-right">
+            <div class="col-sm-4 text-right">
               {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
-              <button type="button" class="btn btn-primary pull w-full">Guardado</button>
+              {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
             </div>
           </div>
           {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
         </div>
-    </li>
+      </li>
     {% endfor %}
   </ul>
 </div>

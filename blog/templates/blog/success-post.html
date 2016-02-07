@@ -13,9 +13,9 @@
 				<p class="lead">Gracias por formar parte integral de esta comunidad. A continuación puedes ver el resultado de tu publicación.</p>
 			</div>
 		</div>
+		<a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a>
 	</div>
   </div>
-  <p class="inline-text-custom lead m-t-lg"><span>Vista Inicio</span></p>
   <ul class="list-group media-list media-list-stream m-t-lg">
       <li class="media list-group-item p-a">
         <a class="media-left" href="{% url 'detail' post.slug %}">
@@ -55,7 +55,6 @@
         </div>
       </li>
   </ul>
-  <p class="inline-text-custom lead m-t-lg"><span>Vista Detalle</span></p>
   <div class="panel panel-default m-t-lg">
   	<div class="panel-body text-center">
   		<h1>{{ post.title }}</h1>

@@ -14,7 +14,7 @@
   	{% for post in posts_list %}
       <li class="media list-group-item p-a">
         <a class="media-left" href="{% url 'detail' post.slug %}">
-          <div class="thumbnail">
+          <div class="thumbnail-custom">
             <div style="
                     background: url('{{post.image_url}}');
                     background-size:cover;
