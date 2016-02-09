@@ -36,6 +36,7 @@ class ProfileListView(generic.ListView):
     context_object_name = 'post'
 
     def get_context_data(self, **kwargs):
+
         context = super(ProfileListView, self).get_context_data(**kwargs)
         context['posts_list'] = Post.objects.filter(user=self.request.user).order_by('-created_at')[:5]
         
@@ -80,25 +81,17 @@ def post(request):
     if request.method == 'GET':
         form = PostForm()
     else:
-        # A POST request: Handle Form Upload
-        form = PostForm(request.POST) # Bind data from request.POST into a PostForm
+        form = PostForm(request.POST)
  
-        # If data is valid, proceeds to create a new post and redirect the user
         if form.is_valid():
-            current_user = request.user
-            title = form.cleaned_data['title']
-            slogan = form.cleaned_data['slogan']
-            body = form.cleaned_data['body']
-            link = form.cleaned_data['link']
-            image_url = form.cleaned_data['image_url']
             post = Post.objects.create(
-                user = current_user,
-            	title = title,
+                user = request.user,
+            	title = form.cleaned_data['title'],
             	slug = slugify(title),
-                slogan = slogan,
-                body = body,
-            	link = link,
-                image_url = image_url,
+                slogan = form.cleaned_data['slogan'],
+                body = form.cleaned_data['body'],
+            	link = form.cleaned_data['link'],
+                image_url = form.cleaned_data['image_url'],
                 approved = 0,
             	created_at = timezone.now()
             	)
@@ -115,23 +108,16 @@ def job(request):
     if request.method == 'GET':
         form = JobForm()
     else:
-        # A POST request: Handle Form Upload
-        form = JobForm(request.POST) # Bind data from request.POST into a PostForm
- 
-        # If data is valid, proceeds to create a new post and redirect the user
+        form = JobForm(request.POST)
+
         if form.is_valid():
-            current_user = request.user
-            title = form.cleaned_data['title']
-            company = form.cleaned_data['company']
-            link = form.cleaned_data['link']
-            image_url = form.cleaned_data['image_url']
             job = Job.objects.create(
-                user = current_user,
-                title = title,
+                user = request.user,
+                title = form.cleaned_data['title'],
                 slug = slugify(title),
-                company = company,
-                link = link,
-                image_url = image_url,
+                company = form.cleaned_data['company'],
+                link = form.cleaned_data['link'],
+                image_url = form.cleaned_data['image_url'],
                 created_at = timezone.now()
                 )
             return HttpResponseRedirect('/accounts/profile')
@@ -144,27 +130,18 @@ def event(request):
     if request.method == 'GET':
         form = EventForm()
     else:
-        # A POST request: Handle Form Upload
-        form = EventForm(request.POST) # Bind data from request.POST into a PostForm
+        form = EventForm(request.POST)
  
-        # If data is valid, proceeds to create a new post and redirect the user
         if form.is_valid():
-            current_user = request.user
-            title = form.cleaned_data['title']
-            body = form.cleaned_data['body']
-            link = form.cleaned_data['link']
-            image_url = form.cleaned_data['image_url']
-            cover_url = form.cleaned_data['cover_url']
-            event_date = form.cleaned_data['event_date']
             event = Event.objects.create(
-                user = current_user,
-                title = title,
+                user = request.user,
+                title = form.cleaned_data['title'],
                 slug = slugify(title),
-                body = body,
-                link = link,
-                image_url = image_url,
-                cover_url = cover_url,
-                event_date = event_date,
+                body = form.cleaned_data['body'],
+                link = orm.cleaned_data['link'],
+                image_url = form.cleaned_data['image_url'],
+                cover_url = form.cleaned_data['cover_url'],
+                event_date = form.cleaned_data['event_date'],
                 created_at = timezone.now()
                 )
             return HttpResponseRedirect('/accounts/profile')
