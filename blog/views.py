@@ -87,7 +87,7 @@ def post(request):
             post = Post.objects.create(
                 user = request.user,
             	title = form.cleaned_data['title'],
-            	slug = slugify(title),
+            	slug = slugify(form.cleaned_data['title']),
                 slogan = form.cleaned_data['slogan'],
                 body = form.cleaned_data['body'],
             	link = form.cleaned_data['link'],
@@ -114,7 +114,7 @@ def job(request):
             job = Job.objects.create(
                 user = request.user,
                 title = form.cleaned_data['title'],
-                slug = slugify(title),
+                slug = slugify(form.cleaned_data['title']),
                 company = form.cleaned_data['company'],
                 link = form.cleaned_data['link'],
                 image_url = form.cleaned_data['image_url'],
@@ -136,7 +136,7 @@ def event(request):
             event = Event.objects.create(
                 user = request.user,
                 title = form.cleaned_data['title'],
-                slug = slugify(title),
+                slug = slugify(form.cleaned_data['title']),
                 body = form.cleaned_data['body'],
                 link = orm.cleaned_data['link'],
                 image_url = form.cleaned_data['image_url'],

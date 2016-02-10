@@ -6,6 +6,9 @@
   <ul class="list-group media-list media-list-stream">
   	{% for post in posts_list %}
       {% if post.approved == 1 %}
+          {% ifchanged date.post.created_at %} 
+          <p class="lead"><i class="fa fa-calendar-minus-o"></i> <strong>{{ post.created_at|date:'d M,y' }}</strong></p>
+          {% endifchanged %}
       <li class="media list-group-item p-a">
         <a class="media-left" href="{% url 'detail' post.slug %}">
           <div class="thumbnail-custom">
@@ -43,6 +46,8 @@
           {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
         </div>
       </li>
+      {% with post.created_at as created_at %}  
+      {% endwith %}
       {% endif %}
     {% endfor %}
   </ul>

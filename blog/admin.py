@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Post, Event, Job
 
 class PostAdmin(admin.ModelAdmin):
-    exclude = ['created_at']
+    # exclude = ['created_at']
     prepopulated_fields = {'slug': ('title',)}
 
 # class CategoryAdmin(admin.ModelAdmin):
