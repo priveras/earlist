@@ -1,0 +1,49 @@
+{% extends "socialaccount/base.html" %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <div class="panel panel-default">
+  	<div class="panel-body text-center m-t">
+		<h2>¡Bienvenido a Earlist!</h2>
+		<i class="fa fa-hand-peace-o fa-5x text-primary m-t-md"></i>
+		<p class="lead m-t-md">
+		{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}
+
+		Ya casi terminas tu registro usando {{provider_name}}.
+		<!-- {{site_name}} --> <br>Para terminar completa la siguiente información...
+
+		{% endblocktrans %}</p>
+		<div class="row m-t-md m-b-md">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+					{% csrf_token %}
+					{# {{ form.as_p }} #}
+					<div class="form-group text-left">
+						{{ form.username.errors }}
+						<label for="title">Usuario</label>
+						{{ form.username|attr:"Usuario"|add_class:"form-control" }} <!-- |attr:"disabled" -->
+					</div>
+					<div class="form-group text-left">
+						{{ form.email.errors }}
+						<label for="title">Email</label>
+						{{ form.email|attr:"placeholder:ej: elon@musk.com"|add_class:"form-control" }}
+					</div>
+					{% if redirect_field_value %}
+					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+					{% endif %}
+					<button type="submit" class="btn btn-lg btn-pill btn-primary m-t">{% trans "Continuar" %}</button>
+				</form>
+			</div>
+		</div>
+		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
+	</div>
+  </div>
+</div>
+{% endblock %}

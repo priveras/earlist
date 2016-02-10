@@ -34,7 +34,7 @@ class ProfileListView(generic.ListView):
     model = Post
     template_name = 'blog/profile.html'
     context_object_name = 'post'
-
+    
     def get_context_data(self, **kwargs):
 
         context = super(ProfileListView, self).get_context_data(**kwargs)
