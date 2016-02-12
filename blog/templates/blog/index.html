@@ -1,8 +1,7 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
-<div class="col-md-1"></div>
-<div class="col-md-7">
+<div class="col-sm-offset-1 col-sm-7">
   <ul class="list-group media-list media-list-stream">
   	{% for post in posts_list %}
       {% if post.approved == 1 %}

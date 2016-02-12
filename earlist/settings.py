@@ -31,7 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'sendgrid',
     'django.contrib.sites',
     'widget_tweaks',
     'blog.apps.BlogConfig',
@@ -137,10 +136,8 @@ SOCIALACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 SOCIALACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
-SENDGRID_EMAIL_HOST = "smtp.sendgrid.net"
-SENDGRID_EMAIL_PORT = 587
-SENDGRID_EMAIL_USERNAME = "earlist"
-SENDGRID_EMAIL_PASSWORD = "Earlistco1"
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = "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"
 
 AUTHENTICATION_BACKENDS = (
     
