@@ -6,9 +6,9 @@
   <ul class="list-group media-list media-list-stream">
   	{% for post in posts_list %}
       {% if post.approved == 1 %}
-          {% ifchanged date.post.created_at %} 
+          <!--{% ifchanged date.post.created_at %} 
           <p class="lead"><i class="fa fa-calendar-minus-o"></i> <strong>{{ post.created_at|date:'d M,y' }}</strong></p>
-          {% endifchanged %}
+          {% endifchanged %}-->
       <li class="media list-group-item p-a">
         <a class="media-left" href="{% url 'detail' post.slug %}">
           <div class="thumbnail-custom">
@@ -22,16 +22,16 @@
         </a>
         <div class="media-body">
           <div class="media-heading">
-            <small class="pull-right text-muted">{{post.created_at}}</small>
+            <small class="pull-right text-muted">{{post.created_at|date:"M d, Y"}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
             <h5>{{post.slogan}}</h5>
             <div class="media">
-              <a class="media-left" href="#">
+              <!--<a class="media-left" href="#">
                 <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
               </a>
               <div class="media-body">
                 <small>@priverass</small>
-              </div>
+              </div>-->
             </div>
           </div>
           <div class="row">

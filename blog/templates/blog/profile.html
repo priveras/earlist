@@ -27,14 +27,14 @@
         <li class="panel-menu-item">
           <a href="#userModal" class="text-inherit" data-toggle="modal">
             Posts
-            <h5 class="m-y-0">1</h5>
+            <h5 class="m-y-0">{{posts_list|length}}</h5>
           </a>
         </li>
       </ul>
     </div>
     {% endfor %}
   </div>
-  <div class="panel panel-default visible-md-block visible-lg-block">
+  <!--<div class="panel panel-default visible-md-block visible-lg-block">
     <div class="panel-body">
       <h5 class="m-t-0">Trabajos <small>· <a href="{% url 'blog:jobs' %}">Ver Todos</a></small></h5>
       <ul class="list-unstyled list-spaced">
@@ -70,7 +70,7 @@
       </ul>
       <a href="{% url 'blog:event' %}"><div class="btn btn-primary w-full">Publicar Evento</div></a>
     </div>
-  </div>
+  </div>-->
 </div>
 
 <div class="col-md-6">
@@ -93,7 +93,7 @@
         </a>
         <div class="media-body">
           <div class="media-heading">
-            <small class="pull-right text-muted">{{post.created_at}}</small>
+            <small class="pull-right text-muted">{{post.created_at|date:"M d, Y"}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
             <h5>{{post.slogan}}</h5>
             <div class="media">

@@ -61,10 +61,10 @@
 	            <a href="">Agregar</a>
 	          </li> -->
 	          <li>
-	            <a data-toggle="modal" href="{% url 'blog:events' %}">Eventos</a>
+	            <!--<a data-toggle="modal" href="{% url 'blog:events' %}">Eventos</a>-->
 	          </li>
 	          <li>
-	            <a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>
+	            <!--<a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>-->
 	          </li>
 	          <li>
 	            <a data-toggle="modal" href="{% url 'contribute' %}">Contribuir</a>
@@ -72,11 +72,11 @@
 	        </ul>
 
 	        <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
-	          <li >
+	          <!--<li >
 	            <a class="app-notifications" href="notifications/index.html">
 	              <span class="icon icon-bell"></span>
 	            </a>
-	          </li>
+	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
@@ -92,11 +92,11 @@
 	          {% endif %}
 	        </ul>
 
-	        <form class="navbar-form navbar-right app-search" role="search">
+	        <!--<form class="navbar-form navbar-right app-search" role="search">
 	          <div class="form-group">
 	            <input type="text" class="form-control" data-action="grow" placeholder="Buscar">
 	          </div>
-	        </form>
+	        </form>-->
 
 	        <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
 	          <li><a href="index.html">Home</a></li>
@@ -113,7 +113,7 @@
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'panel' %}">Panel</a></li>
 	          {% endif %}
-	          <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+	          <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li>
 	        </ul>
 	      </div>
 	  </div>
