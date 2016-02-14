@@ -20,9 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_e3vd2jam=a7g2*+8*e1d5qbwmh8_z$!8ufqs8(dn%d#9^diw)'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -136,9 +133,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 SOCIALACCOUNT_EMAIL_VERIFICATION = "mandatory"
-
-EMAIL_BACKEND = "sgbackend.SendGridBackend"
-SENDGRID_API_KEY = "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"
 
 AUTHENTICATION_BACKENDS = (
     
