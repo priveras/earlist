@@ -93,12 +93,12 @@
         </a>
         <div class="media-body">
           <div class="media-heading">
-            <small class="pull-right text-muted">{{post.created_at|date:"M d, Y"}}</small>
+            <small class="pull-right text-muted"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
             <h5>{{post.slogan}}</h5>
             <div class="media">
               <div class="media-body">
-                <button type="button" class="btn btn-xs btn-primary-outline"><i class="fa fa-pencil"></i> Editar</button>
+                <small><i class="fa fa-thumb-tack text-primary"></i> {{post.city}}</small>
               </div>
             </div>
           </div>

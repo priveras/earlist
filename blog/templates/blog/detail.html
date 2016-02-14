@@ -15,13 +15,13 @@
                 </div>
 			</div>
 			<p class="lead m-t-md">{{post.body}}</p>
-			<a href="{{post.link}}" targe="_blank" class="btn btn-primary m-t-md">
+			<a href="{{post.link}}" target="_blank" class="btn btn-primary m-t-md">
 			  <i class="fa fa-location-arrow"></i> Ir a sitio web
 			</a>
 			<div class="row m-t-md">
 				<hr>
 				<div class="col-sm-6">
-					<p><i class="fa fa-thumb-tack text-success"></i> <strong>Mexico City</strong></p>
+					<p><i class="fa fa-thumb-tack text-success"></i> <strong>{{post.city}}</strong></p>
 				</div>
 				<div class="col-sm-6">
 					<p><i class="fa fa-clock-o text-primary"></i> <strong>{{post.created_at|date:"M d, Y"}}</strong></p>

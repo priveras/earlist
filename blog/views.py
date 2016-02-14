@@ -92,6 +92,7 @@ def post(request):
                 body = form.cleaned_data['body'],
             	link = form.cleaned_data['link'],
                 image_url = form.cleaned_data['image_url'],
+                city = form.cleaned_data['city'],
                 approved = 0,
             	created_at = timezone.now()
             	)

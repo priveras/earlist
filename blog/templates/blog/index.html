@@ -21,10 +21,13 @@
         </a>
         <div class="media-body">
           <div class="media-heading">
-            <small class="pull-right text-muted">{{post.created_at|date:"M d, Y"}}</small>
+            <small class="pull-right text-muted"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
             <h5>{{post.slogan}}</h5>
             <div class="media">
+              <div class="media-body">
+                <small><i class="fa fa-thumb-tack text-primary"></i> {{post.city}}</small>
+              </div>
               <!--<a class="media-left" href="#">
                 <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
               </a>

@@ -5,15 +5,14 @@
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
-<div class="col-md-2"></div>
-<div class="col-md-8">
+<div class="col-sm-offset-2 col-md-8">
   <div class="panel panel-default">
   	<div class="panel-body text-center m-t">
-  		{% if messages %}
+  		<!--{% if messages %}
   		{% for message in messages %}
   		<div class="alert alert-warning" role="alert">{{message}}</div>
   		{% endfor %}
-  		{% endif %}
+  		{% endif %}-->
 		<h2>Esperando verificación de email...</h2>
 		<i class="fa fa-hourglass-3 fa-5x text-primary m-t-md"></i>
 		<p class="lead m-t-md">

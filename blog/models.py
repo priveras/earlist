@@ -12,7 +12,9 @@ class Post(models.Model):
 	body = models.TextField()
 	link = models.URLField(max_length=200, unique=True)
 	image_url = models.URLField(max_length=1000)
+	city = models.CharField(max_length=200)
 	approved = models.IntegerField()
+	votes = models.IntegerField(default=0)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
 	# category = models.ForeignKey('Category')
 
