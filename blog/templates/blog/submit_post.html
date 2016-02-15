@@ -4,18 +4,18 @@
 {% block content %}
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
-  	<div class="panel-body text-center m-t">
-		<h2>Contribuir a Earlist</h2>
-		<i class="fa fa-users fa-5x text-primary m-t-md"></i>
-		<div class="row m-t-md m-b">
-			<div class="col-lg-1"></div>
-			<div class="col-lg-10">
-				<p class="lead">Aquí puedes publicar tu producto. Estamos ansiosos por saber de que se trata para poder compartirlo con la comunidad</p>
-			</div>
-		</div>
-		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
-	</div>
-</div>
+      	<div class="panel-body text-center m-t">
+    		<h2>Contribuir a Earlist</h2>
+    		<i class="fa fa-users fa-5x text-primary m-t-md"></i>
+    		<div class="row m-t-md m-b">
+    			<div class="col-lg-1"></div>
+    			<div class="col-lg-10">
+    				<p class="lead">Aquí puedes publicar tu producto. Estamos ansiosos por saber de que se trata para poder compartirlo con la comunidad</p>
+    			</div>
+    		</div>
+    		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
+    	</div>
+    </div>
 	<form action="{% url 'blog:post' %}" method="post">
 		{% csrf_token %}
 		<div class="form-group">
