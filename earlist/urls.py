@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^contribute/', views.ContributeView.as_view(), name='contribute'), 
     url(r'^update-post/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 
     url(r'^delete-post/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'), 
+    
 ]
