@@ -111,9 +111,33 @@ class PostUpdateView(generic.UpdateView):
     template_name = 'blog/update_post.html'
     success_url = '/accounts/profile/'
 
+    def user_passes_test(self, request):
+        if request.user.is_authenticated():
+            self.object = self.get_object()
+            return self.object.user == request.user
+        return False
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.user_passes_test(request):
+            return HttpResponseRedirect('/')
+        return super(PostUpdateView, self).dispatch(
+            request, *args, **kwargs)
+
 class PostDeleteView(generic.DeleteView):
     model = Post
     success_url = '/accounts/profile/'
+
+    def user_passes_test(self, request):
+        if request.user.is_authenticated():
+            self.object = self.get_object()
+            return self.object.user == request.user
+        return False
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.user_passes_test(request):
+            return HttpResponseRedirect('/')
+        return super(PostDeleteView, self).dispatch(
+            request, *args, **kwargs)
 
 def job(request):
     if request.method == 'GET':
