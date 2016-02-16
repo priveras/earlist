@@ -20,7 +20,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('^', include('django.contrib.auth.urls')),
+    # url('^', include('django.contrib.auth.urls')),
 	url(r'^', include('blog.urls')),
     url(r'^accounts/profile/', login_required(views.ProfileListView.as_view()), name='profile'),
     url(r'^post/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
