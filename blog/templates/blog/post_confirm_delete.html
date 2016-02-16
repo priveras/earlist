@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="col-sm-offset-2 col-sm-8">
+	<div class="panel panel-default">
+      	<div class="panel-body text-center m-t">
+    		<h2>Eliminar Publicación</h2>
+    		<i class="fa fa-trash fa-5x text-primary m-t-md"></i>
+    		<div class="row m-t-md m-b">
+    			<form action="" method="post">{% csrf_token %}
+				    <p class="lead">¿Estás seguro que quieres eliminar <b>{{ object }}</b>?</p>
+				    <input class="btn btn-lg btn-pill btn-primary m-t" type="submit" value="Eliminar" />
+				</form>
+    		</div>
+    		<a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancelar</button></a
+    	</div>
+    </div>
+</div>
+{% endblock %}

@@ -105,6 +105,16 @@ def post(request):
         'form': form,
     })
 
+class PostUpdateView(generic.UpdateView):
+    model = Post
+    fields = ['slogan', 'body', 'link', 'image_url', 'city']
+    template_name = 'blog/update_post.html'
+    success_url = '/accounts/profile/'
+
+class PostDeleteView(generic.DeleteView):
+    model = Post
+    success_url = '/accounts/profile/'
+
 def job(request):
     if request.method == 'GET':
         form = JobForm()

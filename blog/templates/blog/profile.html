@@ -99,6 +99,8 @@
             <div class="media">
               <div class="media-body">
                 <small><i class="fa fa-thumb-tack text-primary"></i> {{post.city}}</small>
+                <a href="{% url 'delete-post' post.slug %}" class="btn btn-xs btn-danger-outline pull-right"><i class="fa fa-trash"></i></a>
+                <a href="{% url 'update-post' post.slug %}" class="btn btn-xs btn-primary-outline pull-right m-r"><i class="fa fa-pencil"></i></a>
               </div>
             </div>
           </div>

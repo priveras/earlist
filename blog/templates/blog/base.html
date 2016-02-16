@@ -88,7 +88,7 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
+	          	<a href="{% url 'login' %}"><i class="fa fa-twitter-square"></i> Login </a> <!-- {% provider_login_url "twitter" %}-->
 	          </li>
 	          {% endif %}
 	        </ul>

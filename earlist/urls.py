@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^post/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^panel/', views.PanelListView.as_view(), name='panel'), 
-    url(r'^success-post/(?P<slug>[^\.]+)/$', views.SuccessPostView.as_view(), name='success-post'), 
+    url(r'^success-post/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 
     url(r'^contribute/', views.ContributeView.as_view(), name='contribute'), 
+    url(r'^update-post/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 
+    url(r'^delete-post/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'), 
 ]
