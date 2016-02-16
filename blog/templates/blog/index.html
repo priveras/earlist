@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
-<div class="col-sm-offset-1 col-sm-7">
+<div class="col-md-offset-1 col-md-7">
   <ul class="list-group media-list media-list-stream">
   	{% for post in posts_list %}
       {% if post.approved == 1 %}
@@ -21,11 +21,11 @@
         </a>
         <div class="media-body">
           <div class="media-heading">
-            <small class="pull-right text-muted"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
+            <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
             <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
             <h5>{{post.slogan}}</h5>
             <div class="media">
-              <div class="media-body">
+              <div class="media-body hidden-xs">
                 <small><i class="fa fa-thumb-tack text-primary"></i> {{post.city}}</small>
               </div>
               <!--<a class="media-left" href="#">

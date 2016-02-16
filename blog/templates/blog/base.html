@@ -55,7 +55,7 @@
 	    <div class="navbar-collapse collapse" id="navbar-collapse-main">
 
 	        <ul class="nav navbar-nav hidden-xs">
-	          <li class="active">
+	          <li>
 	            <a href="{% url 'blog:index' %}">Inicio</a>
 	          </li>
 	          <!-- <li>
@@ -68,7 +68,7 @@
 	            <!--<a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>-->
 	          </li>
 	          <li>
-	            <a data-toggle="modal" href="{% url 'contribute' %}">Contribuir</a>
+	            <a href="{% url 'contribute' %}">Contribuir</a>
 	          </li>
 	        </ul>
 
@@ -88,7 +88,7 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="{% url 'login' %}"><i class="fa fa-twitter-square"></i> Login </a> <!-- {% provider_login_url "twitter" %}-->
+	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
 	          </li>
 	          {% endif %}
 	        </ul>
@@ -100,13 +100,27 @@
 	        </form>-->
 
 	        <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
-	          <li><a href="index.html">Home</a></li>
-	          <li><a href="profile/index.html">Profile</a></li>
-	          <li><a href="notifications/index.html">Notifications</a></li>
-	          <li><a data-toggle="modal" href="#msgModal">Messages</a></li>
-	          <li><a href="docs/index.html">Docs</a></li>
-	          <li><a href="#" data-action="growl">Growl</a></li>
-	          <li><a href="login/index.html">Logout</a></li>
+	          <li>
+	            <a href="{% url 'blog:index' %}">Inicio</a>
+	          </li>
+	          <li>
+	            <a data-toggle="modal" href="{% url 'contribute' %}">Contribuir</a>
+	          </li>
+	          {% if user.is_authenticated %}
+	          <li>
+	          	{% for account in user.socialaccount_set.all %}
+	          		<a href="{% url 'profile' %}"><i class="fa fa-user"></i> {{account.user}}</a>
+			    {% endfor %}
+	          </li>
+	          {% if user.is_staff %}
+	          <li><a href="{% url 'panel' %}">Panel</a></li>
+	          {% endif %}
+	          <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li>
+	          {% else %}
+	          <li>
+	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
+	          </li>
+	          {% endif %}
 	        </ul>
 
 	        <ul class="nav navbar-nav hidden">
