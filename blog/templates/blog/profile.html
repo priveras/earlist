@@ -79,44 +79,50 @@
     <li class="media list-group-item p-a">
       <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full">Agregar Producto</button></a>
     </li>
-    {% for post in posts_list %}
-    <li class="media list-group-item p-a">
-        <a class="media-left" href="{% url 'detail' post.slug %}">
-          <div class="thumbnail-custom">
-            <div style="
-                    background: url('{{post.image_url}}');
-                    background-size:cover;
-                    background-position:center;
-                    ">
-            </div>
-          </div>
-        </a>
-        <div class="media-body">
-          <div class="media-heading">
-            <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
-            <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
-            <h5>{{post.slogan}}</h5>
-            <div class="media hidden-xs">
-              <div class="media-body">
-                <small><i class="fa fa-thumb-tack text-primary"></i> {{post.city}}</small>
-                <a href="{% url 'delete-post' post.slug %}" class="btn btn-xs btn-danger-outline pull-right"><i class="fa fa-trash"></i></a>
-                <a href="{% url 'update-post' post.slug %}" class="btn btn-xs btn-primary-outline pull-right m-r"><i class="fa fa-pencil"></i></a>
+    {% if post_list.all %}
+      {% for post in posts_list %}
+      <li class="media list-group-item p-a">
+          <a class="media-left" href="{% url 'detail' post.slug %}">
+            <div class="thumbnail-custom">
+              <div style="
+                      background: url('{{post.image_url}}');
+                      background-size:cover;
+                      background-position:center;
+                      ">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-8">
-              {# <p>{{post.body}}</p> #}
+          </a>
+          <div class="media-body">
+            <div class="media-heading">
+              <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{post.created_at|date:"M d, Y"}}</small>
+              <a href="{% url 'detail' post.slug %}" class="no-text-decoration"><h4>{{post.title}}</h4></a>
+              <h5>{{post.slogan}}</h5>
+              <div class="media hidden-xs">
+                <div class="media-body">
+                  <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small>
+                  <a href="{% url 'delete-post' post.slug %}" class="btn btn-xs btn-danger-outline pull-right"><i class="fa fa-trash"></i></a>
+                  <a href="{% url 'update-post' post.slug %}" class="btn btn-xs btn-primary-outline pull-right m-r"><i class="fa fa-pencil"></i></a>
+                </div>
+              </div>
             </div>
-            <div class="col-sm-4 text-right">
-              {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
-              {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+            <div class="row">
+              <div class="col-sm-8">
+                {# <p>{{post.body}}</p> #}
+              </div>
+              <div class="col-sm-4 text-right">
+                {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
+                {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+              </div>
             </div>
+            {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
           </div>
-          {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
-        </div>
-      </li>
-    {% endfor %}
+        </li>
+      {% endfor %}
+    {% else %}
+    <li class="media list-group-item p-t text-center text-danger">
+      <p><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</p>
+    </li>
+    {% endif %}
   </ul>
 </div>
 {% include 'blog/right-col.html' %}
