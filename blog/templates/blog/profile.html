@@ -79,7 +79,7 @@
     <li class="media list-group-item p-a">
       <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full">Agregar Producto</button></a>
     </li>
-    {% if post_list.all %}
+    {# {% if post_list.all %} #}
       {% for post in posts_list %}
       <li class="media list-group-item p-a">
           <a class="media-left" href="{% url 'detail' post.slug %}">
@@ -118,11 +118,11 @@
           </div>
         </li>
       {% endfor %}
-    {% else %}
-    <li class="media list-group-item p-t text-center text-danger">
+    {# {% else %} #}
+    <!--<li class="media list-group-item p-t text-center text-danger">
       <p><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</p>
-    </li>
-    {% endif %}
+    </li>-->
+    {# {% endif %} #}
   </ul>
 </div>
 {% include 'blog/right-col.html' %}
