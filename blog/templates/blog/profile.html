@@ -132,8 +132,10 @@
         </li>
       {% endfor %}
     {% else %}
-    <li class="media list-group-item p-t text-center text-danger">
-      <p><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</p>
+    <li class="media list-group-item p-t text-center">
+      <div class="alert alert-danger"><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</div>
+      <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full m-b">Agregar Producto</button></a>
+      <d
     </li>
     {% endif %}
   </ul>
