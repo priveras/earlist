@@ -74,12 +74,16 @@
 </div>
 
 <div class="col-md-6">
-  <ul class="list-group media-list media-list-stream">
+  <ul class="nav nav-pills nav-justified">
+    <li role="presentation"><a href="#">Votados</a></li>
+    <li role="presentation" class="active"><a href="#">Publicados</a></li>
+  </ul>
 
-    <li class="media list-group-item p-a">
-      <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full">Agregar Producto</button></a>
-    </li>
-    {# {% if post_list.all %} #}
+  <ul class="list-group media-list media-list-stream m-t-md">
+    <!--<li class="media list-group-item p-a">
+      {# <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full">Agregar Producto</button></a> #}
+    </li>-->
+    {% if posts_list.all %}
       {% for post in posts_list %}
       <li class="media list-group-item p-a">
           <a class="media-left" href="{% url 'detail' post.slug %}">
@@ -99,9 +103,18 @@
               <h5>{{post.slogan}}</h5>
               <div class="media hidden-xs">
                 <div class="media-body">
-                  <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small>
-                  <a href="{% url 'delete-post' post.slug %}" class="btn btn-xs btn-danger-outline pull-right"><i class="fa fa-trash"></i></a>
-                  <a href="{% url 'update-post' post.slug %}" class="btn btn-xs btn-primary-outline pull-right m-r"><i class="fa fa-pencil"></i></a>
+                  {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
+                  <button type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i> 0</button>
+                  <a href="{{post.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
+                  <a href="{% url 'update-post' post.slug %}" class="btn btn-xs btn-primary-outline"><i class="fa fa-pencil"></i></a>
+                  <a href="{% url 'delete-post' post.slug %}" class="btn btn-xs btn-danger-outline"><i class="fa fa-trash"></i></a>
+                  {% if post.approved == 0 %}
+                  <button type="button" class="btn btn-xs btn-warning pull-right">Pendiente</button>
+                  {% elif post.approved == 1 %}
+                  <div class="btn btn-xs btn-success pull-right">Aprobado</div>
+                  {% else %}
+                  <button type="button" class="btn btn-xs btn-danger pull-right">Rechazado</button>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -118,11 +131,11 @@
           </div>
         </li>
       {% endfor %}
-    {# {% else %} #}
-    <!--<li class="media list-group-item p-t text-center text-danger">
+    {% else %}
+    <li class="media list-group-item p-t text-center text-danger">
       <p><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</p>
-    </li>-->
-    {# {% endif %} #}
+    </li>
+    {% endif %}
   </ul>
 </div>
 {% include 'blog/right-col.html' %}

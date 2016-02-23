@@ -68,9 +68,6 @@
 	          <li>
 	            <!--<a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>-->
 	          </li>
-	          <li>
-	            <a href="{% url 'contribute' %}">Contribuir</a>
-	          </li>
 	        </ul>
 
 	        <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
@@ -81,6 +78,9 @@
 	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
+	          	<a href="{% url 'blog:post' %}"><i class="fa fa-plus-circle fa-lg"></i></a>
+	          </li>
+	          <li>
 	          	{% for account in user.socialaccount_set.all %}
 	          		<button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
 		              <img class="img-circle" src="{{ account.get_avatar_url }}">
@@ -89,7 +89,10 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
+	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i></a>
+	          </li>
+	          <li>
+	          	<a href="" data-toggle="modal" data-target=".login-modal"><i class="fa fa-twitter-square"></i> Login </a>
 	          </li>
 	          {% endif %}
 	        </ul>
@@ -141,6 +144,43 @@
 			
 			{% endblock %}
 		</div>
+	</div>
+	<div class="modal fade login-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class="modal-header text-center bg-primary">
+	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    		<h4 class="modal-title">Iniciar Sesión</h4>
+	    	</div>
+	    	<div class="modal-body text-center m-b">
+	    		<p class="lead">Inicia tu sesión con Twitter</p>
+	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+	    	</div>
+	    
+	    </div>
+	  </div>
+	</div>
+	<div class="modal fade add-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	    	<div class="modal-header text-center bg-primary">
+	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    		<h4 class="modal-title">Agregar Producto</h4>
+	    	</div>
+	    	<div class="modal-body text-center m-b">
+	    		<h2>Contribuir a Earlist</h2>
+				<i class="fa fa-share-square-o fa-5x text-primary m-t"></i>
+				<div class="row m-t-md m-b-md">
+					<div class="col-lg-1"></div>
+					<div class="col-lg-10">
+						<p class="lead">Aquí es donde se comparten y descubren los mejores productos. Te invitamos a formar parte integral de nuestra comunidad al compartir una publicación.</p>
+					</div>
+				</div>
+	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+	    	</div>
+	    
+	    </div>
+	  </div>
 	</div>
 	
     <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
