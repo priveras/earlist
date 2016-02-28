@@ -7,9 +7,9 @@
 <ul>
 {% for post in regrouped_posts_list %}
     <h5>{{ post.grouper }}</h5>
+    <ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
       {% if item.approved == 1 %}
-        <ul class="list-group media-list media-list-stream">
           <li class="media list-group-item p-a">
             <a class="media-left" href="{% url 'detail' item.slug %}">
               <div class="thumbnail-custom">
@@ -53,9 +53,9 @@
               {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
             </div>
           </li>
-        </ul>
       {% endif %}
     {% endfor %}
+    </ul>
 {% endfor %}
 </ul>
 </div>
