@@ -1,10 +1,11 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
+{% load humanize %}
 {% block content %}
 <div class="col-md-offset-1 col-md-7">
-{% regroup posts_list by created_at|date:"Y-m-d" as regrouped_posts_list %}
+{% regroup posts_list by created_at as regrouped_posts_list %}
 {% for post in regrouped_posts_list %}
-    <h5>{{ post.grouper }}</h5>
+    <h5>{{ post.grouper|naturalday }}</h5>
     <ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
       {% if item.approved == 1 %}
