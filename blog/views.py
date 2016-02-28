@@ -14,7 +14,7 @@ class PostListView(generic.ListView):
 	context_object_name = 'posts_list'
 
 	def get_queryset(self):
-		return Post.objects.order_by('-votes')
+		return Post.objects.order_by('-created_at')
 
 
 class DetailView(generic.DetailView):
