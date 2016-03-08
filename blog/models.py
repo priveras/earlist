@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
 from django.core.urlresolvers import reverse
-
+from vote.managers import VotableManager
 
 class Post(models.Model):
 	user = models.ForeignKey(User)

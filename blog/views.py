@@ -8,6 +8,40 @@ from django.utils.text import slugify
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+
+def status(request, slug, message):
+
+    p = Post.objects.get(slug=slug)
+    email = p.user.email
+    d = Context({ 'first_name': p.user.first_name })
+
+    if message == '1':
+        p.approved = 1
+        plaintext = get_template('blog/emails/approved.txt')
+        htmly     = get_template('blog/emails/approved.html')
+        subject = 'Tu publicacion ha sido aprobada'
+
+    else:
+        p.approved = 2
+        plaintext = get_template('blog/emails/approved.txt')
+        htmly     = get_template('blog/emails/approved.html')
+        subject = 'Tu publicacion ha sido declinada'
+
+    from_email, to = 'Earlist <hey@earlist.club>', email
+    text_content = plaintext.render(d)
+    html_content = htmly.render(d)
+    mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    mail.attach_alternative(html_content, "text/html")
+    mail.send()
+
+    p.save()
+
+    return HttpResponseRedirect(reverse('panel'))
+
 
 class PostListView(generic.ListView):
 	template_name = 'blog/index.html'

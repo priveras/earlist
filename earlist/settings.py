@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'vote',
     'django.contrib.humanize', 
     'django.contrib.sites',
     'widget_tweaks',
