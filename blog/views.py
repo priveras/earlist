@@ -12,6 +12,9 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
+from earlist.secret import api
+import twitter
+
 
 def status(request, slug, message):
 
@@ -24,6 +27,8 @@ def status(request, slug, message):
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
+
+        api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), p.image_url)
 
     else:
         p.approved = 2
