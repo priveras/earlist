@@ -1,1 +1,1 @@
-Hello {{ username }} - your account is activated.
+Hola <strong>{{ first_name }}</strong> - tu publicación ha sido aprobada.

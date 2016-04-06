@@ -1,6 +1,17 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% block content %}
+<script type="text/javascript">
+
+$(document).on("click", ".open-dialog", function () {
+  var l = window.location;
+  var base_url = l.protocol + "//" + l.host + "/status/";
+  var postSlug = $(this).data('id');
+  $(".modal-body #postSlug").attr("href", base_url + postSlug);
+});
+
+
+</script>
 <div class="col-md-1"></div>
 
 <div class="col-md-10">
@@ -54,7 +65,7 @@
                   <a href="{% url 'status' post.slug 1 %}" type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></a>
                 </div>
                 <div class="col-sm-6">
-                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
+                  <button type="button" class="open-dialog btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal" data-id="{{ post.slug }}"><i class="fa fa-thumbs-o-down"></i></button>
                 </div>
                 {% endif %}
               </div>
@@ -74,13 +85,13 @@
       </div>
       <div class="modal-body">
         <div class="checkbox custom-control custom-checkbox">
-          <a href="" class="btn btn-default w-full">Necesita editar</a>
+          <a class="btn btn-default w-full" id="postSlug">Necesita editar</a>
         </div>
         <div class="checkbox custom-control custom-checkbox">
-          <a href="" class="btn btn-default w-full">Ofrecer ser sponsor</a>
+          <a class="btn btn-default w-full" id="postSlug">Ofrecer ser sponsor</a>
         </div>
         <div class="checkbox custom-control custom-checkbox">
-          <a href="" class="btn btn-default w-full">No pertenece</a>
+          <a class="btn btn-default w-full" id="postSlug">No pertenece</a>
         </div>
       </div>
     </div>

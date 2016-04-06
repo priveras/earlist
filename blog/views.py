@@ -20,10 +20,10 @@ def status(request, slug, message):
 
     p = Post.objects.get(slug=slug)
     email = p.user.email
-    d = Context({ 'first_name': p.user.first_name })
 
     if message == '1':
         p.approved = 1
+        d = Context({ 'first_name': p.user.first_name })
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
@@ -32,9 +32,20 @@ def status(request, slug, message):
 
     else:
         p.approved = 2
-        plaintext = get_template('blog/emails/approved.txt')
-        htmly     = get_template('blog/emails/approved.html')
-        subject = 'Tu publicacion ha sido declinada'
+
+        if message == '2':
+            error = 'Editar datos'
+
+        elif message == '3':
+            error = 'Patrocinar'
+
+        else:
+            error = 'No pertenece'
+
+        d = Context({ 'first_name': p.user.first_name, 'error': error })
+        plaintext = get_template('blog/emails/declined.txt')
+        htmly     = get_template('blog/emails/declined.html')
+        subject = 'Tu publicacion ha sido declinada'        
 
     from_email, to = 'Earlist <hey@earlist.club>', email
     text_content = plaintext.render(d)
