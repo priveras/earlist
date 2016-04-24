@@ -5,7 +5,8 @@ class PostForm(forms.Form):
     slogan = forms.CharField(max_length=200)
     body = forms.CharField(widget=forms.Textarea)
     link = forms.URLField(max_length=200)
-    image_url = forms.URLField(max_length=200)
+    # image_url = forms.URLField(max_length=200)
+    image_file = forms.FileField(label='Selecciona un archivo')
     city = forms.CharField(max_length=200)
 
 class EventForm(forms.Form):

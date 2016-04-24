@@ -1,5 +1,6 @@
 from django.views import generic
-from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from .models import Post, Event, Job
@@ -14,7 +15,15 @@ from django.template.loader import get_template
 from django.template import Context
 from earlist.secret import api
 import twitter
+import datetime
 
+@csrf_exempt
+def vote(request, slug):
+    p = Post.objects.get(slug=slug)
+    p.votes += 1
+    p.save()
+
+    return HttpResponse(p.votes)
 
 def status(request, slug, message):
 
@@ -23,12 +32,13 @@ def status(request, slug, message):
 
     if message == '1':
         p.approved = 1
+        p.updated_at = datetime.datetime.now()
         d = Context({ 'first_name': p.user.first_name })
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), p.image_url)
+        # api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri() + p.image_file.url)
 
     else:
         p.approved = 2
@@ -64,7 +74,7 @@ class PostListView(generic.ListView):
 	context_object_name = 'posts_list'
 
 	def get_queryset(self):
-		return Post.objects.order_by('-created_at')
+		return Post.objects.order_by('-created_at').filter(approved=1)
 
 
 class DetailView(generic.DetailView):
@@ -131,7 +141,7 @@ def post(request):
     if request.method == 'GET':
         form = PostForm()
     else:
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
  
         if form.is_valid():
             post = Post.objects.create(
@@ -141,7 +151,8 @@ def post(request):
                 slogan = form.cleaned_data['slogan'],
                 body = form.cleaned_data['body'],
             	link = form.cleaned_data['link'],
-                image_url = form.cleaned_data['image_url'],
+                image_file = request.FILES['image_file'],
+                # image_url = form.cleaned_data['image_url'],
                 city = form.cleaned_data['city'],
                 approved = 0,
             	created_at = timezone.now()
@@ -157,9 +168,10 @@ def post(request):
 
 class PostUpdateView(generic.UpdateView):
     model = Post
-    fields = ['slogan', 'body', 'link', 'image_url', 'city']
+    fields = ['slogan', 'body', 'link', 'image_file', 'city']
     template_name = 'blog/update_post.html'
     success_url = '/accounts/profile/'
+
 
     def user_passes_test(self, request):
         if request.user.is_authenticated():
@@ -234,4 +246,3 @@ def event(request):
     return render(request, 'blog/submit_event.html', {
         'form': form,
     })
-

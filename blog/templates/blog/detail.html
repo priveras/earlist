@@ -8,14 +8,14 @@
 			<p class="lead m-t">{{ post.slogan }}</p>
 			<div class="thumbnail m-t-md" style="background-color:white">
 				<div style="
-                        background: url('{{post.image_url}}');
+                        background: url('{{post.image_file.url}}');
                         background-size:cover;
                         background-position:center;
                         ">
                 </div>
 			</div>
 			<p class="lead m-t-md">{{post.body}}</p>
-			<a href="{{post.link}}" target="_blank" class="btn btn-primary m-t-md">
+			<a href="{{post.link}}?ref=earlist" target="_blank" class="btn btn-primary m-t-md">
 			  <i class="fa fa-location-arrow"></i> Ir a sitio web
 			</a>
 			<div class="row m-t-md">

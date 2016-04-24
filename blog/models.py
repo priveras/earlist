@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
 from django.core.urlresolvers import reverse
-from vote.managers import VotableManager
 
 class Post(models.Model):
 	user = models.ForeignKey(User)
@@ -11,11 +10,12 @@ class Post(models.Model):
 	slogan = models.CharField(max_length=200)
 	body = models.TextField()
 	link = models.URLField(max_length=200, unique=True)
-	image_url = models.URLField(max_length=1000)
+	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
 	city = models.CharField(max_length=200)
 	approved = models.IntegerField()
 	votes = models.IntegerField(default=0)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+	# image_url = models.URLField(max_length=1000)
 	# category = models.ForeignKey('Category')
 
 	def __str__(self):

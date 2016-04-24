@@ -1,3 +1,16 @@
+<script type="text/javascript">
+
+function vote(slug, direction) {
+  $.post(slug + '/vote/', {HTTP_X_REQUESTED:'XMLHttpRequest'},
+      function(data){
+        $('#votes-button').removeClass('btn-default-outline').addClass('btn-primary');
+        $('#votes').text(data);
+      }
+    )
+  }
+</script>
+
+
 {% extends "blog/base.html" %}
 {% load staticfiles %}
 {% load humanize %}
@@ -13,7 +26,7 @@
             <a class="media-left" href="{% url 'detail' item.slug %}">
               <div class="thumbnail-custom">
                 <div style="
-                        background: url('{{item.image_url}}');
+                        background: url('{{item.image_file.url}}');
                         background-size:cover;
                         background-position:center;
                         ">
@@ -27,7 +40,9 @@
                 <h5>{{item.slogan}}</h5>
                 <div class="media">
                   <div class="media-body hidden-xs">
-                    <button type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i>{{item.votes}}</button>
+
+                    <button id="votes-button" onclick="vote('{{ item.slug }}', 'up');" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i><span id="votes">{{item.votes}}</span></button>
+
                     <a href="{{item.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
                     {# <a href="{{post.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-paperclip"></i></a> #}
                     {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}

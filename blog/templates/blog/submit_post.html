@@ -16,7 +16,7 @@
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
     	</div>
     </div>
-	<form action="{% url 'blog:post' %}" method="post">
+	<form enctype="multipart/form-data" action="{% url 'blog:post' %}" method="post">
 		{% csrf_token %}
 		<div class="form-group">
 			<label for="title">Nombre del Producto</label>
@@ -35,8 +35,8 @@
 			{{ form.body|attr:"placeholder:ej: Earlist es el lugar donde encuentras..."|add_class:"form-control" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Url de imagen <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label>
-			{{ form.image_url|add_class:"form-control"|attr:"placeholder:Agrega un link a una imagen de inicio" }}
+			<label for="body">Imagen <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label>
+			{{ form.image_file }}
 		</div>
 		<div class="form-group">
 			<label for="body">Ciudad</label>

@@ -7,7 +7,9 @@ $(document).on("click", ".open-dialog", function () {
   var l = window.location;
   var base_url = l.protocol + "//" + l.host + "/status/";
   var postSlug = $(this).data('id');
-  $(".modal-body #postSlug").attr("href", base_url + postSlug);
+  // $(".modal-body #postSlug1").attr("href", base_url + postSlug + "/2");
+  // $(".modal-body #postSlug2").attr("href", base_url + postSlug + "/3");
+  // $(".modal-body #postSlug3").attr("href", base_url + postSlug + "/4");
 });
 
 
@@ -27,7 +29,7 @@ $(document).on("click", ".open-dialog", function () {
         <a class="media-left" href="{% url 'detail' post.slug %}">
           <div class="thumbnail-custom">
             <div style="
-                    background: url('{{post.image_url}}');
+                    background: url('{{post.image_file.url}}');
                     background-size:cover;
                     background-position:center;
                     ">
@@ -51,7 +53,7 @@ $(document).on("click", ".open-dialog", function () {
                   <a type="button" class="btn btn-success btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></a>
                 </div>
                 <div class="col-sm-6">
-                  <button type="button" class="btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal"><i class="fa fa-thumbs-o-down"></i></button>
+                  <button type="button" class="open-dialog btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal" data-id="{{ post.slug }}"><i class="fa fa-thumbs-o-down"></i></button>
                 </div>
                 {% elif post.approved == 2 %}
                 <div class="col-sm-6">
@@ -85,13 +87,13 @@ $(document).on("click", ".open-dialog", function () {
       </div>
       <div class="modal-body">
         <div class="checkbox custom-control custom-checkbox">
-          <a class="btn btn-default w-full" id="postSlug">Necesita editar</a>
+          <a class="btn btn-default w-full" id="postSlug1">Necesita editar</a>
         </div>
         <div class="checkbox custom-control custom-checkbox">
-          <a class="btn btn-default w-full" id="postSlug">Ofrecer ser sponsor</a>
+          <a class="btn btn-default w-full" id="postSlug2">Ofrecer ser sponsor</a>
         </div>
         <div class="checkbox custom-control custom-checkbox">
-          <a class="btn btn-default w-full" id="postSlug">No pertenece</a>
+          <a class="btn btn-default w-full" id="postSlug3">No pertenece</a>
         </div>
       </div>
     </div>

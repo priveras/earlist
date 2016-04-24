@@ -89,7 +89,7 @@
           <a class="media-left" href="{% url 'detail' post.slug %}">
             <div class="thumbnail-custom">
               <div style="
-                      background: url('{{post.image_url}}');
+                      background: url('{{post.image_file.url}}');
                       background-size:cover;
                       background-position:center;
                       ">
