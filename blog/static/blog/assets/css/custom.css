@@ -67,3 +67,9 @@ button:focus {
      border-top-left-radius: 5px;
      border-top-right-radius: 5px;
 }
+
+.btn-default.focus {
+    color: #536570;
+    background-color: red !important;
+    border-color: #8a9dab;
+}

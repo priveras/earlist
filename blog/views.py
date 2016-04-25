@@ -18,25 +18,28 @@ import twitter
 import datetime
 
 @csrf_exempt
-def vote(request, slug):
+def vote(request, slug, direction):
 
     p = Post.objects.get(slug=slug)
-    p.votes += 1
 
     num_results = Voter.objects.filter(user = request.user, post = p).count()
 
     if num_results < 1:
-        p.save()
+
+        p.votes += 1
 
         voter = Voter.objects.create(
             user = request.user,
             post = p
             )
 
-        return HttpResponse(p.votes)
-
     else:
-        return HttpResponse('Fuck you')
+        Voter.objects.filter(user=request.user, post = p).delete()
+        p.votes -= 1
+
+    p.save()
+
+    return HttpResponse(p.votes)
 
 def status(request, slug, message):
 
