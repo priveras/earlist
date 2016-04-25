@@ -21,7 +21,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^$', views.PostListView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
     # url('^', include('django.contrib.auth.urls')),
 	url(r'^', include('blog.urls')),

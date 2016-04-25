@@ -41,11 +41,14 @@ function vote(slug, direction) {
                 <div class="media">
                   <div class="media-body hidden-xs">
 
-                    <button id="votes-button" onclick="vote('{{ item.slug }}', 'up');" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i><span id="votes">{{item.votes}}</span></button>
+                    {% if item.slug in votes_list %}
+                      <button id="votes-button" onclick="vote('{{ item.slug }}', 'up');" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes"> {{item.votes}}</span></button>
+                    {% else %}
+                      <button id="votes-button" onclick="vote('{{ item.slug }}', 'up');" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i><span id="votes"> {{item.votes}}</span></button>
+                    {% endif %}
 
-                    <a href="{{item.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
-                    {# <a href="{{post.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-paperclip"></i></a> #}
-                    {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
+                    <a href="{{item.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default-outline" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                    
                   </div>
                   <!--<a class="media-left" href="#">
                     <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">

@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
-from .models import Post, Event, Job
+from .models import Post, Event, Job, Voter
 from .forms import PostForm, JobForm,EventForm
 from django.utils.text import slugify
 from django.contrib.auth import logout
@@ -19,11 +19,24 @@ import datetime
 
 @csrf_exempt
 def vote(request, slug):
+
     p = Post.objects.get(slug=slug)
     p.votes += 1
-    p.save()
 
-    return HttpResponse(p.votes)
+    num_results = Voter.objects.filter(user = request.user, post = p).count()
+
+    if num_results < 1:
+        p.save()
+
+        voter = Voter.objects.create(
+            user = request.user,
+            post = p
+            )
+
+        return HttpResponse(p.votes)
+
+    else:
+        return HttpResponse('Fuck you')
 
 def status(request, slug, message):
 
@@ -70,11 +83,25 @@ def status(request, slug, message):
 
 
 class PostListView(generic.ListView):
-	template_name = 'blog/index.html'
-	context_object_name = 'posts_list'
+    template_name = 'blog/index.html'
+    context_object_name = 'posts_list'
+    model = Post
 
-	def get_queryset(self):
-		return Post.objects.order_by('-created_at').filter(approved=1)
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['posts_list'] = Post.objects.order_by('-created_at').filter(approved=1)
+
+        if self.request.user.is_authenticated():
+            votes = Voter.objects.filter(user=self.request.user)
+            v_list = []
+
+            for vote in votes:
+                v_list.append(vote.post.slug)
+
+                context['votes_list'] = v_list
+
+        
+        return context
 
 
 class DetailView(generic.DetailView):

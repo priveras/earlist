@@ -15,11 +15,19 @@ class Post(models.Model):
 	approved = models.IntegerField()
 	votes = models.IntegerField(default=0)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+	updated_at = models.DateTimeField(db_index=True, auto_now_add=True)
 	# image_url = models.URLField(max_length=1000)
 	# category = models.ForeignKey('Category')
 
 	def __str__(self):
 		return self.title
+
+class Voter(models.Model):
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+    created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_at = models.DateTimeField(db_index=True, auto_now_add=True)
+
 
 class Event(models.Model):
 	user = models.ForeignKey(User)
