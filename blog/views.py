@@ -24,7 +24,7 @@ def profile(
         page_template='blog/entry_profile_page.html'):
 
     if view == "votes":
-        context_list = Voter.objects.order_by('-created_at').all()
+        context_list = Voter.objects.filter(user=request.user).order_by('-created_at').all()
     else:
         context_list = Post.objects.order_by('-created_at').all(),
 

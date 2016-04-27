@@ -8,35 +8,34 @@
 
 {# {% block js %} #}
 {% block content %}
-<script type="text/javascript">
+  <script type="text/javascript">
 
-function vote(slug, direction, id) {
-  $.post(slug + '/vote/' + direction, {HTTP_X_REQUESTED:'XMLHttpRequest'},
-      function(data){
-        if(direction == 'up'){
-          $('#votes-button-' + id).toggleClass('btn-default btn-primary');
+  function vote(slug, direction, id) {
+    $.post(slug + '/vote/' + direction, {HTTP_X_REQUESTED:'XMLHttpRequest'},
+        function(data){
+          if(direction == 'up'){
+            $('#votes-button-' + id).toggleClass('btn-default btn-primary');
+          }
+          else{
+            $('#votes-button-' + id).toggleClass('btn-primary btn-default');
+          }
+          $('#votes-' + id).text(' ' + data);
         }
-        else{
-          $('#votes-button-' + id).toggleClass('btn-primary btn-default');
-        }
-        $('#votes-' + id).text(' ' + data);
-      }
-    )
-  }
-</script>
-<div class="col-md-offset-1 col-md-7">
-  {% include page_template %}
-</div>
-    {{ block.super }}
-    <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
-    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
-    <script>
-        $.endlessPaginate({
-            paginateOnScroll: true,
-            paginateOnScrollMargin: 20
-        });
-    </script>
-
+      )
+    }
+  </script>
+  {{ block.super }}
+  <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+  <script>
+      $.endlessPaginate({
+          paginateOnScroll: true,
+          paginateOnScrollMargin: 20
+      });
+  </script>
+  <div class="col-md-offset-1 col-md-7">
+    {% include page_template %}
+  </div>
   <div class="modal fade vote-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -52,6 +51,5 @@ function vote(slug, direction, id) {
       </div>
     </div>
   </div>
-
 {% include 'blog/right-col.html' %}
 {% endblock %}
