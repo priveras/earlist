@@ -1,0 +1,8 @@
+{% for entry in context_list %}
+	{% if entry.post %}
+    {{ entry.post.title }}
+    {% else %}
+    {{ entry }}
+    a
+    {%endif%}
+{% endfor %}

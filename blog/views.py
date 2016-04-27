@@ -1,6 +1,6 @@
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from .models import Post, Event, Job, Voter
@@ -12,10 +12,52 @@ from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context
+from django.template import Context, RequestContext
 from earlist.secret import api
 import twitter
 import datetime
+
+def profile(
+        request,
+        view,
+        template='blog/entry_profile.html',
+        page_template='blog/entry_profile_page.html'):
+
+    if view == "votes":
+        context_list = Voter.objects.order_by('-created_at').all()
+    else:
+        context_list = Post.objects.order_by('-created_at').all(),
+
+    context = {
+        'context_list': context_list,
+        'page_template': page_template,
+    }
+
+    if request.is_ajax():
+        template = page_template
+    return render_to_response(
+        template, context, context_instance=RequestContext(request))
+
+def index(
+        request,
+        template='blog/index.html',
+        page_template='blog/index_page.html'):
+    context = {
+        'posts_list': Post.objects.order_by('-created_at').all(),
+        'page_template': page_template,
+    }
+
+    if request.user.is_authenticated():
+        votes = Voter.objects.filter(user=request.user)
+        v_list = []
+        for vote in votes:
+            v_list.append(vote.post.slug)
+            context['votes_list'] = v_list
+
+    if request.is_ajax():
+        template = page_template
+    return render_to_response(
+        template, context, context_instance=RequestContext(request))
 
 @csrf_exempt
 def vote(request, slug, direction):
@@ -92,7 +134,7 @@ class PostListView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
-        context['posts_list'] = Post.objects.order_by('-created_at').filter(approved=1)
+        context['posts_list'] = Post.objects.order_by('-created_at').filter(approved=1)[:5]
 
         if self.request.user.is_authenticated():
             votes = Voter.objects.filter(user=self.request.user)
@@ -120,23 +162,24 @@ class PanelListView(generic.ListView):
         return Post.objects.order_by('-created_at')
 
 
-class ProfileListView(generic.ListView):
-    model = Post
-    template_name = 'blog/profile.html'
-    context_object_name = 'post'
+# class ProfileListView(generic.ListView):
+#     model = Post
+#     template_name = 'blog/profile.html'
+#     context_object_name = 'post'
     
-    def get_context_data(self, **kwargs):
+#     def get_context_data(self, **kwargs):
 
-        context = super(ProfileListView, self).get_context_data(**kwargs)
-        context['posts_list'] = Post.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+#         context = super(ProfileListView, self).get_context_data(**kwargs)
+#         context['posts_list'] = Post.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+#         context['votes_list'] = Voter.objects.filter(user=self.request.user).order_by('-created_at')[:5]
         
-        context['events_list'] = Event.objects.order_by('-created_at')[:5]
-        context['my_events_list'] = Event.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+#         context['events_list'] = Event.objects.order_by('-created_at')[:5]
+#         context['my_events_list'] = Event.objects.filter(user=self.request.user).order_by('-created_at')[:5]
 
-        context['jobs_list'] = Job.objects.order_by('-created_at')[:5]
-        context['my_jobs_list'] = Job.objects.filter(user=self.request.user).order_by('-created_at')[:5]
+#         context['jobs_list'] = Job.objects.order_by('-created_at')[:5]
+#         context['my_jobs_list'] = Job.objects.filter(user=self.request.user).order_by('-created_at')[:5]
         
-        return context
+#         return context
 
 
 class EventListView(generic.ListView):

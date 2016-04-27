@@ -1,0 +1,61 @@
+{% load el_pagination_tags %}
+{% load humanize %}
+
+{% paginate posts_list %}
+
+<!--<div class="col-md-offset-1 col-md-7">-->
+
+{% regroup posts_list by created_at|date as regrouped_posts_list %}
+{% for post in regrouped_posts_list %}
+	<h5>{{ post.grouper|naturalday }}</h5>
+	<ul class="list-group media-list media-list-stream">
+    {% for item in post.list %}
+      {% if item.approved == 1 %}
+          <li class="media list-group-item p-a">
+            <a class="media-left" href="{% url 'detail' item.slug %}">
+              <div class="thumbnail-custom">
+                <div style="
+                        background: url('{{item.image_file.url}}');
+                        background-size:cover;
+                        background-position:center;
+                        ">
+                </div>
+              </div>
+            </a>
+            <div class="media-body">
+              <div class="media-heading">
+                <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{item.created_at|date:"M d, Y"}}</small>
+                <a href="{% url 'detail' item.slug %}" class="no-text-decoration"><h4>{{item.title}}</h4></a>
+                <h5>{{item.slogan}}</h5>
+                <div class="media">
+                  <div class="media-body">
+
+                    {% if user.is_authenticated %}
+                      {% if item.slug in votes_list %}
+                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'down', {{ item.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes-{{item.id}}"> {{item.votes}}</span></button>
+                      {% else %}
+                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'up', {{ item.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i><span id="votes-{{item.id}}"> {{item.votes}}</span></button>
+                      {% endif %}
+                    {% else %}
+                      <button type="button" data-toggle="modal" data-target=".vote-modal" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i>{{item.votes}}</button>
+                    {% endif %}
+
+                    <a href="{{item.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                    
+                  </div>
+                  <!--<a class="media-left" href="#">
+                    <img class="media-object img-circle" style="width:25px;"src="https://pbs.twimg.com/profile_images/423161155104681985/9mYQOnT2_400x400.jpeg">
+                  </a>
+                  <div class="media-body">
+                    <small>@priverass</small>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+{% show_more %}
