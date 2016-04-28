@@ -5,15 +5,16 @@
 {% if context_list.all %}
   {% for vote in context_list %}
   <li class="media list-group-item p-a">
+    {% if view == 'votes' %}
       <a class="media-left" href="{% url 'detail' vote.post.slug %}">
-        <div class="thumbnail-custom">
-          <div style="
-                  background: url('{{vote.post.image_file.url}}');
-                  background-size:cover;
-                  background-position:center;
-                  ">
-          </div>
+      <div class="thumbnail-custom">
+        <div style="
+                background: url('{{vote.post.image_file.url}}');
+                background-size:cover;
+                background-position:center;
+                ">
         </div>
+      </div>
       </a>
       <div class="media-body">
         <div class="media-heading">
@@ -23,7 +24,7 @@
           <div class="media hidden-xs">
             <div class="media-body">
               {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
-              <button type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-arrow-up"></i> 0</button>
+              <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i>{{vote.post.votes}}</button>
               <a href="{{vote.post.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
             </div>
           </div>
@@ -39,6 +40,42 @@
         </div>
         {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
       </div>
+      {% else %}
+      <a class="media-left" href="{% url 'detail' vote.slug %}">
+      <div class="thumbnail-custom">
+        <div style="
+                background: url('{{vote.image_file.url}}');
+                background-size:cover;
+                background-position:center;
+                ">
+        </div>
+      </div>
+      </a>
+      <div class="media-body">
+        <div class="media-heading">
+          <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{vote.created_at|date:"M d, Y"}}</small>
+          <a href="{% url 'detail' vote.slug %}" class="no-text-decoration"><h4>{{vote.title}}</h4></a>
+          <h5>{{vote.post.slogan}}</h5>
+          <div class="media hidden-xs">
+            <div class="media-body">
+              {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
+              <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i>{{vote.votes}}</button>
+              <a href="{{vote.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            {# <p>{{post.body}}</p> #}
+          </div>
+          <div class="col-sm-4 text-right">
+            {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
+            {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
+          </div>
+        </div>
+        {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
+      </div>
+      {% endif %}
     </li>
   {% endfor %}
 {% else %}

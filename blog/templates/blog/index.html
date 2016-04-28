@@ -8,23 +8,8 @@
 
 {# {% block js %} #}
 {% block content %}
-  <script type="text/javascript">
-
-  function vote(slug, direction, id) {
-    $.post(slug + '/vote/' + direction, {HTTP_X_REQUESTED:'XMLHttpRequest'},
-        function(data){
-          if(direction == 'up'){
-            $('#votes-button-' + id).toggleClass('btn-default btn-primary');
-          }
-          else{
-            $('#votes-button-' + id).toggleClass('btn-primary btn-default');
-          }
-          $('#votes-' + id).text(' ' + data);
-        }
-      )
-    }
-  </script>
   {{ block.super }}
+  <script src="{% static 'blog/assets/js/main.js' %}"></script>
   <script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
   <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
   <script>

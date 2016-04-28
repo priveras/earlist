@@ -23,14 +23,19 @@ def profile(
         template='blog/entry_profile.html',
         page_template='blog/entry_profile_page.html'):
 
+    context = {}
+
     if view == "votes":
         context_list = Voter.objects.filter(user=request.user).order_by('-created_at').all()
+        view = 'votes'
     else:
-        context_list = Post.objects.order_by('-created_at').all(),
+        context_list = Post.objects.filter(user=request.user).order_by('-created_at').all()
+        view = 'posts'
 
     context = {
         'context_list': context_list,
         'page_template': page_template,
+        'view' : view
     }
 
     if request.is_ajax():

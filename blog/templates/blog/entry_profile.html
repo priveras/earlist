@@ -46,8 +46,13 @@
 </div>
 <div class="col-md-6">
   <ul class="nav nav-pills nav-justified">
-    <li role="presentation" class="active"><a href="#">Votados</a></li>
-    <li role="presentation"><a href="#">Publicados</a></li>
+    {% if view == 'votes' %}
+    <li role="presentation" class="active"><a href="">Votados</a></li>
+    <li role="presentation"><a href="{% url 'profile' 'posts' %}">Publicados</a></li>
+    {% else %}
+    <li role="presentation"><a href="{% url 'profile' 'votes'%}">Votados</a></li>
+    <li role="presentation" class="active"><a href="">Publicados</a></li>
+    {% endif %}
   </ul>
 
   <ul class="list-group media-list media-list-stream m-t-md">
