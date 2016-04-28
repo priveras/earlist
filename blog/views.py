@@ -25,6 +25,9 @@ def profile(
 
     context = {}
 
+    voted = Voter.objects.filter(user=request.user).count()
+    posted = Post.objects.filter(user=request.user).count()
+
     if view == "votes":
         context_list = Voter.objects.filter(user=request.user).order_by('-created_at').all()
         view = 'votes'
@@ -35,8 +38,17 @@ def profile(
     context = {
         'context_list': context_list,
         'page_template': page_template,
-        'view' : view
+        'view' : view,
+        'voted' : voted,
+        'posted' : posted
     }
+
+    if request.user.is_authenticated():
+        votes = Voter.objects.filter(user=request.user)
+        v_list = []
+        for vote in votes:
+            v_list.append(vote.post.slug)
+            context['votes_list'] = v_list
 
     if request.is_ajax():
         template = page_template
@@ -48,7 +60,7 @@ def index(
         template='blog/index.html',
         page_template='blog/index_page.html'):
     context = {
-        'posts_list': Post.objects.order_by('-created_at').all(),
+        'posts_list': Post.objects.order_by('-created_at', '-votes'),
         'page_template': page_template,
     }
 
@@ -101,7 +113,7 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        # api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri() + p.image_file.url)
+        api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
     else:
         p.approved = 2

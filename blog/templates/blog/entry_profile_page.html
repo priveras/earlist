@@ -21,24 +21,17 @@
           <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{vote.post.created_at|date:"M d, Y"}}</small>
           <a href="{% url 'detail' vote.post.slug %}" class="no-text-decoration"><h4>{{vote.post.title}}</h4></a>
           <h5>{{vote.post.slogan}}</h5>
-          <div class="media hidden-xs">
+          <div class="media">
             <div class="media-body">
-              {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
-              <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i>{{vote.post.votes}}</button>
-              <a href="{{vote.post.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
+              {% if vote.post.slug in votes_list %}
+                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'down', {{ vote.post.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.post.id}}"> {{vote.post.votes}}</span></button>
+              {% else %}
+                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'up', {{ vote.post.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.post.id}}"> {{vote.post.votes}}</span></button>
+              {% endif %}
+              <a href="{{vote.post.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-8">
-            {# <p>{{post.body}}</p> #}
-          </div>
-          <div class="col-sm-4 text-right">
-            {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
-            {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
-          </div>
-        </div>
-        {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
       </div>
       {% else %}
       <a class="media-left" href="{% url 'detail' vote.slug %}">
@@ -55,25 +48,18 @@
         <div class="media-heading">
           <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{vote.created_at|date:"M d, Y"}}</small>
           <a href="{% url 'detail' vote.slug %}" class="no-text-decoration"><h4>{{vote.title}}</h4></a>
-          <h5>{{vote.post.slogan}}</h5>
-          <div class="media hidden-xs">
+          <h5>{{vote.slogan}}</h5>
+          <div class="media">
             <div class="media-body">
-              {# <small><i class="fa fa-thumb-tack text-success"></i> {{post.city}}</small> #}
-              <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i>{{vote.votes}}</button>
-              <a href="{{vote.link}}" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
+              {% if vote.slug in votes_list %}
+                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'down', {{ vote.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.id}}"> {{vote.votes}}</span></button>
+              {% else %}
+                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'up', {{ vote.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.id}}"> {{vote.votes}}</span></button>
+              {% endif %}
+              <a href="{{vote.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default-outline"><i class="fa fa-external-link"></i></a>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-8">
-            {# <p>{{post.body}}</p> #}
-          </div>
-          <div class="col-sm-4 text-right">
-            {# <button type="button" class="btn btn-primary-outline pull w-full">Ir al sitio</button> #}
-            {# <button type="button" class="btn btn-primary-outline pull w-full">Guardar</button> #}
-          </div>
-        </div>
-        {# <button type="button" class="pull-right btn btn-xs btn-pill btn-primary">{{post.category}}</button> #}
       </div>
       {% endif %}
     </li>

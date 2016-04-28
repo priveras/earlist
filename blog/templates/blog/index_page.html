@@ -3,8 +3,6 @@
 
 {% paginate posts_list %}
 
-<!--<div class="col-md-offset-1 col-md-7">-->
-
 {% regroup posts_list by created_at|date as regrouped_posts_list %}
 {% for post in regrouped_posts_list %}
 	<h5>{{ post.grouper|naturalday }}</h5>
