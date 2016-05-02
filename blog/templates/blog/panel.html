@@ -7,6 +7,7 @@ $(document).on("click", ".open-dialog", function () {
   var l = window.location;
   var base_url = l.protocol + "//" + l.host + "/status/";
   var postSlug = $(this).data('id');
+  console.log(postSlug);
   // $(".modal-body #postSlug1").attr("href", base_url + postSlug + "/2");
   // $(".modal-body #postSlug2").attr("href", base_url + postSlug + "/3");
   // $(".modal-body #postSlug3").attr("href", base_url + postSlug + "/4");
@@ -50,7 +51,7 @@ $(document).on("click", ".open-dialog", function () {
               <div class="row text-right">
                 {% if post.approved == 1 %}
                 <div class="col-sm-6">
-                  <a type="button" class="btn btn-success btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></a>
+                  <a type="button" id="status-button-{{post.id}}" class="btn btn-success btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></a>
                 </div>
                 <div class="col-sm-6">
                   <button type="button" class="open-dialog btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal" data-id="{{ post.slug }}"><i class="fa fa-thumbs-o-down"></i></button>
@@ -64,7 +65,7 @@ $(document).on("click", ".open-dialog", function () {
                 </div>
                 {% else %}
                 <div class="col-sm-6">
-                  <a href="{% url 'status' post.slug 1 %}" type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></a>
+                  <button id="status-button-{{post.id}}" onclick="status('{{ post.slug }}', '1', {{post.id}})"  type="button" class="btn btn-default btn-circle btn-lg text-primary"><i class="fa fa-thumbs-o-up"></i></button>
                 </div>
                 <div class="col-sm-6">
                   <button type="button" class="open-dialog btn btn-default btn-circle btn-lg text-primary" data-toggle="modal" data-target=".thumbs-down-modal" data-id="{{ post.slug }}"><i class="fa fa-thumbs-o-down"></i></button>

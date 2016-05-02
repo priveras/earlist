@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render, render_to_response
@@ -14,8 +15,29 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context, RequestContext
 from earlist.secret import api
-import twitter
 import datetime
+from datetime import datetime, timedelta
+import twitter
+
+
+def newsletter(request):
+    how_many_days = 7
+    p = Post.objects.order_by('-votes').filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
+
+    email = 'priveras@gmail.com'
+    d = Context({ 'posts_list': p })
+    plaintext = get_template('blog/emails/newsletter.txt')
+    htmly     = get_template('blog/emails/newsletter.html')
+    subject = 'Lo mejor de la semana en Earlist'
+    from_email, to = 'Earlist <hey@earlist.club>', email
+    text_content = plaintext.render(d)
+    html_content = htmly.render(d)
+    mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+    mail.attach_alternative(html_content, "text/html")
+
+    if mail.send():
+        return HttpResponse('Newsletter sent')
+    
 
 def profile(
         request,
@@ -59,8 +81,11 @@ def index(
         request,
         template='blog/index.html',
         page_template='blog/index_page.html'):
+
+    orders = [ '-created_at', 'name' ]
+
     context = {
-        'posts_list': Post.objects.order_by('-created_at', '-votes'),
+        'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
         'page_template': page_template,
     }
 
@@ -100,6 +125,7 @@ def vote(request, slug, direction):
 
     return HttpResponse(p.votes)
 
+@csrf_exempt
 def status(request, slug, message):
 
     p = Post.objects.get(slug=slug)
@@ -107,27 +133,27 @@ def status(request, slug, message):
 
     if message == '1':
         p.approved = 1
-        p.updated_at = datetime.datetime.now()
-        d = Context({ 'first_name': p.user.first_name })
+        p.updated_at = datetime.now()
+        d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+        # api.PostMedia("%s: %s http://earlist.club/post/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
     else:
         p.approved = 2
 
         if message == '2':
-            error = 'Editar datos'
+            error = 'Hay errores en la publicación. Te invitamos a revisar que la imagen se vea bien, que no haya errores en el texto y que se usen el número de caracteres adecuados en la descripción. Puedes editar la publicación en tu perfil.'
 
         elif message == '3':
             error = 'Patrocinar'
 
         else:
-            error = 'No pertenece'
+            error = 'Este tipo de publicación no está en linea con el tipo de contenido que mostramos en Earlist. Lamentablemente no podremos publicar esto.'
 
-        d = Context({ 'first_name': p.user.first_name, 'error': error })
+        d = Context({ 'first_name': p.user.first_name, 'error': error, 'title': p.title })
         plaintext = get_template('blog/emails/declined.txt')
         htmly     = get_template('blog/emails/declined.html')
         subject = 'Tu publicacion ha sido declinada'        
@@ -141,7 +167,8 @@ def status(request, slug, message):
 
     p.save()
 
-    return HttpResponseRedirect(reverse('panel'))
+    # return HttpResponseRedirect(reverse('blog:panel'))
+    return HttpResponse("Hello")
 
 
 class PostListView(generic.ListView):
@@ -260,7 +287,7 @@ class PostUpdateView(generic.UpdateView):
     model = Post
     fields = ['slogan', 'body', 'link', 'image_file', 'city']
     template_name = 'blog/update_post.html'
-    success_url = '/accounts/profile/'
+    success_url = '/accounts/profile/posts/'
 
 
     def user_passes_test(self, request):

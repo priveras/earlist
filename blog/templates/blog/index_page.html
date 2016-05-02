@@ -3,9 +3,15 @@
 
 {% paginate posts_list %}
 
-{% regroup posts_list by created_at|date as regrouped_posts_list %}
+{% regroup posts_list by date as regrouped_posts_list %}
 {% for post in regrouped_posts_list %}
-	<h5>{{ post.grouper|naturalday }}</h5>
+	{% if post.grouper|naturalday == 'today'%}
+  <h5>Hoy</h5>
+  {% elif post.grouper|naturalday == 'yesterday' %}
+  <h5>Ayer</h5>
+  {% else %}
+  <h5>{{ post.grouper|naturalday }}</h5>
+  {% endif %}
 	<ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
       {% if item.approved == 1 %}
@@ -22,7 +28,7 @@
             </a>
             <div class="media-body">
               <div class="media-heading">
-                <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{item.created_at|date:"M d, Y"}}</small>
+                <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{item.date|date:"M d, Y"}}</small>
                 <a href="{% url 'detail' item.slug %}" class="no-text-decoration"><h4>{{item.title}}</h4></a>
                 <h5>{{item.slogan}}</h5>
                 <div class="media">

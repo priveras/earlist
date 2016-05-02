@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^submit-post/$', login_required(views.post), name='post'),
     url(r'^submit-event/$', login_required(views.event), name='event'),
     url(r'^submit-job/$', login_required(views.job), name='job'),
+    url(r'^panel/', views.PanelListView.as_view(), name='panel'), 
+    url(r'^accounts/profile/(?P<view>[^\.]+)$', login_required(views.profile), name='profile'),
 ]

@@ -6,12 +6,12 @@
     {% for account in user.socialaccount_set.all %}
     <div class="panel-heading" style="background-image: url('{{ account.extra_data.profile_banner_url }}');"></div>
     <div class="panel-body text-center">
-      <a href="profile/index.html">
-            <img class="panel-profile-img" src="{{ account.get_avatar_url }}">
-      </a>
+      
+      <img class="panel-profile-img" src="{{ account.get_avatar_url }}">
+      
 
       <h5 class="panel-title">
-        <a class="text-inherit" href="profile/index.html">{{user.first_name}} {{user.last_name}}</a>
+        {{user.first_name}} {{user.last_name}}
       </h5>
 
       <p class="m-b-md">{{account.extra_data.description}}</p>
