@@ -74,9 +74,16 @@
     </li>
   {% endfor %}
 {% else %}
+{% if view == 'votes' %}
+<li class="media list-group-item p-t text-center">
+  <div class="alert alert-danger"><i class="fa fa-frown-o"></i> Aun no has votado por producto...</div>
+  <a href="{% url 'blog:index' %}"><button type="button" class="btn btn-primary w-full m-b">Ir a Inicio</button></a>
+</li>
+{% else %}
 <li class="media list-group-item p-t text-center">
   <div class="alert alert-danger"><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</div>
   <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full m-b">Agregar Producto</button></a>
 </li>
+{% endif %}
 {% endif %}
 {% show_more %}
