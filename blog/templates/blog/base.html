@@ -135,7 +135,7 @@
 	          {% if user.is_authenticated %}
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
-	          		<a href="{% url 'profile' 'votes' %}"><i class="fa fa-user"></i> {{account.user}}</a>
+	          		<a href="{% url 'profile' %}"><i class="fa fa-user"></i> {{account.user}}</a>
 			    {% endfor %}
 	          </li>
 	          {% if user.is_staff %}
@@ -150,7 +150,7 @@
 	        </ul>
 
 	        <ul class="nav navbar-nav hidden">
-	          <li><a href="{% url 'profile' 'votes' %}">Mi Perfil</a></li>
+	          <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}">Panel</a></li>
 	          {% endif %}
