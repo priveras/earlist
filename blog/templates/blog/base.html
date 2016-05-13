@@ -130,7 +130,7 @@
 	            <a href="{% url 'blog:index' %}">Inicio</a>
 	          </li>
 	          <li>
-	            <a data-toggle="modal" href="{% url 'post' %}">Contribuir</a>
+	            <a data-toggle="modal" href="{% url 'blog:post' %}">Contribuir</a>
 	          </li>
 	          {% if user.is_authenticated %}
 	          <li>
