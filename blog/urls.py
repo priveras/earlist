@@ -13,4 +13,4 @@ urlpatterns = [
     url(r'^submit-event/$', login_required(views.event), name='event'),
     url(r'^submit-job/$', login_required(views.job), name='job'),
     url(r'^panel/', views.PanelListView.as_view(), name='panel'), 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
