@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.twitter',
-    'el_pagination'
+    'el_pagination',
+    'meta',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -145,3 +146,6 @@ MEDIA_URL = '/media/'
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
 )
+
+META_SITE_PROTOCOL = 'http'
+META_SITE_DOMAIN = 'earlist.club'

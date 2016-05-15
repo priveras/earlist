@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import permalink
 from django.core.urlresolvers import reverse
+from meta.models import ModelMeta
 import datetime
 
-class Post(models.Model):
+class Post(ModelMeta, models.Model):
 	user = models.ForeignKey(User)
 	title = models.CharField(max_length=200, unique=True)
 	slug = models.SlugField(max_length=200, unique=True)

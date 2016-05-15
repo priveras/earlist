@@ -18,6 +18,8 @@ from earlist.secret import api
 import datetime
 from datetime import datetime, timedelta
 import twitter
+from meta.views import Meta
+from meta.views import MetadataMixin
 
 
 def newsletter(request):
@@ -194,9 +196,26 @@ class PostListView(generic.ListView):
         return context
 
 
-class DetailView(generic.DetailView):
+class DetailView(MetadataMixin, generic.DetailView):
     model = Post
     template_name = 'blog/detail.html'
+
+    def get_context_data(self, **kwargs):
+
+        meta = Meta(
+            use_og = True,
+            # use_twitter = True,
+            use_facebook = True,
+            use_title_tag = True,
+            url = "http://earlist.club/producto/" + self.object.slug,
+            title = 'Earlist | ' + self.object.title,
+            description = self.object.slogan,
+            image = self.object.image_file.url,
+            )
+
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['meta'] = meta
+        return context
 
 
 class PanelListView(generic.ListView):
