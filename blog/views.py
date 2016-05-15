@@ -207,9 +207,9 @@ class DetailView(MetadataMixin, generic.DetailView):
             # use_twitter = True,
             use_facebook = True,
             use_title_tag = True,
-            url = "http://earlist.club/producto/" + self.object.slug,
+            url = "http://earlist.club/producto/" + self.object.slug + '/',
             title = 'Earlist | ' + self.object.title,
-            description = self.object.slogan,
+            description = self.object.slogan + ' | ' self.object.body ,
             image = self.object.image_file.url,
             )
 
