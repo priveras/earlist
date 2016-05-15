@@ -293,7 +293,7 @@ class PostUpdateView(generic.UpdateView):
     model = Post
     fields = ['slogan', 'body', 'link', 'image_file', 'city']
     template_name = 'blog/update_post.html'
-    success_url = '/accounts/profile/posts/'
+    success_url = '/cuentas/perfil/posts/'
 
 
     def user_passes_test(self, request):
@@ -310,7 +310,7 @@ class PostUpdateView(generic.UpdateView):
 
 class PostDeleteView(generic.DeleteView):
     model = Post
-    success_url = '/accounts/profile/'
+    success_url = '/cuentas/perfil/posts/'
 
     def user_passes_test(self, request):
         if request.user.is_authenticated():
