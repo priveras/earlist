@@ -204,12 +204,15 @@ class DetailView(MetadataMixin, generic.DetailView):
 
         meta = Meta(
             use_og = True,
-            # use_twitter = True,
+            use_twitter = True,
             use_facebook = True,
             use_title_tag = True,
+            object_type = 'article',
+            site_name = 'Earlist',
+            twitter_card = 'summary',
             url = "http://earlist.club/producto/" + self.object.slug + '/',
             title = 'Earlist | ' + self.object.title,
-            description = self.object.slogan + ' | ' self.object.body ,
+            description = self.object.slogan + ' | ' + self.object.body ,
             image = self.object.image_file.url,
             )
 
