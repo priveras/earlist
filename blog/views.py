@@ -21,6 +21,8 @@ import twitter
 from meta.views import Meta
 from meta.views import MetadataMixin
 
+meta = Meta(title="earlist")
+
 
 def newsletter(request):
     how_many_days = 7
@@ -86,9 +88,21 @@ def index(
 
     orders = [ '-created_at', 'name' ]
 
+    meta = Meta(
+            use_og = True,
+            use_twitter = True,
+            use_facebook = True,
+            use_title_tag = True,
+            url = "http://earlist.club/",
+            title = 'Earlist',
+            description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
+            image = 'http://postimg.org/image/68e46t3m9/',
+            )
+
     context = {
         'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
         'page_template': page_template,
+        'meta': meta
     }
 
     if request.user.is_authenticated():
@@ -206,17 +220,11 @@ class DetailView(MetadataMixin, generic.DetailView):
             use_og = True,
             use_twitter = True,
             use_facebook = True,
-            facebook_app_id = '504038879644712',
             use_title_tag = True,
-            object_type = 'product',
-            site_name = 'Earlist',
             twitter_card = 'summary_large_image',
-            twitter_site = '@earlistco',
-            twitter_creator = '@earlistco',
-            locale = 'es_MX',
             url = "http://earlist.club/producto/" + self.object.slug + '/',
             title = self.object.title + ' | Earlist',
-            description = self.object.slogan + ' | ' + self.object.body ,
+            description = self.object.slogan,
             image = self.object.image_file.url,
             )
 
