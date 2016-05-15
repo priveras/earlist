@@ -21,7 +21,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^cuentas/perfil/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
+    url(r'^cuentas/perfil/votes/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
+    url(r'^cuentas/perfil/posts/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
     url(r'^panel/status/(?P<slug>[^\.]+)/(?P<message>[0-9]+)/$', login_required(views.status), name='status'),
     url(r'^admin/', admin.site.urls),
     # url('^', include('django.contrib.auth.urls')),
