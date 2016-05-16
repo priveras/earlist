@@ -5,11 +5,12 @@ from django.contrib.auth.decorators import login_required
 from . import views
 
 from django.contrib.sitemaps.views import sitemap
-from sitemap import BlogSitemap
+from sitemap import BlogSitemap, ViewSitemap
 
 # a dictionary of sitemaps
 sitemaps = {
     'blog': BlogSitemap,
+    'views': ViewSitemap
 }
 
 app_name = 'blog'
