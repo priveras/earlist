@@ -30,7 +30,7 @@ urlpatterns = [
 	url(r'^', include('blog.urls')),
     url(r'^cuentas/perfil/(?P<view>[^\.]+)/$', login_required(views.profile), name='profile'),
     url(r'^producto/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
-    url(r'^cuentas/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^exito-producto/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 
     url(r'^contribuir/', views.ContributeView.as_view(), name='contribute'), 
     url(r'^actualizar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 

@@ -225,7 +225,7 @@ class DetailView(MetadataMixin, generic.DetailView):
             twitter_card = 'summary_large_image',
             url = "http://earlist.club/producto/" + self.object.slug + '/',
             title = self.object.title + ' | Earlist',
-            description = self.object.slogan,
+            description = self.object.body,
             image = self.object.image_file.url,
             )
 
