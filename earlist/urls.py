@@ -19,6 +19,7 @@ from blog import views
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 
 urlpatterns = [
     url(r'^cuentas/perfil/votes/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
