@@ -21,8 +21,19 @@ import twitter
 from meta.views import Meta
 from meta.views import MetadataMixin
 
-meta = Meta(title="earlist")
+meta = Meta(
+        use_og = True,
+        use_twitter = True,
+        use_facebook = True,
+        use_title_tag = True,
+        url = "http://earlist.club/",
+        title = 'Earlist',
+        description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
+        image = 'http://postimg.org/image/68e46t3m9/',
+        )
 
+class AboutView(generic.TemplateView):
+    template_name = "blog/about.html"
 
 def newsletter(request):
     how_many_days = 7
@@ -66,7 +77,8 @@ def profile(
         'page_template': page_template,
         'view' : view,
         'voted' : voted,
-        'posted' : posted
+        'posted' : posted,
+        'meta': meta
     }
 
     if request.user.is_authenticated():
@@ -87,17 +99,6 @@ def index(
         page_template='blog/index_page.html'):
 
     orders = [ '-created_at', 'name' ]
-
-    meta = Meta(
-            use_og = True,
-            use_twitter = True,
-            use_facebook = True,
-            use_title_tag = True,
-            url = "http://earlist.club/",
-            title = 'Earlist',
-            description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
-            image = 'http://postimg.org/image/68e46t3m9/',
-            )
 
     context = {
         'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
