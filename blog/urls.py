@@ -9,8 +9,8 @@ from sitemap import BlogSitemap, ViewSitemap
 
 # a dictionary of sitemaps
 sitemaps = {
-    'blog': BlogSitemap,
-    'views': ViewSitemap
+	'views': ViewSitemap,
+    'blog': BlogSitemap
 }
 
 app_name = 'blog'
