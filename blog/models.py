@@ -25,6 +25,9 @@ class Post(ModelMeta, models.Model):
 	def __str__(self):
 		return self.title
 
+	def get_absolute_url(self):
+		return reverse('detail', kwargs={'slug':self.slug})
+
 class Voter(models.Model):
     user = models.ForeignKey(User)
     post = models.ForeignKey(Post)

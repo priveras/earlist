@@ -19,7 +19,7 @@ from blog import views
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.sitemaps.views import sitemap
+
 
 urlpatterns = [
     url(r'^cuentas/perfil/votes/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
@@ -37,6 +37,5 @@ urlpatterns = [
     url(r'^eliminar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'),
     url(r'^(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)$', views.vote, name='vote'),
     url(r'^newsletter', views.newsletter, name='newsletter'),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

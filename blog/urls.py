@@ -1,7 +1,16 @@
 from django.conf.urls import include, url
 from django.contrib.auth.decorators import login_required
 
+
 from . import views
+
+from django.contrib.sitemaps.views import sitemap
+from sitemap import BlogSitemap
+
+# a dictionary of sitemaps
+sitemaps = {
+    'blog': BlogSitemap,
+}
 
 app_name = 'blog'
 urlpatterns = [
@@ -14,4 +23,5 @@ urlpatterns = [
     url(r'^submit-job/$', login_required(views.job), name='job'),
     url(r'^panel/', views.PanelListView.as_view(), name='panel'), 
     url(r'^nosotros/', views.AboutView.as_view(), name='about'), 
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]
