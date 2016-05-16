@@ -36,5 +36,6 @@ urlpatterns = [
     url(r'^eliminar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'),
     url(r'^(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)$', views.vote, name='vote'),
     url(r'^newsletter', views.newsletter, name='newsletter'),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

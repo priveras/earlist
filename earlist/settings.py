@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'el_pagination',
     'meta',
+    'django.contrib.sitemaps'
 ]
 
 MIDDLEWARE_CLASSES = [
