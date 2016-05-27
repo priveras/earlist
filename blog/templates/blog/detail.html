@@ -45,7 +45,7 @@
 					</a>-->
 				</div>
 			</div>
-			<a href="{{post.link}}?ref=earlist" target="_blank" class="btn btn-primary m-t-md">
+			<a onclick="ga('send', 'event', '{{post.slug}}', 'Click', 'detail-external-link');" href="{{post.link}}?ref=earlist" target="_blank" class="btn btn-primary m-t-md">
 			  <i class="fa fa-location-arrow"></i> Ir a sitio web
 			</a>
 			<div class="row">

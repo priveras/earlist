@@ -16,7 +16,7 @@
     {% for item in post.list %}
       {% if item.approved == 1 %}
           <li class="media list-group-item p-a">
-            <a class="media-left" href="{% url 'detail' item.slug %}">
+            <a class="media-left" href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
               <div class="thumbnail-custom">
                 <div style="
                         background: url('{{item.image_file.url}}');
@@ -28,9 +28,9 @@
             </a>
             <div class="media-body">
               <div class="media-heading">
-                <small class="pull-right text-muted hidden-xs"><i class="fa fa-clock-o text-primary"></i> {{item.date|date:"M d, Y"}}</small>
-                <a href="{% url 'detail' item.slug %}" class="no-text-decoration"><h4>{{item.title}}</h4></a>
-                <h5 class="hidden-xs">{{item.slogan}}</h5>
+                <small class="pull-right text-muted"><i class="fa fa-clock-o text-primary"></i> {{item.date|date:"M d, Y"}}</small>
+                <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-title');" class="no-text-decoration"><h4>{{item.title}}</h4></a>
+                <h5 class="slogan">{{item.slogan}}</h5>
                 <div class="media">
                   <div class="media-body">
 
@@ -44,7 +44,7 @@
                       <button type="button" data-toggle="modal" data-target=".vote-modal" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i>{{item.votes}}</button>
                     {% endif %}
 
-                    <a href="{{item.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                    <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
                     
                   </div>
                   <!--<a class="media-left" href="#">

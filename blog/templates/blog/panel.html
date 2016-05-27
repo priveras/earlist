@@ -5,12 +5,12 @@
 
 $(document).on("click", ".open-dialog", function () {
   var l = window.location;
-  var base_url = l.protocol + "//" + l.host + "/status/";
+  var base_url = l.protocol + "//" + l.host + "/panel/status/";
   var postSlug = $(this).data('id');
   console.log(postSlug);
-  // $(".modal-body #postSlug1").attr("href", base_url + postSlug + "/2");
-  // $(".modal-body #postSlug2").attr("href", base_url + postSlug + "/3");
-  // $(".modal-body #postSlug3").attr("href", base_url + postSlug + "/4");
+  $(".modal-body #postSlug1").attr("href", base_url + postSlug + "/2");
+  $(".modal-body #postSlug2").attr("href", base_url + postSlug + "/3");
+  $(".modal-body #postSlug3").attr("href", base_url + postSlug + "/4");
 });
 
 
