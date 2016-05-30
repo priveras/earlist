@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views import generic
+from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
@@ -326,28 +327,39 @@ def post(request):
         form = PostForm(request.POST, request.FILES)
  
         if form.is_valid():
-            post = Post.objects.create(
-                user = request.user,
-            	title = form.cleaned_data['title'],
-            	slug = slugify(form.cleaned_data['title']),
-                slogan = form.cleaned_data['slogan'],
-                body = form.cleaned_data['body'],
-            	link = form.cleaned_data['link'],
-                image_file = request.FILES['image_file'],
-                # image_url = form.cleaned_data['image_url'],
-                city = form.cleaned_data['city'],
-                approved = 0,
-            	created_at = timezone.now()
-            	)
 
-            url = reverse('success-post', kwargs={'slug':post.slug})
+            try: 
+                post = Post.objects.create(
+                    user = request.user,
+                	title = form.cleaned_data['title'],
+                	slug = slugify(form.cleaned_data['title']),
+                    slogan = form.cleaned_data['slogan'],
+                    body = form.cleaned_data['body'],
+                	link = form.cleaned_data['link'],
+                    image_file = request.FILES['image_file'],
+                    # image_url = form.cleaned_data['image_url'],
+                    city = form.cleaned_data['city'],
+                    approved = 0,
+                	created_at = timezone.now()
+                	)
 
-            return HttpResponseRedirect(url)
+                url = reverse('success-post', kwargs={'slug':post.slug})
 
+                return HttpResponseRedirect(url)
+
+            except IntegrityError as e:
+                if 'UNIQUE constraint failed: blog_post.slug' in e.message:
+                    error = "¡Oops! Ese producto ya existe en Earlist."
+                else:
+                    error = "¡Oops! Esa url ya existe en Earlist."
+
+                return render(request, 'blog/submit_post.html', {
+                        'form': form,
+                        'error': error
+                        })
         else:
             print form.is_valid()   #form contains data and errors
             print form.errors
-
  
     return render(request, 'blog/submit_post.html', {
         'form': form,

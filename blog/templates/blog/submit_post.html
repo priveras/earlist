@@ -16,6 +16,9 @@
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
     	</div>
     </div>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+    {% endif %}
 	<form enctype="multipart/form-data" action="{% url 'blog:post' %}" method="post" data-toggle="validator">
 		{% csrf_token %}
 		<div class="form-group">
