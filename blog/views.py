@@ -20,7 +20,7 @@ import datetime
 from datetime import datetime, timedelta
 from meta.views import Meta, MetadataMixin
 import twitter
-import facebook
+# import facebook
 
 meta = Meta(
         use_og = True,
@@ -160,34 +160,34 @@ def status(request, slug, message):
 
         # api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
-        def main():
-            # Fill in the values noted in previous steps here
-            cfg = {
-                "page_id"      : "504038879644712",  # Step 1
-                "access_token" : "EAAHKa7JfzCgBAOWK7MECzX8UO0PXI7GUumCr6zvZCRBtrjoowjHbTKXFYwDxUWXvJZClCjchyMOjRZCi2iQmNxGv27hS0X9ZATrdrHqZCDLWDZCbevUfa83CDInkblPILbcZCUuNzYKDqU6qt9ZABXgijS3PWKLuyvc1oFvXlcxBIwZDZD"   # Step 3
-                }
+        # def main():
+        #     # Fill in the values noted in previous steps here
+        #     cfg = {
+        #         "page_id"      : "504038879644712",  # Step 1
+        #         "access_token" : "EAAHKa7JfzCgBAOWK7MECzX8UO0PXI7GUumCr6zvZCRBtrjoowjHbTKXFYwDxUWXvJZClCjchyMOjRZCi2iQmNxGv27hS0X9ZATrdrHqZCDLWDZCbevUfa83CDInkblPILbcZCUuNzYKDqU6qt9ZABXgijS3PWKLuyvc1oFvXlcxBIwZDZD"   # Step 3
+        #         }
 
-            api = get_api(cfg)
-            msg = "Hello, world!"
-            status = api.put_wall_post(msg)
+        #     api = get_api(cfg)
+        #     msg = "Hello, world!"
+        #     status = api.put_wall_post(msg)
 
-        def get_api(cfg):
-            graph = facebook.GraphAPI(cfg['access_token'])
-            # Get page token to post as the page. You can skip 
-            # the following if you want to post as yourself. 
-            resp = graph.get_object('me/accounts')
-            page_access_token = None
-            for page in resp['data']:
-                if page['id'] == cfg['page_id']:
-                    page_access_token = page['access_token']
-                    graph = facebook.GraphAPI(page_access_token)
-                    return graph
-                    # You can also skip the above if you get a page token:
-                    # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
-                    # and make that long-lived token as in Step 3
+        # def get_api(cfg):
+        #     graph = facebook.GraphAPI(cfg['access_token'])
+        #     # Get page token to post as the page. You can skip 
+        #     # the following if you want to post as yourself. 
+        #     resp = graph.get_object('me/accounts')
+        #     page_access_token = None
+        #     for page in resp['data']:
+        #         if page['id'] == cfg['page_id']:
+        #             page_access_token = page['access_token']
+        #             graph = facebook.GraphAPI(page_access_token)
+        #             return graph
+        #             # You can also skip the above if you get a page token:
+        #             # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
+        #             # and make that long-lived token as in Step 3
 
         
-        main()
+        # main()
 
     else:
         p.approved = 2
@@ -196,10 +196,10 @@ def status(request, slug, message):
             error = 'Hay errores en la publicación. Te invitamos a revisar que la imagen se vea bien, que no haya errores en el texto y que se usen el número de caracteres adecuados en la descripción. Puedes editar la publicación en tu perfil.'
 
         elif message == '3':
-            error = 'Patrocinar'
+            error = 'Por el momento no podremos publicar esto en nuestro sitio. Si lo deseas puedes ser un patrocinador del sitió y aparecer en la zona de los banners. Para más información por favor mandanos un mail a hey@earlist.club.'
 
         else:
-            error = 'Este tipo de publicación no está en linea con el tipo de contenido que mostramos en Earlist. Lamentablemente no podremos publicar esto.'
+            error = 'Este tipo de publicación no está en linea con el tipo de contenido que mostramos en Earlist. Lamentablemente no podremos publicar esto. Te invitamos a seguir siendo parte de nuestra comunidad y a hacer publicaciones que van de acuerdo a nuestro contenido.'
 
         d = Context({ 'first_name': p.user.first_name, 'error': error, 'title': p.title })
         plaintext = get_template('blog/emails/declined.txt')
@@ -211,12 +211,12 @@ def status(request, slug, message):
     html_content = htmly.render(d)
     mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
     mail.attach_alternative(html_content, "text/html")
-    # mail.send()
+    mail.send()
 
     p.save()
 
-    # return HttpResponseRedirect(reverse('blog:panel'))
-    return HttpResponse("Hello")
+    return HttpResponseRedirect(reverse('blog:panel'))
+    # return HttpResponse("Hello")
 
 
 class PostListView(generic.ListView):

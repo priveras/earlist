@@ -26,3 +26,14 @@ function status(slug, message, id) {
       }
     )
   }
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#upload').attr('class', 'fa fa-check-circle fa-lg m-l text-success');
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
