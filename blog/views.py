@@ -45,7 +45,7 @@ def unsubscribe(request, id):
     except:
         g = Group.objects.create(name='unsubscribed')
 
-    id_user = User.objects.filter(a=id)
+    id_user = User.objects.filter(id=id)
     
     g.user_set.add(1)
 
