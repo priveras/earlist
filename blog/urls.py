@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^submit-job/$', login_required(views.job), name='job'),
     url(r'^panel/', views.PanelListView.as_view(), name='panel'), 
     url(r'^nosotros/', views.AboutView.as_view(), name='about'), 
+    url(r'^adios/', views.UnsubscribedView.as_view(), name='unsubscribed'), 
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]

@@ -9,7 +9,7 @@ from .models import Post, Event, Job, Voter
 from .forms import PostForm, JobForm,EventForm
 from django.utils.text import slugify
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
@@ -36,23 +36,43 @@ meta = Meta(
 class AboutView(generic.TemplateView):
     template_name = "blog/about.html"
 
+class UnsubscribedView(generic.TemplateView):
+    template_name = "blog/unsubscribed.html"
+
+def unsubscribe(request, id):
+    try:
+        g = Group.objects.get(name='unsubscribed') 
+    except:
+        g = Group.objects.create(name='unsubscribed')
+
+    id_user = User.objects.filter(a=id)
+    
+    g.user_set.add(1)
+
+    return HttpResponseRedirect(reverse('blog:unsubscribed'))
+
 def newsletter(request):
     how_many_days = 7
     p = Post.objects.order_by('-votes').filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
 
-    email = 'priveras@gmail.com'
-    d = Context({ 'posts_list': p })
+    u = User.objects.filter(groups__isnull=True)
+
+    # email = 'priveras@gmail.com'
     plaintext = get_template('blog/emails/newsletter.txt')
     htmly     = get_template('blog/emails/newsletter.html')
     subject = 'Lo mejor de la semana en Earlist'
-    from_email, to = 'Earlist <hey@earlist.club>', email
-    text_content = plaintext.render(d)
-    html_content = htmly.render(d)
-    mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
-    mail.attach_alternative(html_content, "text/html")
 
-    if mail.send():
-        return HttpResponse('Newsletter sent')
+    for user in u:
+        email = user.email
+        d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id })
+        text_content = plaintext.render(d)
+        html_content = htmly.render(d)
+        from_email, to = 'Earlist <hey@earlist.club>', email
+        mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        mail.attach_alternative(html_content, "text/html")
+        mail.send()
+
+    return HttpResponse('Newsletter sent')
     
 
 def profile(

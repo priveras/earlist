@@ -24,7 +24,8 @@
 		</div>
 		<div class="form-group">
 			<label for="slogan">Describe tu producto en una oración</label>
-			{{ form.slogan|attr:"placeholder:ej: Descubre las nuevas ideas"|add_class:"form-control" }}
+			{{ form.slogan|attr:"placeholder:ej: Descubre las nuevas ideas"|add_class:"form-control"|attr:"required"|attr:"maxlength:58" }}
+
 		</div>
 		<div class="form-group">
 			<label for="body">Url del sitio web</label>
