@@ -20,7 +20,7 @@ import datetime
 from datetime import datetime, timedelta
 from meta.views import Meta, MetadataMixin
 import twitter
-# import facebook
+import facebook
 
 meta = Meta(
         use_og = True,
@@ -146,7 +146,7 @@ def status(request, slug, message):
     email = p.user.email
 
     if message == '1':
-        p.approved = 1
+        # p.approved = 1
         p.updated_at = datetime.now()
         p.date = datetime.now()
         d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
@@ -156,34 +156,42 @@ def status(request, slug, message):
 
         api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
-        # def main():
-        #     # Fill in the values noted in previous steps here
-        #     cfg = {
-        #         "page_id"      : "504038879644712",  # Step 1
-        #         "access_token" : "EAAHKa7JfzCgBAOWK7MECzX8UO0PXI7GUumCr6zvZCRBtrjoowjHbTKXFYwDxUWXvJZClCjchyMOjRZCi2iQmNxGv27hS0X9ZATrdrHqZCDLWDZCbevUfa83CDInkblPILbcZCUuNzYKDqU6qt9ZABXgijS3PWKLuyvc1oFvXlcxBIwZDZD"   # Step 3
-        #         }
+        def main():
+        # Fill in the values noted in previous steps here
+            cfg = {
+                "page_id"      : "559683034082114",  # Step 1
+                "access_token" : "EAAHKa7JfzCgBAB53T3qHy0CBsIwZAphLndUX8MlmGzKDZB7hMzCfXvPjaMVmYmejrOJDxwAFSlCQGpMGmWTuiPAucZA983soZB0LuZBZCjuN65gB758NaLb8PTs7bqXBEVxwZC7KkmIwsLrLlvZCR1mHK4zpiPp6CvoZD"   # Step 3
+                }
 
-        #     api = get_api(cfg)
-        #     msg = "Hello, world!"
-        #     status = api.put_wall_post(msg)
+            api = get_api(cfg)
+            msg = "%s: %s http://earlist.club/producto/%s" % (p.title, p.slogan, p.slug)
+            attachment =  {
+                'name': p.title + " | Earlist",
+                'link': "http://earlist.club/producto/" + p.slug,
+                'caption': p.slogan,
+                'description': p.body,
+                'picture': p.image_file.url
+            }
+            status = api.put_wall_post(msg, attachment)
 
-        # def get_api(cfg):
-        #     graph = facebook.GraphAPI(cfg['access_token'])
-        #     # Get page token to post as the page. You can skip 
-        #     # the following if you want to post as yourself. 
-        #     resp = graph.get_object('me/accounts')
-        #     page_access_token = None
-        #     for page in resp['data']:
-        #         if page['id'] == cfg['page_id']:
-        #             page_access_token = page['access_token']
-        #             graph = facebook.GraphAPI(page_access_token)
-        #             return graph
-        #             # You can also skip the above if you get a page token:
-        #             # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
-        #             # and make that long-lived token as in Step 3
+        def get_api(cfg):
+            graph = facebook.GraphAPI(cfg['access_token'])
+            # Get page token to post as the page. You can skip 
+            # the following if you want to post as yourself. 
+            resp = graph.get_object('me/accounts')
+            page_access_token = None
+            for page in resp['data']:
+                if page['id'] == cfg['page_id']:
+                    page_access_token = page['access_token']
+            graph = facebook.GraphAPI(page_access_token)
+            return graph
 
-        
-        # main()
+            # You can also skip the above if you get a page token:
+            # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
+            # and make that long-lived token as in Step 3
+
+        main()
+        return HttpResponse("Hello")
 
     else:
         p.approved = 2
