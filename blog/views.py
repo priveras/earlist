@@ -154,7 +154,7 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        
+        # api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
         def main():
         # Fill in the values noted in previous steps here
