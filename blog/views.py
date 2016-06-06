@@ -16,6 +16,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context, RequestContext
 from earlist.secret import api
+from earlist.secret import cfg
 import datetime
 from datetime import datetime, timedelta
 from meta.views import Meta, MetadataMixin
@@ -154,14 +155,10 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        # api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+        api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
         def main():
         # Fill in the values noted in previous steps here
-            cfg = {
-                "page_id"      : "559683034082114",  # Step 1
-                "access_token" : "EAAHKa7JfzCgBAB53T3qHy0CBsIwZAphLndUX8MlmGzKDZB7hMzCfXvPjaMVmYmejrOJDxwAFSlCQGpMGmWTuiPAucZA983soZB0LuZBZCjuN65gB758NaLb8PTs7bqXBEVxwZC7KkmIwsLrLlvZCR1mHK4zpiPp6CvoZD"   # Step 3
-                }
 
             api = get_api(cfg)
             msg = "%s: %s http://earlist.club/producto/%s" % (p.title, p.slogan, p.slug)
@@ -215,7 +212,7 @@ def status(request, slug, message):
     html_content = htmly.render(d)
     mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
     mail.attach_alternative(html_content, "text/html")
-    # mail.send()
+    mail.send()
 
     p.save()
 
