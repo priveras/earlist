@@ -154,7 +154,7 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+        # api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
         def main():
         # Fill in the values noted in previous steps here
@@ -170,7 +170,7 @@ def status(request, slug, message):
                 'link': "http://earlist.club/producto/" + p.slug,
                 'caption': p.slogan,
                 'description': p.body,
-                'picture': p.image_file.url
+                'picture': request.build_absolute_uri(p.image_file.url)
             }
             status = api.put_wall_post(msg, attachment)
 
@@ -215,7 +215,7 @@ def status(request, slug, message):
     html_content = htmly.render(d)
     mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
     mail.attach_alternative(html_content, "text/html")
-    mail.send()
+    # mail.send()
 
     p.save()
 
