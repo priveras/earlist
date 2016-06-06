@@ -188,8 +188,7 @@ def status(request, slug, message):
             # and make that long-lived token as in Step 3
 
         main()
-        return HttpResponse("Hello")
-
+        
     else:
         p.approved = 2
 
