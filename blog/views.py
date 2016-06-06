@@ -147,7 +147,7 @@ def status(request, slug, message):
     email = p.user.email
 
     if message == '1':
-        # p.approved = 1
+        p.approved = 1
         p.updated_at = datetime.now()
         p.date = datetime.now()
         d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
