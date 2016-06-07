@@ -116,7 +116,7 @@
 	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
-	          	<a href="{% url 'blog:post' %}">Publicar <i class="fa fa-plus-circle fa-lg"></i></a>
+	          	<a href="{% url 'blog:post' %}">Publica tu producto <i class="fa fa-plus-circle fa-lg"></i></a>
 	          </li>
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}

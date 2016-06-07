@@ -81,8 +81,9 @@
 </li>
 {% else %}
 <li class="media list-group-item p-t text-center">
-  <div class="alert alert-danger"><i class="fa fa-frown-o"></i> Aun no has agregado ningún producto...</div>
-  <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-primary w-full m-b">Agregar Producto</button></a>
+  <h2>¡Hey!</h2>
+  <p class="lead m-t">Forma parte esencial de nuestra comunidad y publica tu primer producto haciendo click en el botón siguiente</p>
+  <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-success w-full m-b">Publicar Producto</button></a>
 </li>
 {% endif %}
 {% endif %}
