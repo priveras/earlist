@@ -76,8 +76,9 @@
 {% else %}
 {% if view == 'votes' %}
 <li class="media list-group-item p-t text-center">
-  <div class="alert alert-danger"><i class="fa fa-frown-o"></i> Aun no has votado por ningún producto...</div>
-  <a href="{% url 'blog:index' %}"><button type="button" class="btn btn-primary w-full m-b">Ir a Inicio</button></a>
+  <h2><i class="fa fa-arrow-up"></i> Vota</h2>
+  <p class="lead m-t">Aun no has votado por ningún producto. Puedes votar por tus favoritos en la página de inicio</p>
+  <a href="{% url 'blog:index' %}"><button type="button" class="btn btn-success w-full m-b">Ir a Inicio</button></a>
 </li>
 {% else %}
 <li class="media list-group-item p-t text-center">
