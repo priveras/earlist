@@ -116,7 +116,7 @@
 	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
-	          	<a href="{% url 'blog:post' %}"><i class="fa fa-plus-circle fa-lg"></i></a>
+	          	<a href="{% url 'blog:post' %}">Publicar <i class="fa fa-plus-circle fa-lg"></i></a>
 	          </li>
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
@@ -127,7 +127,7 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i></a>
+	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i> Publicar</a>
 	          </li>
 	          <li>
 	          	<a href="" data-toggle="modal" data-target=".login-modal"><i class="fa fa-twitter-square"></i> Login </a>
