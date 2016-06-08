@@ -31,7 +31,7 @@ meta = Meta(
         url = "http://earlist.club/",
         title = 'Earlist',
         description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
-        image = 'https://scontent-dfw1-1.xx.fbcdn.net/t31.0-0/p480x480/13422280_1148244848559260_2213529633127398366_o.png',
+        image = 'https://pbs.twimg.com/media/CkZy7ETW0AAe4FE.jpg:large',
         )
 
 class AboutView(generic.TemplateView):
