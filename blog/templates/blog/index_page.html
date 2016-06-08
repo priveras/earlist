@@ -45,6 +45,9 @@
                     {% endif %}
 
                     <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                    {% for account in item.user.socialaccount_set.all %}
+                    <img data-toggle="tooltip" data-placement="bottom" title="{{account.user}}" style="width:25px;"class="img-circle pull-right" src="{{account.get_avatar_url}}">
+                    {%endfor%}
                     
                   </div>
                   <!--<a class="media-left" href="#">
