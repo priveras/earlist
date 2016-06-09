@@ -437,7 +437,7 @@ def event(request):
                 link = orm.cleaned_data['link'],
                 image_url = form.cleaned_data['image_url'],
                 cover_url = form.cleaned_data['cover_url'],
-                date_time = form.cleaned_data['event_date'],
+                date_time = form.cleaned_data['date_time'],
                 created_at = timezone.now()
                 )
             return HttpResponseRedirect('/accounts/profile')
