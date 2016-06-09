@@ -6,17 +6,17 @@
     {% for event in events_list %}
     <div class="col-md-4">
       <div class="panel panel-default panel-profile">
-        <div class="panel-heading" style="background-image: url({{event.cover_url}});"></div>
+        <div class="panel-heading" style="background-image: url({{event.cover_file.url}});"></div>
         <div class="panel-body text-center" style="min-height:250px;">
-          <img class="panel-profile-img" src="{{event.image_url}}">
+          <img class="panel-profile-img" src="{{event.image_file.url}}">
           <h5 class="panel-title">{{event.title}}</h5>
-          <p class="text-primary"><strong>{{event.date_time}}</strong></p>
+          <p><strong class="text-primary">{{event.date_time|date:"M d, Y"}}</strong><br><strong>{{event.date_time|date:"g:i a"}}</strong></p>
           <p class="m-b-md">
             {{event.body}}
           </p>
         </div>
         <div class="panel-footer text-center">
-          <a href="{{event.link}}">
+          <a href="{{event.link}}?ref=earlist" target="_blank">
             <button class="btn btn-primary-outline btn-sm" style="bottom:0px;">
               <span class="icon icon-add-user"></span> Mas información
             </button>
