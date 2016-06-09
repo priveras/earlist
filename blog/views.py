@@ -451,12 +451,13 @@ def event(request):
             event = Event.objects.create(
                 user = request.user,
                 title = form.cleaned_data['title'],
-                slug = slugify(form.cleaned_data['title']),
+                # slug = slugify(form.cleaned_data['title']),
                 body = form.cleaned_data['body'],
                 link = orm.cleaned_data['link'],
                 image_url = form.cleaned_data['image_url'],
                 cover_url = form.cleaned_data['cover_url'],
-                date_time = form.cleaned_data['date_time'],
+                date = form.cleaned_data['date_time'],
+                time = form.cleaned_data['date_time'],
                 created_at = timezone.now()
                 )
             return HttpResponseRedirect('/accounts/profile')
@@ -464,3 +465,5 @@ def event(request):
     return render(request, 'blog/submit_event.html', {
         'form': form,
     })
+
+    
