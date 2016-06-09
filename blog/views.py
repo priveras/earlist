@@ -43,7 +43,7 @@ def events(
     today = dt.date.today()
 
     context = {
-        'events_list': Event.objects.order_by('-date').filter(date__year=today.year, date__month=today.month),
+        'events_list': Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month),
         'page_template': page_template,
         'meta': meta
     }
