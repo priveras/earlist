@@ -297,7 +297,7 @@ class EventListView(generic.ListView):
 	context_object_name = 'events_list'
 
 	def get_queryset(self):
-		return Event.objects.order_by('-event_date')[:5]
+		return Event.objects.order_by('-date_time')[:5]
 
 
 class JobListView(generic.ListView):
