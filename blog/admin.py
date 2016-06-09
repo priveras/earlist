@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Event, Job, Voter
+from .models import Post, Evento, Job, Voter
 
 class PostAdmin(admin.ModelAdmin):
     # exclude = ['created_at']
@@ -16,7 +16,7 @@ class JobAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('company','title')}
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Event, EventAdmin)
+admin.site.register(Evento, EventAdmin)
 admin.site.register(Job, JobAdmin)
 admin.site.register(Voter)
 # admin.site.register(Category, CategoryAdmin)

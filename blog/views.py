@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
-from .models import Post, Event, Job, Voter
+from .models import Post, Evento, Job, Voter
 from .forms import PostForm, JobForm,EventForm
 from django.utils.text import slugify
 from django.contrib.auth import logout
