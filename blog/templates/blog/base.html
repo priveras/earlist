@@ -123,7 +123,7 @@
 	          	<a href="{% url 'blog:post' %}">Publica tu producto <i class="fa fa-plus-circle fa-lg"></i></a>
 	          </li>
 	          {% if user.is_staff %}
-	          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i> {% if panel_count != 0 %}{{panel_count}}{% endif %}</a></li>
+	          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i>{{panel_count}}</a></li>
 	          {% endif %}
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
