@@ -120,7 +120,8 @@ def index(
     context = {
         'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
         'page_template': page_template,
-        'meta': meta
+        'meta': meta,
+        'panel_count': Post.objects.filter(approved=0).count()
     }
 
     if request.user.is_authenticated():
