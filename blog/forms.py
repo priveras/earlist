@@ -15,7 +15,7 @@ class EventForm(forms.Form):
     link = forms.URLField(max_length=200)
     image_url = forms.URLField(max_length=200)
     cover_url = forms.URLField(max_length=200)
-    event_date = forms.DateField()
+    date_time = forms.DateTimeField()
 
 class JobForm(forms.Form):
     title = forms.CharField(max_length=200)

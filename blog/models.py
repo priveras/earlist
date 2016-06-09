@@ -41,10 +41,11 @@ class Event(models.Model):
 	slug = models.SlugField(max_length=200, unique=True)
 	body = models.CharField(max_length=200)
 	link = models.CharField(max_length=200, unique=True)
-	image_url = models.URLField(max_length=1000)
-	cover_url = models.URLField(max_length=1000)
-	event_date = models.DateField(db_index=True)
+	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
+	cover_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
+	date_time = models.DateTimeField(db_index=True, null=True)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return self.title
