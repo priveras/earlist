@@ -3,7 +3,7 @@
 
 {% paginate events_list %}
 
-{% regroup events_list by date as regrouped_events_list %}
+{% regroup events_list by date|date:"M, Y" as regrouped_events_list %}
 {% for post in regrouped_events_list %}
 
   <h5>{{ post.grouper|date:"M" }}</h5>
