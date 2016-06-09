@@ -5,7 +5,6 @@
 
 {% regroup events_list by date as regrouped_events_list %}
 {% for post in regrouped_events_list %}
-<div class="row">
   {# <h5>{{ post.grouper|date:"M" }}</h5> #}
 	<ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
@@ -33,7 +32,6 @@
       {% endif %}
     {% endfor %}
     </ul>
-  </div>
 {% endfor %}
 
 {% show_more %}
