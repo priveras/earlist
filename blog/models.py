@@ -14,7 +14,7 @@ class Post(ModelMeta, models.Model):
 	link = models.URLField(max_length=200, unique=True)
 	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
 	city = models.CharField(max_length=200)
-	approved = models.IntegerField()
+	approved = models.IntegerField(default=0)
 	votes = models.IntegerField(default=0)
 	date = models.DateField(auto_now_add=True)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -37,13 +37,15 @@ class Voter(models.Model):
 
 class Event(models.Model):
 	user = models.ForeignKey(User)
-	title = models.CharField(max_length=200, unique=True)
-	slug = models.SlugField(max_length=200, unique=True)
+	title = models.CharField(max_length=200)
+	# slug = models.SlugField(max_length=200)
 	body = models.CharField(max_length=200)
-	link = models.CharField(max_length=200, unique=True)
+	link = models.CharField(max_length=200)
 	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
 	cover_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
-	date_time = models.DateTimeField(db_index=True, null=True)
+	date = models.DateField(null=True)
+	time = models.TimeField(null=True)
+	approved = models.IntegerField(default=0)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now_add=True)
 

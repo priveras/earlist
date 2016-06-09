@@ -17,7 +17,7 @@ from django.template.loader import get_template
 from django.template import Context, RequestContext
 from earlist.secret import api
 from earlist.secret import cfg
-import datetime
+import datetime as dt
 from datetime import datetime, timedelta
 from meta.views import Meta, MetadataMixin
 import twitter
@@ -33,6 +33,25 @@ meta = Meta(
         description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
         image = 'https://pbs.twimg.com/media/CkZy7ETW0AAe4FE.jpg:large',
         )
+
+def events(
+        request,
+        template='blog/entry_events.html',
+        page_template='blog/entry_events_page.html'):
+
+    orders = [ '-created_at']
+    today = dt.date.today()
+
+    context = {
+        'events_list': Event.objects.order_by('-date').filter(date__year=today.year, date__month=today.month),
+        'page_template': page_template,
+        'meta': meta
+    }
+
+    if request.is_ajax():
+        template = page_template
+    return render_to_response(
+        template, context, context_instance=RequestContext(request))
 
 class AboutView(generic.TemplateView):
     template_name = "blog/about.html"
@@ -292,12 +311,12 @@ class PanelListView(generic.ListView):
 #         return context
 
 
-class EventListView(generic.ListView):
-	template_name = 'blog/events.html'
-	context_object_name = 'events_list'
+# class EventListView(generic.ListView):
+# 	template_name = 'blog/events.html'
+# 	context_object_name = 'events_list'
 
-	def get_queryset(self):
-		return Event.objects.order_by('-date_time')[:5]
+# 	def get_queryset(self):
+# 		return Event.objects.order_by('-date_time')
 
 
 class JobListView(generic.ListView):

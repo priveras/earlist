@@ -1,0 +1,39 @@
+{% load el_pagination_tags %}
+{% load humanize %}
+
+{% paginate events_list %}
+
+{% regroup events_list by date as regrouped_events_list %}
+{% for post in regrouped_events_list %}
+<div class="row">
+  {# <h5>{{ post.grouper|date:"M" }}</h5> #}
+	<ul class="list-group media-list media-list-stream">
+    {% for item in post.list %}
+      {% if item.approved == 1 %}
+        <div class="col-md-4">
+          <div class="panel panel-default panel-profile">
+            <div class="panel-heading" style="background-image: url({{item.cover_file.url}});"></div>
+            <div class="panel-body text-center">
+              <img class="panel-profile-img" src="{{item.image_file.url}}">
+              <h5 class="panel-title">{{item.title}}</h5>
+              <p><strong class="text-primary">{{item.date|date:"M d, Y"}}</strong><br><strong>{{item.time|date:"g:i a"}}</strong></p>
+              <p class="m-b-md">
+                {{item.body}}
+              </p>
+            </div>
+            <div class="panel-footer text-center">
+              <a href="{{item.link}}?ref=earlist" target="_blank">
+                <button class="btn btn-primary-outline btn-sm" style="bottom:0px;">
+                  Mas información
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
+
+{% show_more %}

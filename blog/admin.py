@@ -9,14 +9,14 @@ class PostAdmin(admin.ModelAdmin):
 # class CategoryAdmin(admin.ModelAdmin):
 #     prepopulated_fields = {'slug': ('title',)}
 
-class EventAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
+# class EventAdmin(admin.ModelAdmin):
+#     prepopulated_fields = {'slug': ('title',)}
 
 class JobAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('company','title')}
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Event, EventAdmin)
+admin.site.register(Event)
 admin.site.register(Job, JobAdmin)
 admin.site.register(Voter)
 # admin.site.register(Category, CategoryAdmin)
