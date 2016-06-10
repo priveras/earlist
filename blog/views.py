@@ -30,7 +30,7 @@ meta = Meta(
         use_title_tag = True,
         url = "http://earlist.club/",
         title = 'Earlist',
-        description = 'Earlist es el lugar para descubrir los mejores startups de tecnología en México. Únete a nuestra comunidad de apasionados por la innovación y la tecnología.',
+        description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología de todo Latino América.',
         image = 'https://scontent-dfw1-1.xx.fbcdn.net/t31.0-8/13442466_1149825711734507_3767636858177000121_o.jpg',
         )
 
