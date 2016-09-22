@@ -454,17 +454,22 @@ def event(request):
                 title = form.cleaned_data['title'],
                 # slug = slugify(form.cleaned_data['title']),
                 body = form.cleaned_data['body'],
-                link = orm.cleaned_data['link'],
-                image_url = form.cleaned_data['image_url'],
-                cover_url = form.cleaned_data['cover_url'],
+                link = form.cleaned_data['link'],
+                image_file = request.FILES['image_file'],
                 date = form.cleaned_data['date_time'],
                 time = form.cleaned_data['date_time'],
                 created_at = timezone.now()
                 )
+
             return HttpResponseRedirect('/accounts/profile')
+
+        else:
+            print form.is_valid()   #form contains data and errors
+            print form.errors
  
     return render(request, 'blog/submit_event.html', {
         'form': form,
     })
+
 
     

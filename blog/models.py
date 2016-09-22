@@ -45,7 +45,6 @@ class Event(models.Model):
 	body = models.CharField(max_length=200)
 	link = models.CharField(max_length=200)
 	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
-	cover_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
 	date = models.DateField(null=True)
 	time = models.TimeField(null=True)
 	approved = models.IntegerField(default=0)

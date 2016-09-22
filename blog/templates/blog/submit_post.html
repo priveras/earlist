@@ -22,6 +22,7 @@
 	<form enctype="multipart/form-data" action="{% url 'blog:post' %}" method="post" data-toggle="validator">
 		{% csrf_token %}
 		<div class="form-group">
+        
 			<label for="title">Nombre del Producto</label>
 			{{ form.title|attr:"placeholder:ej: Earlist"|add_class:"form-control"|attr:"required"|attr:"maxlength:16" }}
 		</div>

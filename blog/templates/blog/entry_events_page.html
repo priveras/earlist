@@ -12,9 +12,8 @@
       {% if item.approved == 1 %}
         <div class="col-md-4">
           <div class="panel panel-default panel-profile">
-            <div class="panel-heading" style="background-image: url({{item.cover_file.url}});"></div>
+            <div class="panel-heading" style="background-image: url({{item.image_file.url}});"></div>
             <div class="panel-body text-center">
-              <img class="panel-profile-img" src="{{item.image_file.url}}">
               <h5 class="panel-title">{{item.title}}</h5>
               <p><strong class="text-primary">{{item.date|date:"M d, Y"}}</strong><br><strong>{{item.time|date:"g:i a"}}</strong></p>
               <p class="m-b-md">

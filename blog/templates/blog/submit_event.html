@@ -5,6 +5,7 @@
  <script type="text/javascript">
     $(function () {
         $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-D hh:mm:ss',
             icons: {
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",
@@ -46,17 +47,10 @@
 			{{ form.link|attr:"placeholder:http://earlist.io"|add_class:"form-control"|attr:"required" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Logo del Evento <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label><small> Haz click aquí para más info</small>
+			<label for="body">Imagen del Evento <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label><small> Haz click aquí para más info</small>
             <br>
             <span class="btn btn-default btn-file">
-                <i class="fa fa-upload"></i> Importar{{ form.image_file|attr:"required"|attr:"onchange=readURL(this)"|attr:"id=imgInp" }}
-            </span><div id="upload"></div>
-		</div>
-		<div class="form-group">
-			<label for="body">Imagen de fondo <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label><small> Haz click aquí para más info</small>
-            <br>
-            <span class="btn btn-default btn-file">
-                <i class="fa fa-upload"></i> Importar{{ form.cover_file|attr:"required"|attr:"onchange=readURL(this)"|attr:"id=imgInp" }}
+                <i class="fa fa-upload"></i> Importar{{ form.image_file|attr:"required"|attr:"onchange=readURL(this)"|attr:"id=imgIns" }}
             </span><div id="upload"></div>
 		</div>
         <div class="form-group w-md">
@@ -81,7 +75,7 @@
         <h4 class="modal-title" id="myModalLabel">Imagen para publicación</h4>
       </div>
       <div class="modal-body text-center">
-        <p class="lead">En esta sección necesitamos que agregues una imagen de inicio.</p>
+        <p class="lead">En esta sección necesitamos que agregues una imagen para el evento.</p>
         <div class="row">
         	<div class="col-sm-4 m-b">
         		<p>Puedes usar un GIF</p>
