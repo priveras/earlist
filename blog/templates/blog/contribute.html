@@ -8,11 +8,18 @@
 		<i class="fa fa-share-square-o fa-5x text-primary m-t-md"></i>
 		<div class="row m-t-md m-b-md">
 			<div class="col-lg-1"></div>
-			<div class="col-lg-10">
+			<div class="col-lg-10 m-b-md">
 				<p class="lead">Aquí es donde se comparten y descubren los mejores productos. Te invitamos a formar parte integral de nuestra comunidad al compartir una publicación.</p>
 			</div>
+			<div class="row text-center m-b-md">
+				<div class="col-sm-4 col-sm-offset-2">
+					<a class="btn btn-lg btn-success" href="{% url 'blog:post' %}">Publicar Producto</a>
+				</div>
+				<div class="col-sm-4">
+					<a class="btn btn-lg btn-danger" href="{% url 'blog:event' %}">Publicar Evento</a>
+				</div>
+			</div>
 		</div>
-		<a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Empezar</button></a>
 	</div>
   </div>
 </div>

@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^producto/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^exito-producto/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 
+    url(r'^exito-evento/(?P<pk>\d+)/$', login_required(views.SuccessEventView.as_view()), name='success-event'), 
     url(r'^contribuir/', views.ContributeView.as_view(), name='contribute'), 
     url(r'^actualizar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 
     url(r'^eliminar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'),

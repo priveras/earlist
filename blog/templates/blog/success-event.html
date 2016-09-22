@@ -1,0 +1,38 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-2"></div>
+<div class="col-md-8">
+   <div class="panel panel-default">
+      <div class="panel-body text-center m-t">
+      <h2>¡Publicación exitosa!</h2>
+      <i class="fa fa-hand-peace-o fa-5x text-primary m-t-md"></i>
+      <div class="row m-t-md m-b-md">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+          <p class="lead">Gracias por formar parte integral de esta comunidad. A continuación puedes ver el resultado de tu publicación. Ahora debe de pasar por un proceso de revisión. Nosotros te avisamos cuando quede publicado.</p>
+        </div>
+      </div>
+      <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a>
+    </div>
+  </div>
+  <div class="col-md-4 col-md-offset-4 m-b-lg">
+    <div class="panel panel-default panel-profile">
+      <div class="panel-heading" style="background-image: url({{event.image_file.url}});"></div>
+      <div class="panel-body text-center">
+        <h5 class="panel-title">{{event.title}}</h5>
+        <p><strong class="text-primary">{{event.date|date:"M d, Y"}}</strong><br><strong>{{event.time|date:"g:i a"}}</strong></p>
+        <p class="m-b-md">
+          {{event.body}}
+        </p>
+      </div>
+      <div class="panel-footer text-center">
+        <a href="{{event.link}}?ref=earlist" target="_blank">
+          <button class="btn btn-primary-outline btn-sm" style="bottom:0px;">
+            Mas información
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

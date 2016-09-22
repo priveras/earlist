@@ -336,6 +336,10 @@ class SuccessPostView(generic.DetailView):
     model = Post
     template_name = 'blog/success-post.html'
 
+class SuccessEventView(generic.DetailView):
+    model = Event
+    template_name = 'blog/success-event.html'
+
 class ContributeView(generic.TemplateView):
     template_name = 'blog/contribute.html'
     
@@ -461,7 +465,9 @@ def event(request):
                 created_at = timezone.now()
                 )
 
-            return HttpResponseRedirect('/accounts/profile')
+            url = reverse('success-event', kwargs={'pk':event.pk})
+
+            return HttpResponseRedirect(url)
 
         else:
             print form.is_valid()   #form contains data and errors
