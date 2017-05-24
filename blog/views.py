@@ -50,8 +50,7 @@ def events(
 
     if request.is_ajax():
         template = page_template
-    return render_to_response(
-        template, context, context_instance=RequestContext(request))
+    return render(request, template, context)
 
 class AboutView(generic.TemplateView):
     template_name = "blog/about.html"
@@ -109,6 +108,7 @@ def profile(
 
     if request.is_ajax():
         template = page_template
+    
     return render_to_response(
         template, context, context_instance=RequestContext(request))
 
