@@ -5,15 +5,14 @@
 
 {% regroup events_list by date|date:"M, Y" as regrouped_events_list %}
 {% for post in regrouped_events_list %}
-
-  <h5>{{ post.grouper|date:"M" }}</h5>
+  <h5>{{ post.grouper|date }}</h5>
 	<ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
       {% if item.approved == 1 %}
         <div class="col-md-4">
           <div class="panel panel-default panel-profile">
-            <div class="panel-heading" style="background-image: url({{item.image_file.url}});"></div>
-            <div class="panel-body text-center">
+            <div class="panel-heading" style="background-image: url({{item.image_file.url}}); background-position: center; background-repeat: no-repeat; background-size: cover"></div>
+            <div class="panel-body text-center" style="min-height:250px">
               <h5 class="panel-title">{{item.title}}</h5>
               <p><strong class="text-primary">{{item.date|date:"M d, Y"}}</strong><br><strong>{{item.time|date:"g:i a"}}</strong></p>
               <p class="m-b-md">

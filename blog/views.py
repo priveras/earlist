@@ -99,11 +99,13 @@ def profile(
     }
 
     if request.user.is_authenticated():
+        events = Event.objects.filter(user=request.user).order_by('-created_at')
         votes = Voter.objects.filter(user=request.user)
         v_list = []
         for vote in votes:
             v_list.append(vote.post.slug)
             context['votes_list'] = v_list
+            context['events'] = events
 
     if request.is_ajax():
         template = page_template
@@ -216,7 +218,7 @@ def status(request, slug, message):
             error = 'Hay errores en la publicación. Te invitamos a revisar que la imagen se vea bien, que no haya errores en el texto y que se usen el número de caracteres adecuados en la descripción. Puedes editar la publicación en tu perfil.'
 
         elif message == '3':
-            error = 'Por el momento no podremos publicar esto en nuestro sitio. Si lo deseas puedes ser un patrocinador del sitió y aparecer en la zona de los banners. Para más información por favor mandanos un mail a hey@earlist.club.'
+            error = 'Por el momento no podremos publicar esto en nuestro sitio. Si lo deseas puedes ser un patrocinador del sitió y aparecer en la zona de los banners. Para más información por favor mandanos un mail a hola@earlist.xyz.'
 
         else:
             error = 'Este tipo de publicación no está en linea con el tipo de contenido que mostramos en Earlist. Lamentablemente no podremos publicar esto. Te invitamos a seguir siendo parte de nuestra comunidad y a hacer publicaciones que van de acuerdo a nuestro contenido.'
@@ -226,7 +228,7 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/declined.html')
         subject = 'Tu publicacion ha sido declinada'        
 
-    from_email, to = 'Earlist <hey@earlist.club>', email
+    from_email, to = 'Earlist <hola@earlist.xyz>', email
     text_content = plaintext.render(d)
     html_content = htmly.render(d)
     mail = EmailMultiAlternatives(subject, text_content, from_email, [to])

@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block content %}
+<div class="container p-t-md">
+    <div class="row">
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
       	<div class="panel-body text-center m-t">
@@ -35,8 +37,8 @@
 			{{ form.link|attr:"placeholder:http://earlist.io"|add_class:"form-control"|attr:"required" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Describe el producto en uno o dos párrafos empezando con el nombre</label>
-			{{ form.body|attr:"placeholder:ej: Earlist es el lugar donde encuentras..."|add_class:"form-control"|attr:"required" }}
+			<label for="body">Describe el producto en un párrafo empezando por el nombre</label>
+			{{ form.body|attr:"placeholder:ej: Earlist es el lugar donde descubres..."|add_class:"form-control"|attr:"required"|attr:"rows:3"|attr:"maxlength:300" }}
 		</div>
 		<div class="form-group">
 			<label for="body">Imagen <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label><small> Haz click aquí para más info</small>

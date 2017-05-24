@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block content %}
+<div class="container p-t-md">
+    <div class="row">
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
       	<div class="panel-body text-center m-t">
@@ -10,7 +12,7 @@
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
     			<div class="col-lg-10">
-    				<p class="lead">Estás a punto de editar <b>{{post.title}}</b>. Al finalizar el estatus será <span class="text-warning">pendiente</span> ya que entrara de nuevo a revisión.</p>
+    				<p class="lead">Estás a punto de editar tu publicación <b>{{post.title}}</b>. <!--Al finalizar, el estatus cambiará a <span class="text-warning">pendiente</span> ya que entrara de nuevo a revisión.--></p>
     			</div>
     		</div>
     		<a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancelar</button></a>

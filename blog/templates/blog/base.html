@@ -101,7 +101,7 @@
 
 	        <ul class="nav navbar-nav hidden-xs">
 	          <li>
-	            <a href="{% url 'blog:index' %}">Productos</a>
+	            <a href="{% url 'blog:index' %}">Startups</a>
 	          </li>
 	          <!-- <li>
 	            <a href="">Agregar</a>
@@ -152,13 +152,13 @@
 
 	        <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
 	          <li>
-	            <a href="{% url 'blog:index' %}">Productos</a>
+	            <a href="{% url 'blog:index' %}">Startups</a>
 	          </li>
 	          <li>
 	            <a href="{% url 'blog:events' %}">Eventos</a>
 	          </li>
 	          <li>
-	            <a data-toggle="modal" href="{% url 'blog:post' %}">Contribuir</a>
+	            <a data-toggle="modal" href="{% url 'blog:post' %}">Publicar</a>
 	          </li>
 	          {% if user.is_authenticated %}
 	          <li>
@@ -186,10 +186,7 @@
 	        </ul>
 	      </div>
 	  </div>
-	</nav>	
-
-	<div class="container p-t-md">
-		<div class="row">
+	</nav>
 			{% block content %}
 			
 			{% endblock %}
@@ -204,7 +201,7 @@
 	    	</div>
 	    	<div class="modal-body text-center m-b">
 	    		<p class="lead">Inicia tu sesión con Twitter</p>
-	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-primary"><i class="fa fa-twitter"></i> Login</a>
 	    	</div>
 	    
 	    </div>
@@ -215,7 +212,7 @@
 	    <div class="modal-content">
 	    	<div class="modal-header text-center bg-primary">
 	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    		<h4 class="modal-title">Agregar Producto</h4>
+	    		<h4 class="modal-title">Contribuir</h4>
 	    	</div>
 	    	<div class="modal-body text-center m-b">
 	    		<h2>Contribuir a Earlist</h2>
@@ -223,10 +220,10 @@
 				<div class="row m-t-md m-b-md">
 					<div class="col-lg-1"></div>
 					<div class="col-lg-10">
-						<p class="lead">Aquí es donde se comparten y descubren los mejores productos. Te invitamos a formar parte integral de nuestra comunidad al compartir una publicación.</p>
+						<p class="lead">Aquí es donde se comparten y descubren los mejores startups de Latinoamérica. Te invitamos a formar parte integral de nuestra comunidad al compartir una publicación.</p>
 					</div>
 				</div>
-	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-primary"><i class="fa fa-twitter"></i> Login</a>
 	    	</div>
 	    
 	    </div>

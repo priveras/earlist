@@ -11,6 +11,8 @@
       paginateOnScrollMargin: 20
   });
 </script>
+<div class="container p-t-md">
+    <div class="row">
 <div class="col-md-3">
   <div class="panel panel-default panel-profile m-b-md">
     {% for account in user.socialaccount_set.all %}
@@ -43,6 +45,23 @@
       </ul>
     </div>
     {% endfor %}
+  </div>
+
+  <div class="panel panel-default visible-md-block visible-lg-block">
+    <div class="panel-body">
+      <h5 class="m-t-0">Eventos· <small><a href="{% url 'blog:events'%}">Ver Todos</a></small></h5>
+      <ul class="list-unstyled list-spaced">
+        {% for event in events_list %}
+        <li><span class="text-muted icon icon-arrow-right m-r"></span>{{event.title}}
+        {% endfor %}
+      </ul>
+      <hr>
+      <ul class="list-unstyled list-spaced">
+        {% for event in events %}
+        <li><span class="text-muted icon icon-arrow-right m-r"></span>{{event.title}}</li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 <div class="col-md-6">

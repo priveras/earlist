@@ -15,22 +15,38 @@
           paginateOnScrollMargin: 20
       });
   </script>
-  <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
-    {% include page_template %}
-  </div>
-  <div class="modal fade vote-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header text-center bg-primary">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Iniciar Sesión</h4>
+  {% if not user.is_authenticated %}
+  <div class="jumbotron" style="background-color:white; border-bottom: 1px solid #eeeeee;">
+    <div class="container">
+      <div class="row text-justify">
+        <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
+        <h1 style="font-size:30px">Descubre Startups en Latinoamerica</h1>
+        <p style="font-size:16px">Earlist es el lugar en donde descubres los mejores startups de tecnología en Latinoamerica. Es donde los apasionados por la tecnología y la innovación creamos una comunidad de emprendedores. Descubre todos los días nuevos startups.</p>
+          <p><a class="btn btn-primary btn-md" data-toggle="modal" data-target=".login-modal" role="button">Crea una cuenta</a></p>
         </div>
-        <div class="modal-body text-center m-b">
-          <p class="lead">Para poder votar debes de iniciar tu sesión</p>
-          <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
-        </div>
-      </div>
+      </div>  
     </div>
   </div>
+  {% endif %}
+
+  <div class="container p-t-md">
+    <div class="row">
+      <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
+        {% include page_template %}
+      </div>
+      <div class="modal fade vote-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header text-center bg-primary">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Iniciar Sesión</h4>
+            </div>
+            <div class="modal-body text-center m-b">
+              <p class="lead">Para poder votar debes de iniciar tu sesión</p>
+              <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+            </div>
+          </div>
+        </div>
+      </div>
 {% include 'blog/right-col.html' %}
 {% endblock %}
