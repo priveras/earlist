@@ -7,15 +7,48 @@
 <div class="col-md-8">
    <div class="panel panel-default">
       <div class="panel-body text-center m-t">
-      <h2>¡Publicación exitosa!</h2>
+      <h2>Publicación en revisón</h2>
       <i class="fa fa-hand-peace-o fa-5x text-primary m-t-md"></i>
       <div class="row m-t-md m-b-md">
         <div class="col-lg-1"></div>
-        <div class="col-lg-10">
+        <div class="col-lg-10 text-justify">
           <p class="lead">Gracias por formar parte integral de esta comunidad. A continuación puedes ver el resultado de tu publicación. Ahora debe de pasar por un proceso de revisión. Nosotros te avisamos cuando quede publicado.</p>
         </div>
       </div>
-      <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a>
+      <div class="row m-b-md">
+        <div class="col-sm-5 col-sm-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Startup</h3>
+            </div>
+            <div class="panel-body text-justify">
+              <p class="lead text-center"><b>$1,999 MXN</b></p>
+              <p>- Publicación inmediata</p>
+              <p>- Mención en nuestro newsletter</p>
+              <p>- Sección de destacados</p>
+              <p>- Atención a clientes</p>
+              <p>- Apoyas a <b style="color:#3097d1">Earlist</b></p>
+              <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-md w-full btn-success">Continuar</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Hobby</h3>
+            </div>
+            <div class="panel-body text-justify">
+              <p class="lead text-center"><b>Gratis</b></p>
+              <p>- Tiempo de espera indefinido</p>
+              <p>- Sin soporte</p>
+              <p>-</p>
+              <p>-</p>
+              <p>-</p>
+              <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-md w-full btn-danger">Continuar</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <ul class="list-group media-list media-list-stream m-t-lg">
