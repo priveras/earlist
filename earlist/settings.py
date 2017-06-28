@@ -148,4 +148,4 @@ MEDIA_URL = '/media/'
 #)
 
 META_SITE_PROTOCOL = 'http'
-META_SITE_DOMAIN = 'earlist.club'
+META_SITE_DOMAIN = 'earlist.xyz'
