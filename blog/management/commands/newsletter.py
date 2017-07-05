@@ -9,24 +9,27 @@ from django.template.loader import get_template
 from django.template import Context, RequestContext
 
 class Command(BaseCommand):
-    how_many_days = 7
-    p = Post.objects.order_by('-votes').filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
 
-    if p:
+    def handle(self, *args, **options):
 
-        u = User.objects.filter(groups__isnull=True)
-        # email = 'priveras@gmail.com'
-        plaintext = get_template('blog/emails/newsletter.txt')
-        htmly     = get_template('blog/emails/newsletter.html')
-        subject = 'Lo mejor de la semana en Earlist'
+        how_many_days = 7
+        p = Post.objects.order_by('-votes').filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
+            
+        if p:
 
-        for user in u:
-            email = user.email
-            d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id })
-            text_content = plaintext.render(d)
-            html_content = htmly.render(d)
-            from_email, to = 'Earlist <hey@earlist.club>', email
-            mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
-            mail.attach_alternative(html_content, "text/html")
-            mail.send()
+            u = User.objects.filter(groups__isnull=True)
+            # email = 'priveras@gmail.com'
+            plaintext = get_template('blog/emails/newsletter.txt')
+            htmly     = get_template('blog/emails/newsletter.html')
+            subject = 'Lo mejor de la semana en Earlist'
+
+            for user in u:
+                email = user.email
+                d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id })
+                text_content = plaintext.render(d)
+                html_content = htmly.render(d)
+                from_email, to = 'Earlist <hola@earlist.xyz>', email
+                mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                mail.attach_alternative(html_content, "text/html")
+                mail.send()
         
