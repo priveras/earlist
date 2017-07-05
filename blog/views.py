@@ -45,7 +45,8 @@ def events(
     context = {
         'events_list': Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month),
         'page_template': page_template,
-        'meta': meta
+        'meta': meta,
+        'today': today
     }
 
     if request.is_ajax():

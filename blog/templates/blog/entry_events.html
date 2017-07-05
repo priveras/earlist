@@ -15,15 +15,31 @@
           paginateOnScrollMargin: 20
       });
   </script>
+  {% if not user.is_authenticated %}
+  <div class="jumbotron" style="background-color:white; border-bottom: 1px solid #eeeeee;">
+    <div class="container">
+      <div class="row text-justify">
+        <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
+        <h1 style="font-size:30px">Encuentra eventos de innovación en México</h1>
+        <p style="font-size:16px">En Earlist puedes encontrar y publicar una gran variedad de eventos de innovación y tecnología que se hacen en México cada mes. Si quiéres publicar un evento, mándanos un mail a <a href="mailto:hola@earlist.xyz">hola@earlist.xyz</a> y nosotros te ayudamos.</p>
+          <p><a class="btn btn-primary btn-md" data-toggle="modal" data-target=".login-modal" role="button">Crea una cuenta</a></p>
+        </div>
+      </div>  
+    </div>
+  </div>
+  {% endif %}
   
   <div class="container p-t-md">
     <div class="row">
       <div class="col-md-9">
+        {% if user.is_authenticated %}
         <div class="panel panel-default panel-profile">
           <div class="panel-body text-center">
-            <h4>Aquí descrubres eventos de tecnología e innovación en México</h4>
+            <h4>Eventos de innovación y tecnología en México para el mes de <span class="text-primary">{{today|date:"M"}}</span></h4>
+            <p style="font-size:14px">¿Quiéres publicar un evento? Mándanos un mail a <a href="mailto:hola@earlist.xyz">hola@earlist.xyz</a> y nosotros te ayudamos</p>
           </div>
         </div>
+        {% endif %}
         {% include page_template %}
       </div>
       <div class="modal fade vote-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
