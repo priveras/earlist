@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from django.template.loader import get_template
 from django.template import Context, RequestContext
 
-class Newsletter(BaseCommand):
+class Command(BaseCommand):
     how_many_days = 7
     p = Post.objects.order_by('-votes').filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
 
