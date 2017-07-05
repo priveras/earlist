@@ -28,9 +28,9 @@ meta = Meta(
         use_twitter = True,
         use_facebook = True,
         use_title_tag = True,
-        url = "http://earlist.club/",
+        url = "http://earlist.xyz/",
         title = 'Earlist',
-        description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología de todo Latino América.',
+        description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología en Mexico.',
         image = 'https://scontent-dfw1-1.xx.fbcdn.net/t31.0-8/13442466_1149825711734507_3767636858177000121_o.jpg',
         )
 
@@ -175,16 +175,16 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/approved.html')
         subject = 'Tu publicacion ha sido aprobada'
 
-        api.PostMedia("%s: %s http://earlist.club/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+        api.PostMedia("%s: %s http://earlist.xyz/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
         def main():
         # Fill in the values noted in previous steps here
 
             api = get_api(cfg)
-            msg = "%s: %s http://earlist.club/producto/%s" % (p.title, p.slogan, p.slug)
+            msg = "%s: %s http://earlist.xyz/producto/%s" % (p.title, p.slogan, p.slug)
             attachment =  {
                 'name': p.title + " | Earlist",
-                'link': "http://earlist.club/producto/" + p.slug,
+                'link': "http://earlist.xyz/producto/" + p.slug,
                 'caption': p.slogan,
                 'description': p.body,
                 'picture': request.build_absolute_uri(p.image_file.url)
@@ -273,7 +273,7 @@ class DetailView(MetadataMixin, generic.DetailView):
             use_facebook = True,
             use_title_tag = True,
             twitter_card = 'summary_large_image',
-            url = "http://earlist.club/producto/" + self.object.slug + '/',
+            url = "http://earlist.xyz/producto/" + self.object.slug + '/',
             title = self.object.title + ' | Earlist',
             description = self.object.body,
             image = self.object.image_file.url,
