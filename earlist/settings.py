@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
    
-ALLOWED_HOSTS = ['67.205.191.247']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
