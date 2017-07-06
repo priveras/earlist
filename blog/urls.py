@@ -27,5 +27,6 @@ urlpatterns = [
     # url(r'^dashboard/', views.dashboard, name='dashboard'), 
     url(r'^nosotros/', views.AboutView.as_view(), name='about'), 
     url(r'^adios/', views.UnsubscribedView.as_view(), name='unsubscribed'), 
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^newsletter/', views.NewsletterView.as_view(), name='newsletter'), 
 ]

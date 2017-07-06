@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 import datetime
+import datetime as dt
 from datetime import datetime, timedelta
 from django.template.loader import get_template
 from django.template import Context, RequestContext
@@ -12,8 +13,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        how_many_days = 7
-        p = Post.objects.order_by('-votes').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:10]
+        how_many_days = 100
+        today = dt.date.today()
+        p = Post.objects.order_by('-votes').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
+        events = Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month)[:3]
+        jobs = Job.objects.order_by('-created_at')[:10]
             
         if p:
 
@@ -25,7 +29,7 @@ class Command(BaseCommand):
 
             for user in u:
                 email = user.email
-                d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id })
+                d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id, 'username': user.username, 'events': events, 'jobs': jobs })
                 text_content = plaintext.render(d)
                 html_content = htmly.render(d)
                 from_email, to = 'Earlist <hola@earlist.xyz>', email

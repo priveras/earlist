@@ -34,6 +34,9 @@ meta = Meta(
         image = 'https://scontent.fmex8-2.fna.fbcdn.net/v/t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039baa120da86bc14fdf&oe=5A077A72',
         )
 
+class NewsletterView(generic.TemplateView):
+    template_name = "blog/emails/newsletter.html"
+
 def events(
         request,
         template='blog/entry_events.html',
@@ -326,7 +329,7 @@ class JobListView(generic.ListView):
 	context_object_name = 'jobs_list'
 
 	def get_queryset(self):
-		return Job.objects.order_by('-created_at')[:5]
+		return Job.objects.order_by('-created_at')
 
 
 def logout_view(request):
