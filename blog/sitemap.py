@@ -3,11 +3,11 @@ from .models import Post
 from django.core.urlresolvers import reverse
 
 class BlogSitemap(Sitemap):
-    changefreq = "never"
+    changefreq = "daily"
     priority = 0.5
     
     def items(self):
-        return Post.objects.filter(approved=True)
+        return Post.objects.filter(approved=1)
     
     def lastmod(self, obj):
         return obj.created_at
