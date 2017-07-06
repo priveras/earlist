@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import timezone
-from .models import Post, Event, Job, Voter
+from .models import Post, Event, Job, Voter, Sponsor
 from .forms import PostForm, JobForm,EventForm
 from django.utils.text import slugify
 from django.contrib.auth import logout
@@ -126,7 +126,8 @@ def index(
         'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
         'page_template': page_template,
         'meta': meta,
-        'panel_count': Post.objects.filter(approved=0).count()
+        'panel_count': Post.objects.filter(approved=0).count(),
+        'sponsors': Sponsor.objects.all()
     }
 
     if request.user.is_authenticated():

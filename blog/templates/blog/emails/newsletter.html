@@ -633,10 +633,10 @@ Lo que quieras, a donde quieras</p>
           <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-h/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 360px;" alt="{{event.title}}" width="160" src="http://earlist.xyz{{event.image_file.url}}"></a>
         </div>
       </div>
-          http://earlist.xyz{{event.image_file.url}}<br>
+          
             <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
       <p style="Margin-top: 0;Margin-bottom: 0;text-align: center;"><font color="#3097d1"><strong>{{event.title}}</strong></font><br>
-{{event.body}}}</p><p style="Margin-top: 20px;Margin-bottom: 0;text-align: center;"><span style="color:#5cb85c">{{event.date|date:"m d, Y"}}</span></p>
+{{event.body}}</p><p style="Margin-top: 20px;Margin-bottom: 0;text-align: center;"><span style="color:#5cb85c">{{event.date|date:"d M, Y"}}</span></p>
     </div>
           
           </div>
@@ -676,6 +676,7 @@ Lo que quieras, a donde quieras</p>
   
       <div class="layout two-col fixed-width" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
         <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
+        {% for sponsor in sponsors %}
         <!--[if (mso)|(IE)]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 300px" valign="top" class="w260"><![endif]-->
           <div class="column" style="text-align: left;color: #7c7e7f;font-size: 14px;line-height: 21px;font-family: Ubuntu,sans-serif;Float: left;max-width: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);">
           
@@ -685,25 +686,16 @@ Lo que quieras, a donde quieras</p>
           
             <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
         <div style="font-size: 12px;font-style: normal;font-weight: normal;" align="center">
-          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-n/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 480px;" alt="Centraal" width="260" src="https://i9.createsend1.com/ei/d/12/C0F/0BE/062748/csfinal/cen.jpg"></a>
+          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-n/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 480px;" alt="{{sponsor.title}}" width="260" src="http://earlist.xyz{{sponsor.image_file.url}}"></a>
         </div>
       </div>
-          
-          </div>
-        <!--[if (mso)|(IE)]></td><td style="width: 300px" valign="top" class="w260"><![endif]-->
-          <div class="column" style="text-align: left;color: #7c7e7f;font-size: 14px;line-height: 21px;font-family: Ubuntu,sans-serif;Float: left;max-width: 320px;min-width: 300px; width: 320px;width: calc(12300px - 2000%);">
-          
-            <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 12px;">
-      <p style="Margin-top: 0;Margin-bottom: 20px;text-align: center;"><span style="color:#5cb85c"><strong>Patrocinador</strong></span></p>
+                  <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
+      <p style="Margin-top: 0;Margin-bottom: 0;text-align: center;"><font color="#3097d1"><strong>{{sponsor.title}}</strong></font><br>
+{{sponsor.body}}</p><p style="Margin-top: 20px;Margin-bottom: 0;text-align: center;"></p>
     </div>
           
-            <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
-        <div style="font-size: 12px;font-style: normal;font-weight: normal;" align="center">
-          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-p/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 480px;" alt="Centraal" width="260" src="https://i10.createsend1.com/ei/d/12/C0F/0BE/062748/csfinal/cen1.jpg"></a>
-        </div>
-      </div>
-          
           </div>
+          {% endfor %}
         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
         </div>
       </div>

@@ -4,18 +4,22 @@
     <a class="alert-link" href="profile/index.html">Visit your profile! </a> Check your self, you aren't looking too good.
   </div>-->
 
+  {% for sponsor in sponsors %}
+
   <div class="panel panel-default m-b-md">
     <div class="panel-body">
       <h5 class="m-t-0">Patrocinador</h5>
-      <a href="http://centraal.com/?ref=earlist" target="_blank" onclick="ga('send', 'event', 'sponsored', 'Click', 'centraal-image');">
+      <a href="{{sponsor.link}}?ref=earlist" target="_blank" onclick="ga('send', 'event', 'sponsored', 'Click', 'centraal-image');">
         <div data-grid="images" >
-          <img class="media-object" src="http://centraal.com/images-e/rzs-slider/mac.jpg">
+          <img class="media-object" src="{{sponsor.image_file.url}}">
         </div>
       </a>
-      <p><strong>Centraal</strong><br>Centraal es un espacio innovador donde podrás trabajar, asistir a eventos, realizar reuniones y conocer gente como tú.</p>
-      <a href="http://centraal.com/?ref=earlist" target="_blank" class="btn btn-primary-outline btn-sm" onclick="ga('send', 'event', 'sponsored', 'Click', 'centraal-title');" >Mas Información</a>
+      <p><strong>{{sponsor.title}}</strong><br>{{sponsor.body}}</p>
+      <a href="{{sponsor.link}}?ref=earlist" target="_blank" class="btn btn-primary-outline btn-sm" onclick="ga('send', 'event', 'sponsored', 'Click', 'centraal-title');" >Mas Información</a>
     </div>
   </div>
+
+  {% endfor %}
 
   <!--<div class="panel panel-default m-b-md">
     <div class="panel-body">

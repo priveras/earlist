@@ -66,6 +66,18 @@ class Job(models.Model):
 	def __str__(self):
 		return self.title
 
+class Sponsor(models.Model):
+	title = models.CharField(max_length=200)
+	body = models.TextField()
+	link = models.URLField(max_length=200, unique=True)
+	image_file = models.FileField(upload_to='images/%Y%m%d', blank=True)
+	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+
+	def __str__(self):
+		return self.title
+
+
+
 # class Category(models.Model):
 # 	title = models.CharField(max_length=200, db_index=True)
 # 	slug = models.SlugField(max_length=200, db_index=True)
