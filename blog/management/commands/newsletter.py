@@ -18,7 +18,7 @@ class Command(BaseCommand):
         p = Post.objects.order_by('-votes').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
         events = Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month)[:3]
         jobs = Job.objects.order_by('-created_at')[:10]
-        sponsors = Sponsor.objects.all()[:2]
+        sponsors = Sponsor.objects.order_by('-created_at')[:2]
             
         if p:
 
