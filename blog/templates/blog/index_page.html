@@ -18,7 +18,7 @@
           <li class="media list-group-item p-a">
             <a class="media-left" href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
               <div class="thumbnail-custom">
-                <div style="
+                <div title="{{item.title}}" style="
                         background: url('{{item.image_file.url}}');
                         background-size:cover;
                         background-position:center;

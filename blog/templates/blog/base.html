@@ -6,7 +6,7 @@
     <meta name="author" content="Earlist">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Earlist, Early Adopters,Startups, Startups Mexico, Centraal, Earlist Mx, Earlist Club">
+    <meta name="keywords" content="Earlist, Startups, Startups Mexico, Tecnología en México, Innovación en México, Eventos de Tecnología, Startups Mexicanos, Trabajos en Startups">
     <meta property="og:type" content="product">
     <meta property="og:site_name" content="Earlist">
     <meta name="fb:app_id" content="504038879644712">
@@ -90,7 +90,7 @@
 	        <span class="icon-bar"></span>
 	      </button>
 	      <a class="navbar-brand" href="{% url 'blog:index' %}">
-	        <img src="{% static 'blog/assets/img/brand-white-earlist.png' %}" alt="brand">
+	        <img src="{% static 'blog/assets/img/brand-white-earlist.png' %}" alt="Earlist">
 	      </a>
 	    </div>
 	    <div class="navbar-collapse collapse" id="navbar-collapse-main">
@@ -126,7 +126,7 @@
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
 	          		<button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
-		              <img class="img-circle" src="{{ account.get_avatar_url }}">
+		              <img class="img-circle" src="{{ account.get_avatar_url }}" alt="Perfil">
 		            </button>
 			    {% endfor %}
 	          </li>

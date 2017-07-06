@@ -31,7 +31,7 @@ meta = Meta(
         url = "http://earlist.xyz/",
         title = 'Earlist | Descubre Startups y Eventos de innovación en México',
         description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología en Mexico.',
-        image = 'https://ibb.co/ioo5vF',
+        image = 'https://scontent.fmex8-2.fna.fbcdn.net/v/t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039baa120da86bc14fdf&oe=5A077A72',
         )
 
 def events(
