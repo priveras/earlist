@@ -16,7 +16,7 @@ class ViewSitemap(Sitemap):
 
     def items(self):
         # Return list of url names for views to include in sitemap
-        return ['blog:index', 'blog:events', 'blog:jobs', 'blog:post', 'blog:nosotros', 'blog:detail']
+        return ['blog:index', 'blog:events', 'blog:jobs', 'blog:post', 'blog:about', 'blog:detail']
 
     def location(self, item):
         return reverse(item)
