@@ -275,7 +275,7 @@ class DetailView(MetadataMixin, generic.DetailView):
             use_title_tag = True,
             twitter_card = 'summary_large_image',
             url = "http://earlist.xyz/producto/" + self.object.slug + '/',
-            title = self.object.title + ' | Earlist',
+            title = 'Earlist |' + self.object.title,
             description = self.object.body,
             image = self.object.image_file.url,
             )
