@@ -509,6 +509,8 @@ Equipo de Earlist</p>
       </div>
   
       <div style="line-height:20px;font-size:20px;">&nbsp;</div>
+
+      {% if special %}
   
       <div class="layout two-col fixed-width" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;">
         <div class="layout__inner" style="border-collapse: collapse;display: table;width: 100%;background-color: #ffffff;">
@@ -553,6 +555,7 @@ Lo que quieras, a donde quieras</p>
         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
         </div>
       </div>
+
   
       <div style="line-height:20px;font-size:20px;">&nbsp;</div>
   
@@ -569,6 +572,7 @@ Lo que quieras, a donde quieras</p>
         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
         </div>
       </div>
+      {% endif %}
 
       {% for post in posts_list %}
   

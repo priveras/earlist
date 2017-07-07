@@ -19,6 +19,7 @@ class Command(BaseCommand):
         events = Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month)[:3]
         jobs = Job.objects.order_by('-created_at')[:10]
         sponsors = Sponsor.objects.order_by('-created_at')[:2]
+        special = Post.objects.order_by('-created_at').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days)).filter(sponsored=1)[:5]
             
         if p:
 
@@ -30,7 +31,7 @@ class Command(BaseCommand):
 
             for user in u:
                 email = user.email
-                d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id, 'username': user.username, 'events': events, 'jobs': jobs, 'sponsors':sponsors })
+                d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id, 'username': user.username, 'events': events, 'jobs': jobs, 'sponsors':sponsors, 'special': special })
                 text_content = plaintext.render(d)
                 html_content = htmly.render(d)
                 from_email, to = 'Earlist <hola@earlist.xyz>', email
