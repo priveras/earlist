@@ -626,22 +626,25 @@ Lo que quieras, a donde quieras</p>
         <!--[if (mso)|(IE)]><table align="center" cellpadding="0" cellspacing="0" role="presentation"><tr class="layout-fixed-width" style="background-color: #ffffff;"><td style="width: 200px" valign="top" class="w160"><![endif]-->
 
         {% for event in events %}
-          <div class="column" style="text-align: left;color: #7c7e7f;font-size: 14px;line-height: 21px;font-family: Ubuntu,sans-serif;Float: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000%);">
-          
-            <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 12px;">
-        <div style="font-size: 12px;font-style: normal;font-weight: normal;Margin-bottom: 20px;" align="center">
-          <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-h/"><img style="border: 0;display: block;height: auto;width: 100%;max-width: 360px;" alt="{{event.title}}" width="160" src="http://earlist.xyz{{event.image_file.url}}"></a>
-        </div>
-      </div>
-          
-            <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
-      <p style="Margin-top: 0;Margin-bottom: 0;text-align: center;"><font color="#3097d1"><strong>{{event.title}}</strong></font><br>
-{{event.body}}</p><p style="Margin-top: 20px;Margin-bottom: 0;text-align: center;"><span style="color:#5cb85c">{{event.date|date:"d M, Y"}}</span></p>
-    </div>
-          
+        <div class="column" style="text-align: left;color: #7c7e7f;font-size: 14px;line-height: 21px;font-family: Ubuntu,sans-serif;Float: left;max-width: 320px;min-width: 200px; width: 320px;width: calc(72200px - 12000%);">
+          <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 12px;">
+            <div style="font-size: 12px;font-style: normal;font-weight: normal;Margin-bottom: 20px;" align="center">
+              <a style="text-decoration: underline;transition: opacity 0.1s ease-in;color: #3097d1;" href="http://earlist.createsend1.com/t/d-l-khjlhjl-l-h/">
+                <div style="height:150px; width:100%; border: 0; max-width: 360px; 
+                background: url('http://earlist.xyz{{event.image_file.url}}');
+                background-size:cover;
+                background-position:center;">
+                
+                </div>
+                <!--<img style="border: 0;display: block;height: auto;width: 100%;max-width: 360px;" alt="{{event.title}}" width="160" src="http://earlist.xyz{{event.image_file.url}}">-->
+              </a>
+            </div>
           </div>
-
-          {% endfor %}
+          <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 12px;">
+            <p style="Margin-top: 0;Margin-bottom: 0;text-align: center;"><font color="#3097d1"><strong>{{event.title}}</strong></font><br>{{event.body}}</p><p style="Margin-top: 20px;Margin-bottom: 0;text-align: center;"><span style="color:#5cb85c">{{event.date|date:"d M, Y"}}</span></p>
+          </div>
+        </div>
+        {% endfor %}
         <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
         </div>
       </div>

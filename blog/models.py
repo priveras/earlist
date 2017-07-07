@@ -16,6 +16,7 @@ class Post(ModelMeta, models.Model):
 	city = models.CharField(max_length=200)
 	approved = models.IntegerField(default=0)
 	votes = models.IntegerField(default=0)
+	sponsored = models.IntegerField(default=0, blank=True)
 	date = models.DateField(auto_now_add=True)
 	created_at = models.DateTimeField(db_index=True, auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now_add=True)
