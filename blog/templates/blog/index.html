@@ -27,6 +27,17 @@
     <div class="row">
       <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
         {% include page_template %}
+        {% block js %}
+          {{ block.super }}
+          <script src="http://code.jquery.com/jquery-latest.js"></script>
+          <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+          <script>
+              $.endlessPaginate({
+                  paginateOnScroll: true,
+                  paginateOnScrollMargin: 20
+              });
+          </script>
+      {% endblock %}
       </div>
       <div class="modal fade vote-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
         <div class="modal-dialog modal-sm">
