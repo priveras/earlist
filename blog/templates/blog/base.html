@@ -206,8 +206,6 @@
 	</div>
 
 	<script src="{% static 'blog/assets/js/jquery.min.js' %}"></script>
-	<script src="{% static 'blog/assets/js/main.js' %}"></script>
-    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
 
     <script src="{% static 'blog/assets/js/chart.js' %}"></script>
     <script src="{% static 'blog/assets/js/toolkit.js' %}"></script>
@@ -224,11 +222,13 @@
         }
       })
     </script>
+    <script src="{% static 'blog/assets/js/main.js' %}"></script>
+    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
     <script>
       $.endlessPaginate({
           paginateOnScroll: true,
           paginateOnScrollMargin: 20
       });
-  </script>
+  	</script>
   </body>
 </html>
