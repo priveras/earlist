@@ -202,6 +202,15 @@
 	</div>
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+	
+	<script>
+        $.endlessPaginate({
+            paginateOnScroll: true,
+            paginateOnScrollMargin: 20
+        });
+    </script>
+
 	<script src="{% static 'blog/assets/js/main.js' %}"></script>
 	<script src="{% static 'blog/assets/js/application.js' %}"></script>
     <script src="{% static 'blog/assets/js/chart.js' %}"></script>
@@ -209,14 +218,6 @@
 
     <script type="text/javascript" src="{% static 'blog/assets/bower_components/moment/min/moment.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'blog/assets/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
-
-    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
-    <script>
-        $.endlessPaginate({
-            paginateOnScroll: true,
-            paginateOnScrollMargin: 20
-        });
-    </script>
 
     <script>
       // execute/clear BS loaders for docs
