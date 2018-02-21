@@ -287,6 +287,7 @@ class DetailView(MetadataMixin, generic.DetailView):
 
         context = super(DetailView, self).get_context_data(**kwargs)
         context['meta'] = meta
+        context['sponsors'] = Sponsor.objects.order_by('-created_at')
         return context
 
 
@@ -333,6 +334,7 @@ class JobListView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(JobListView, self).get_context_data(**kwargs)
         context['users_list'] = Job.objects.order_by('-created_at')
+        context['meta'] = meta
         context['sponsors'] = Sponsor.objects.order_by('-created_at')
 
         return context
