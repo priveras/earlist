@@ -99,7 +99,8 @@ def profile(
         'view' : view,
         'voted' : voted,
         'posted' : posted,
-        'meta': meta
+        'meta': meta,
+        'sponsors' : Sponsor.objects.order_by('-created_at')
     }
 
     if request.user.is_authenticated():
