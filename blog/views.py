@@ -325,13 +325,17 @@ class PanelListView(generic.ListView):
 # 	def get_queryset(self):
 # 		return Event.objects.order_by('-date_time')
 
-
 class JobListView(generic.ListView):
-	template_name = 'blog/jobs.html'
-	context_object_name = 'jobs_list'
+    template_name = 'blog/jobs.html'
+    context_object_name = 'jobs_list'
+    model = Job
 
-	def get_queryset(self):
-		return Job.objects.order_by('-created_at')
+    def get_context_data(self, **kwargs):
+        context = super(JobListView, self).get_context_data(**kwargs)
+        context['users_list'] = Job.objects.order_by('-created_at')
+        context['sponsors'] = Sponsor.objects.order_by('-created_at')
+
+        return context
 
 
 def logout_view(request):
