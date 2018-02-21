@@ -400,6 +400,7 @@ def post(request):
  
     return render(request, 'blog/submit_post.html', {
         'form': form,
+        'meta': meta
     })
 
 class PostUpdateView(generic.UpdateView):
