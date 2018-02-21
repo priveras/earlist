@@ -71,7 +71,7 @@ def unsubscribe(request, id):
 
     id_user = User.objects.filter(id=id)
     
-    g.user_set.add(id_user.user.id)
+    g.user_set.add(id_user.user_id)
 
     return HttpResponseRedirect(reverse('blog:unsubscribed'))
 
