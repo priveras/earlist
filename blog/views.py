@@ -63,15 +63,15 @@ class AboutView(generic.TemplateView):
 class UnsubscribedView(generic.TemplateView):
     template_name = "blog/unsubscribed.html"
 
-def unsubscribe(request, user_id):
+def unsubscribe(request, id):
     try:
         g = Group.objects.get(name='unsubscribed') 
     except:
         g = Group.objects.create(name='unsubscribed')
 
-    id_user = User.objects.filter(id=user_id)
+    user = User.objects.filter(id=id)
     
-    g.user_set.add(id_user)
+    g.user_set.add(user)
 
     return HttpResponseRedirect(reverse('blog:unsubscribed'))
 
