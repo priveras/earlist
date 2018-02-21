@@ -11,7 +11,7 @@
       <h5 class="m-t-0">Patrocinador</h5>
       <a href="{{sponsor.link}}?ref=earlist" target="_blank" onclick="ga('send', 'event', 'sponsored', 'Click', 'centraal-image');">
         <div data-grid="images" >
-          <img class="media-object" src="{{sponsor.image_file.url}}">
+          <img style="max-width:245px"  class="media-object" src="{{sponsor.image_file.url}}">
         </div>
       </a>
       <p><strong>{{sponsor.title}}</strong><br>{{sponsor.body}}</p>
@@ -41,7 +41,6 @@
       <li class="media m-b">
         <a class="media-left" href="#">
           <img 
-            style="max-width:245px" 
             class="media-object img-circle"
             src="https://pbs.twimg.com/profile_images/731722360294805504/ZMdSlk_E_400x400.jpg">
         </a>
