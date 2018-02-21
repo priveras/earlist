@@ -63,7 +63,7 @@ class AboutView(generic.TemplateView):
 class UnsubscribedView(generic.TemplateView):
     template_name = "blog/unsubscribed.html"
 
-def unsubscribe(request, user_d):
+def unsubscribe(request, user_id):
     try:
         g = Group.objects.get(name='unsubscribed') 
     except:
