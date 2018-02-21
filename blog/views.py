@@ -63,13 +63,13 @@ class AboutView(generic.TemplateView):
 class UnsubscribedView(generic.TemplateView):
     template_name = "blog/unsubscribed.html"
 
-def unsubscribe(request, id):
+def unsubscribe(request, user_d):
     try:
         g = Group.objects.get(name='unsubscribed') 
     except:
         g = Group.objects.create(name='unsubscribed')
 
-    id_user = User.objects.filter(id=id)
+    id_user = User.objects.filter(id=user_id)
     
     g.user_set.add(id_user)
 
@@ -130,7 +130,6 @@ def index(
         'meta': meta,
         'panel_count': Post.objects.filter(approved=0).count(),
         'sponsors': Sponsor.objects.order_by('-created_at'),
-        'test': User.objects.filter(id=1)
     }
 
     if request.user.is_authenticated():
