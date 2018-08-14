@@ -12,7 +12,7 @@
       <div class="row m-t-md m-b-md">
         <div class="col-lg-1"></div>
         <div class="col-lg-10 text-justify">
-          <p class="lead">Thank you for contributing to Earlist. Below you can see your post and you can edit it in your profile. It will go through a review process now. We have 2 processing time options:</p>
+          <p class="lead">Thank you for contributing to Earlist. Below you can see your post and you can edit it in your profile. It will go through a review process now. We have 2 processing options:</p>
         </div>
       </div>
       <div class="row m-b-md">
@@ -28,8 +28,7 @@
               <p>- NA</p>
               <p>- NA</p>
               <p>- NA</p>
-              <script src="https://checkout.stripe.com/checkout.js"></script>
-              <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-md w-full btn-danger">I Want To Wait</button></a>
+              <a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-md w-full btn-danger">I Want to Wait</button></a>
             </div>
           </div>
         </div>
@@ -39,13 +38,28 @@
               <h3 class="panel-title">Startup</h3>
             </div>
             <div class="panel-body text-justify">
-              <p class="lead text-center"><b>$90 USD</b></p>
+              <p class="lead text-center"><b>$89.99 USD</b></p>
               <p>- Published Immeditately</p>
               <p>- Feature in Newsletter</p>
               <p>- Featured in Home Page</p>
               <p>- Unlimited Customer Support</p>
               <p>- You support <b style="color:#3097d1">Earlist</b></p>
-              <button class="btn btn-md w-full btn-success" id="customButton">Purchase</button>
+              <div class="text-center">
+                
+                <form action="/checkout" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{post.id}}"></input>
+                <script
+                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="{{stripe}}"
+                  data-amount="8999"
+                  data-name="Earlist"
+                  data-description="Earlist Instant Approval"
+                  data-image="https://pbs.twimg.com/profile_images/731722360294805504/ZMdSlk_E_400x400.jpg"
+                  data-locale="auto">
+                </script>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -116,30 +130,4 @@
 	</div>
   </div>
 </div>
-<script>
-var handler = StripeCheckout.configure({
-  key: 'pk_test_BsORLx8dUpa7npGns0LVudQg',
-  image: 'https://pbs.twimg.com/profile_images/731722360294805504/ZMdSlk_E_400x400.jpg',
-  locale: 'auto',
-  token: function(token) {
-    // You can access the token ID with `token.id`.
-    // Get the token ID to your server-side code for use.
-  }
-});
-
-document.getElementById('customButton').addEventListener('click', function(e) {
-  // Open Checkout with further options:
-  handler.open({
-    name: 'Earlist',
-    description: 'Startup instant submission',
-    amount: 9000
-  });
-  e.preventDefault();
-});
-
-// Close Checkout on page navigation:
-window.addEventListener('popstate', function() {
-  handler.close();
-});
-</script>
 {% endblock content %}

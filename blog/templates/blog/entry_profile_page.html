@@ -60,11 +60,11 @@
               <a href="{% url 'update-post' vote.slug %}" class="btn btn-xs btn-primary-outline"><i class="fa fa-pencil"></i></a>
               <a href="{% url 'delete-post' vote.slug %}" class="btn btn-xs btn-danger-outline"><i class="fa fa-trash"></i></a>
               {% if vote.approved == 0 %}
-                <button type="button" class="btn btn-xs btn-warning pull-right">Pendiente</button>
+                <button type="button" class="btn btn-xs btn-warning pull-right">Pending</button>
               {% elif vote.approved == 1 %}
-                  <div class="btn btn-xs btn-success pull-right">Aprobado</div>
+                  <div class="btn btn-xs btn-success pull-right">Approved</div>
               {% else %}
-                  <button type="button" class="btn btn-xs btn-danger pull-right">Rechazado</button>
+                  <button type="button" class="btn btn-xs btn-danger pull-right">Rejected</button>
               {% endif %}
             </div>
           </div>
@@ -76,15 +76,15 @@
 {% else %}
 {% if view == 'votes' %}
 <li class="media list-group-item p-t text-center">
-  <h2><i class="fa fa-arrow-up"></i> Vota</h2>
-  <p class="m-t" style="font-size:17px">Aun no has votado por ningún producto</p>
-  <a href="{% url 'blog:index' %}"><button type="button" class="btn btn-success w-full m-b">Ir a Inicio</button></a>
+  <h2><i class="fa fa-arrow-up"></i> Vote</h2>
+  <p class="m-t" style="font-size:17px">You haven't upvoted any product.</p>
+  <a href="{% url 'blog:index' %}"><button type="button" class="btn btn-success w-full m-b">Go to home page</button></a>
 </li>
 {% else %}
 <li class="media list-group-item p-t text-center">
   <h2>¡Hola {{user.first_name}}!</h2>
-  <p class="m-t" style="font-size:17px">Publica alguna compañia o producto haciendo click en siguiente botón</p>
-  <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-success w-full m-b">Publicar Producto</button></a>
+  <p class="m-t" style="font-size:17px">Publish a startup by clicking on this button.</p>
+  <a href="{% url 'blog:post' %}"><button type="button" class="btn btn-success w-full m-b">Publish Startup</button></a>
 </li>
 {% endif %}
 {% endif %}

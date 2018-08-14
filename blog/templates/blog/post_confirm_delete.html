@@ -7,15 +7,15 @@
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
       	<div class="panel-body text-center m-t">
-    		<h2>Eliminar Publicación</h2>
+    		<h2>Delete Post</h2>
     		<i class="fa fa-trash fa-5x text-primary m-t-md"></i>
     		<div class="row m-t-md m-b">
     			<form action="" method="post">{% csrf_token %}
-				    <p class="lead">¿Estás seguro que quieres eliminar <b>{{ object }}</b>?</p>
-				    <input class="btn btn-lg btn-pill btn-primary m-t" type="submit" value="Eliminar" />
+				    <p class="lead">Are you sure you want to delete <b>{{ object }}</b>?</p>
+				    <input class="btn btn-lg btn-pill btn-primary m-t" type="submit" value="Delete" />
 				</form>
     		</div>
-    		<a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancelar</button></a
+    		<a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancel</button></a>
     	</div>
     </div>
 </div>

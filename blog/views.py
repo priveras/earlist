@@ -17,11 +17,14 @@ from django.template.loader import get_template
 from django.template import Context, RequestContext
 from earlist.secret import api
 from earlist.secret import cfg
+from earlist.secret import STRIPE_PUBLIC_KEY
 import datetime as dt
 from datetime import datetime, timedelta
 from meta.views import Meta, MetadataMixin
 import twitter
 import facebook
+import stripe
+from django.conf import settings
 
 meta = Meta(
         use_og = True,
@@ -349,6 +352,11 @@ class SuccessPostView(generic.DetailView):
     model = Post
     template_name = 'blog/success-post.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(SuccessPostView, self).get_context_data(**kwargs)
+        context['stripe'] = STRIPE_PUBLIC_KEY
+        return context
+
 class SuccessEventView(generic.DetailView):
     model = Event
     template_name = 'blog/success-event.html'
@@ -386,9 +394,9 @@ def post(request):
 
             except IntegrityError as e:
                 if 'UNIQUE constraint failed: blog_post.slug' in e.message:
-                    error = "¡Oops! Ese producto ya existe en Earlist."
+                    error = "¡Oops! That company has already been published"
                 else:
-                    error = "¡Oops! Esa url ya existe en Earlist."
+                    error = "¡Oops! That name has already been published"
 
                 return render(request, 'blog/submit_post.html', {
                         'form': form,
@@ -491,5 +499,34 @@ def event(request):
         'form': form,
     })
 
+def checkout(request):
+
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    if request.method == "POST":
+        token = request.POST.get("stripeToken")
+        post_id = request.POST.get("post_id")
+
+    try:
+        charge  = stripe.Charge.create(
+            amount      = 8999,
+            currency    = "usd",
+            source      = token,
+            description = "Earlist Instant Approval"
+        )
+
+        p = Post.objects.get(pk=post_id)
+        p.charge_id = charge.id
+        p.approved = '1'
+        p.sponsored = True
+        p.save()
+
+    except stripe.error.CardError as ce:
+        return False, ce
+
+    else:
+        return render(request, 'blog/success-payment.html', {'post_id': post_id, 'charge_id': charge.id, 'p':p})
+        # The payment was successfully processed, the user's card was charged.
+        # You can now redirect the user to another page or whatever you want
 
     

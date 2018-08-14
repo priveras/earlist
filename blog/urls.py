@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^bye/', views.UnsubscribedView.as_view(), name='unsubscribed'), 
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^newsletter/', views.NewsletterView.as_view(), name='newsletter'), 
+    url(r"^checkout$", views.checkout, name="checkout_page")
 ]

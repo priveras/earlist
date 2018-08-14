@@ -15,7 +15,7 @@
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
     			<div class="col-lg-10">
-    				<p class="lead">{% trans '¿Estás seguro que deseas cerrar la sesión?' %}</p>
+    				<p class="lead">{% trans 'Are you sure you want to log out?' %}</p>
     			</div>
     		</div>
     		<form method="post" action="{% url 'account_logout' %}">
@@ -23,7 +23,7 @@
 			  {% if redirect_field_value %}
 			  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
 			  {% endif %}
-			  <button type="submit" class="btn btn-lg btn-pill btn-primary m-b-md">{% trans 'Cerrar Sesión' %}</button>
+			  <button type="submit" class="btn btn-lg btn-pill btn-primary m-b-md">{% trans 'Lgo Out' %}</button>
 			</form>
     	</div>
     </div>

@@ -7,46 +7,45 @@
 <div class="col-sm-offset-2 col-sm-8">
 	<div class="panel panel-default">
       	<div class="panel-body text-center m-t">
-    		<h2>Editar Publicación</h2>
+    		<h2>Edit Post</h2>
     		<i class="fa fa-edit fa-5x text-primary m-t-md"></i>
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
     			<div class="col-lg-10">
-    				<p class="lead">Estás a punto de editar tu publicación <b>{{post.title}}</b>. <!--Al finalizar, el estatus cambiará a <span class="text-warning">pendiente</span> ya que entrara de nuevo a revisión.--></p>
+    				<p class="lead">You are about to edit <b>{{post.title}}</b>. <!--Al finalizar, el estatus cambiará a <span class="text-warning">pendiente</span> ya que entrara de nuevo a revisión.--></p>
     			</div>
     		</div>
-    		<a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancelar</button></a>
+    		<a href="{% url 'profile' 'posts' %}"><button type="button" class="btn btn-lg btn-pill btn-primary-outline m-b-md">Cancel</button></a>
     	</div>
     </div>
 	<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
 		{% csrf_token %}
 		<div class="form-group">
-			<label for="title">Nombre del Producto</label>
+			<label for="title">Company Name</label>
 			<p>{{post.title}}</p>
 		</div>
 		<div class="form-group">
-			<label for="slogan">Describe tu producto en una oración</label>
-			{{ form.slogan|attr:"placeholder:ej: Descubre las nuevas ideas"|add_class:"form-control"|attr:"required"|attr:"maxlength:58" }}
-
+			<label for="slogan">Company Slogan</label>
+			{{ form.slogan|attr:"placeholder:ej: Discover and Share Amazing Startups"|add_class:"form-control"|attr:"required"|attr:"maxlength:58" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Url del sitio web</label>
-			{{ form.link|attr:"placeholder:http://earlist.io"|add_class:"form-control" }}
+			<label for="body">Link to Website</label>
+			{{ form.link|attr:"placeholder:http://earlist.xyz"|add_class:"form-control" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Describe el producto en uno o dos párrafos empezando con el nombre</label>
-			{{ form.body|attr:"placeholder:ej: Earlist es el lugar donde encuentras..."|add_class:"form-control" }}
+			<label for="body">Describe the company in a few words startin with its name.</label>
+			{{ form.body|attr:"placeholder:ej: Earlist is the place where you..."|add_class:"form-control" }}
 		</div>
 		<div class="form-group">
-			<label for="body">Imagen <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label>
+			<label for="body">Cover Image <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label>
             {{ form.image_file }}
 		</div>
 		<div class="form-group">
-			<label for="body">Ciudad</label>
-			{{ form.city|add_class:"form-control"|attr:"placeholder:Ciudad de México" }}
+			<label for="body">City</label>
+			{{ form.city|add_class:"form-control"|attr:"placeholder:NYC" }}
 		</div>
 		<div class="form-group m-t-md m-b-lg">
-			<input type='submit' value='Enviar' class ="btn btn-primary w-full" />
+			<input type='submit' value='Send' class ="btn btn-primary w-full" />
 		</div>
 	</form>
 </div>
@@ -55,13 +54,13 @@
     <div class="modal-content">
       <div class="modal-header text-center bg-primary">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Imagen para publicación</h4>
+        <h4 class="modal-title" id="myModalLabel">You need to add an image to your post</h4>
       </div>
       <div class="modal-body text-center">
-        <p class="lead">En esta sección necesitamos que agregues la <span class="text-primary">URL</span> de una imagen de inicio. </p>
+        <p class="lead">You need to add an image to your post.</p>
         <div class="row">
         	<div class="col-sm-4">
-        		<p>Puedes usar un GIF</p>
+        		<p>You can use a GIF</p>
         		<div class="thumbnail-custom">
         			<div style="
         			background: url('https://ph-files.imgix.net/3a799844-a0d9-4bb4-a33f-9605140aef16?auto=format&w=430&h=570&fit=max');
@@ -72,7 +71,7 @@
             	</div>
         	</div>
         	<div class="col-sm-4">
-        		<p>una screenshot de inicio</p>
+        		<p>a website screenshot</p>
         		<div class="thumbnail-custom">
         			<div style="
         			background: url('https://api.url2png.com/v6/P5329C1FA0ECB6/b4ab4ddcd7b56d8242f409a188737ab3/png/?thumbnail_max_width=260&url=http%3A%2F%2Flaunchkey.com%2Fwhitelabel');
@@ -83,7 +82,7 @@
             	</div>
         	</div>
         	<div class="col-sm-4">
-        		<p>o cualquier imagen</p>
+        		<p>or any image you like</p>
         		<div class="thumbnail-custom">
         			<div style="
         			background: url('https://ph-files.imgix.net/7c9a5b08-ca35-4d06-b417-ccc8207aeb8b?auto=format&w=430&h=570&fit=max');
@@ -96,7 +95,7 @@
         </div>
       </div>
       <div class="modal-footer m-t-md">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

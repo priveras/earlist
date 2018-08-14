@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="container p-t-md">
+    <div class="row">
+<div class="col-sm-offset-2 col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-body text-center m-t">
+    <h2>Payment Success</h2>
+    <i class="fa fa-share-square-o fa-5x text-primary m-t-md"></i>
+    <div class="row m-t-md m-b-md">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10 m-b-md">
+        <p class="lead">Thank you for contributing to Earlist. Your post has been published and it's available on the home page. If you have any questions or need help please send us a message at <a href="mailto:hello@earlist.xyz">hello@attomik.com</a></p>
+      </div>
+      <div class="row text-center m-b-md">
+        <div class="col-sm-8 col-sm-offset-2">
+          <a class="btn btn-lg btn-success" href="{% url 'blog:index' %}">Go To Home Page</a>
+        </div>
+        <!--<div class="col-sm-4">
+          <a class="btn btn-lg btn-danger" href="{% url 'blog:event' %}">Publicar Evento</a>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock content %}

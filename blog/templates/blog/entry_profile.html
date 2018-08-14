@@ -22,14 +22,14 @@
       <ul class="panel-menu">
         <li class="panel-menu-item">
           
-            Votados
+            Voted
             <h5 class="m-y-0">{{voted}}</h5>
           
         </li>
 
         <li class="panel-menu-item">
           
-            Publicados
+            Published
             <h5 class="m-y-0">{{posted}}</h5>
           
         </li>
@@ -38,7 +38,7 @@
     {% endfor %}
   </div>
 
-  <div class="panel panel-default visible-md-block visible-lg-block">
+  <!--<div class="panel panel-default visible-md-block visible-lg-block">
     <div class="panel-body">
       <h5 class="m-t-0">Eventos· <small><a href="{% url 'blog:events'%}">Ver Todos</a></small></h5>
       <ul class="list-unstyled list-spaced">
@@ -53,16 +53,16 @@
         {% endfor %}
       </ul>
     </div>
-  </div>
+  </div>-->
 </div>
 <div class="col-md-6">
   <ul class="nav nav-pills nav-justified">
     {% if view == 'votes' %}
-    <li role="presentation" class="active"><a href="">Votados</a></li>
-    <li role="presentation"><a href="{% url 'profile' 'posts' %}">Publicados</a></li>
+    <li role="presentation" class="active"><a href="">Voted</a></li>
+    <li role="presentation"><a href="{% url 'profile' 'posts' %}">Published</a></li>
     {% else %}
-    <li role="presentation"><a href="{% url 'profile' 'votes'%}">Votados</a></li>
-    <li role="presentation" class="active"><a href="">Publicados</a></li>
+    <li role="presentation"><a href="{% url 'profile' 'votes'%}">Voted</a></li>
+    <li role="presentation" class="active"><a href="">Published</a></li>
     {% endif %}
   </ul>
 
