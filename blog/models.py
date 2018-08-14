@@ -25,7 +25,7 @@ class Post(ModelMeta, models.Model):
 	# category = models.ForeignKey('Category')
 
 	def __str__(self):
-		return self.title
+		return self.title.encode('utf-8')
 
 	def get_absolute_url(self):
 		return reverse('detail', kwargs={'slug':self.slug})
