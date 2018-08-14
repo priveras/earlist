@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Event, Job, Voter, Sponsor
+from .models import Post, Event, Job, Voter, Sponsor, Newsletter, Unsubscribed
 
 class PostAdmin(admin.ModelAdmin):
     # exclude = ['created_at']
@@ -20,4 +20,6 @@ admin.site.register(Event)
 admin.site.register(Job, JobAdmin)
 admin.site.register(Voter)
 admin.site.register(Sponsor)
+admin.site.register(Newsletter)
+admin.site.register(Unsubscribed)
 # admin.site.register(Category, CategoryAdmin)

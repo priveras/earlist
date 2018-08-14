@@ -14,9 +14,9 @@
     <div class="container">
       <div class="row text-justify">
         <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
-        <h1 style="font-size:30px">Descubre Startups en México</h1>
-        <p style="font-size:16px">Earlist es el lugar en donde descubres los mejores startups de tecnología en México. Es donde los apasionados por la tecnología y la innovación creamos una comunidad de emprendedores. Descubre todos los días nuevos startups.</p>
-          <p><a class="btn btn-primary btn-md" data-toggle="modal" data-target=".login-modal" role="button">Crea una cuenta</a></p>
+        <h1 style="font-size:30px">Find and Share Amazing Startups</h1>
+        <p style="font-size:16px">Earlist is the place where you can find amazing startups doing a wide range of innovative products. Unlike other startup submission blogs, we like to share companies that are game changers in tech, blockchain, food and beverage, ecommerce, and more.</p>
+          <p><a class="btn btn-primary btn-md" data-toggle="modal" data-target=".login-modal" role="button">Create an account</a></p>
         </div>
       </div>  
     </div>
@@ -33,11 +33,11 @@
           <div class="modal-content">
             <div class="modal-header text-center bg-primary">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Iniciar Sesión</h4>
+              <h4 class="modal-title">Log In First</h4>
             </div>
             <div class="modal-body text-center m-b">
-              <p class="lead">Para poder votar debes de iniciar tu sesión</p>
-              <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-pill btn-primary"><i class="fa fa-twitter"></i> Login</a>
+              <div class="alert alert-warning"><i class="fa fa-exclamation-triangle"></i> You have to log in first to upvote this startup.</div>
+              <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-md btn-primary w-full"><i class="fa fa-twitter"></i> Login now</a>
             </div>
           </div>
         </div>

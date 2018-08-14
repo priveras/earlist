@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from blog.models import Post, Event, Job, Voter, Sponsor
+from blog.models import Post, Event, Job, Voter, Sponsor, Newsletter
 from django.contrib.auth.models import User, Group
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
@@ -32,6 +32,18 @@ class Command(BaseCommand):
             for user in u:
                 email = user.email
                 d = Context({ 'posts_list': p, 'user_unsubscribe_id': user.id, 'username': user.username, 'events': events, 'jobs': jobs, 'sponsors':sponsors, 'special': special })
+                text_content = plaintext.render(d)
+                html_content = htmly.render(d)
+                from_email, to = 'Earlist <hola@earlist.xyz>', email
+                mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+                mail.attach_alternative(html_content, "text/html")
+                mail.send()
+
+            u_n = Newsletter.objects.all()
+
+            for user in u_n:
+                email = user.email
+                d = Context({ 'posts_list': p, 'events': events, 'jobs': jobs, 'sponsors':sponsors, 'special': special })
                 text_content = plaintext.render(d)
                 html_content = htmly.render(d)
                 from_email, to = 'Earlist <hola@earlist.xyz>', email

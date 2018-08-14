@@ -10,12 +10,12 @@
     <meta name="author" content="Earlist">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Earlist, Startups, Startups Mexico, Tecnología en México, Innovación en México, Eventos de Tecnología, Startups Mexicanos, Trabajos en Startups">
+    <meta name="keywords" content="Earlist, Startups, Discover, Share, Blockchain, Food, Beverage, Tech, Sumbission, SEO, Submit Startup, Startup Directory, AI, Machine Learning, Coding, Software, Mobile Apps">
     <meta property="og:type" content="product">
     <meta property="og:site_name" content="Earlist">
     <meta name="fb:app_id" content="504038879644712">
-    <title>Earlist | Descubre Startups y Eventos de innovación en México</title>
-    <meta property="og:locale" content="es_MX">
+    <title>Earlist | Discover And Share Amazing Startups</title>
+    <meta property="og:locale" content="es_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@earlistco">
     <meta name="google-site-verification" content="-sZsXaKygxGfhZX5_QhTU7fISKz3h7KlZi83Mf4yBkQ" />
@@ -80,12 +80,12 @@
 	          <!-- <li>
 	            <a href="">Agregar</a>
 	          </li> -->
-	          <li>
+	          <!--<li>
 	            <a data-toggle="modal" href="{% url 'blog:events' %}">Eventos</a>
 	          </li>
 	          <li>
 	            <a data-toggle="modal" href="{% url 'blog:jobs' %}">Trabajos</a>
-	          </li>
+	          </li>-->
 	        </ul>
 
 	        <ul class="nav navbar-nav navbar-right m-r-0 hidden-xs">
@@ -96,7 +96,7 @@
 	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
-	          	<a href="{% url 'contribute' %}">Haz una publicación <i class="fa fa-plus-circle fa-lg"></i></a>
+	          	<a href="{% url 'contribute' %}">Contribute <i class="fa fa-plus-circle fa-lg"></i></a>
 	          </li>
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i> {% if panel_count != 0 %}{{panel_count}}{% endif %}</a></li>
@@ -110,7 +110,7 @@
 	          </li>
 	          {% else %}
 	          <li>
-	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i> Publicar</a>
+	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i> Publish</a>
 	          </li>
 	          <li>
 	          	<a href="" data-toggle="modal" data-target=".login-modal"><i class="fa fa-twitter-square"></i> Login </a>
@@ -128,12 +128,12 @@
 	          <li>
 	            <a href="{% url 'blog:index' %}">Startups</a>
 	          </li>
-	          <li>
+	          <!--<li>
 	            <a href="{% url 'blog:events' %}">Eventos</a>
 	          </li>
 	          <li>
 	            <a data-toggle="modal" href="{% url 'blog:post' %}">Publicar</a>
-	          </li>
+	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
 	          	{% for account in user.socialaccount_set.all %}
@@ -143,7 +143,7 @@
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}">Panel</a></li>
 	          {% endif %}
-	          <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li>
+	          <li><a href="{% url 'account_logout' %}">Log Out</a></li>
 	          {% else %}
 	          <li>
 	          	<a href="{% provider_login_url "twitter" %}"><i class="fa fa-twitter-square"></i> Login </a>
@@ -152,11 +152,11 @@
 	        </ul>
 
 	        <ul class="nav navbar-nav hidden">
-	          <li><a href="{% url 'profile' 'votes' %}">Mi Perfil</a></li>
+	          <li><a href="{% url 'profile' 'votes' %}">My Profile</a></li>
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}">Panel</a></li>
 	          {% endif %}
-	          <li><a href="{% url 'account_logout' %}">Cerrar Sesión</a></li>
+	          <li><a href="{% url 'account_logout' %}">Log Out</a></li>
 	        </ul>
 	      </div>
 	  </div>
@@ -171,11 +171,11 @@
 	    <div class="modal-content">
 	    	<div class="modal-header text-center bg-primary">
 	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    		<h4 class="modal-title">Iniciar Sesión</h4>
+	    		<h4 class="modal-title">Login</h4>
 	    	</div>
 	    	<div class="modal-body text-center m-b">
-	    		<p class="lead">Inicia tu sesión con Twitter</p>
-	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-primary"><i class="fa fa-twitter"></i> Login</a>
+	    		<div class="alert alert-success text-justify"><i class="fa fa-check-circle"></i> Creating an account is easy. Just log in with Twitter. We will never post anything without your concent.</div>
+	    		<a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-md btn-primary w-full"><i class="fa fa-twitter"></i> Login</a>
 	    	</div>
 	    
 	    </div>
@@ -186,10 +186,10 @@
 	    <div class="modal-content">
 	    	<div class="modal-header text-center bg-primary">
 	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    		<h4 class="modal-title">Contribuir</h4>
+	    		<h4 class="modal-title">Contribute</h4>
 	    	</div>
 	    	<div class="modal-body text-center m-b">
-	    		<h2>Contribuir a Earlist</h2>
+	    		<h2>Contribute to Earlist</h2>
 				<i class="fa fa-share-square-o fa-5x text-primary m-t"></i>
 				<div class="row m-t-md m-b-md">
 					<div class="col-lg-1"></div>

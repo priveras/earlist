@@ -38,6 +38,22 @@ class Voter(models.Model):
     def __str__(self):
 		return self.user
 
+class Newsletter(models.Model):
+    email = models.CharField(max_length=200)
+    created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_at = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    def __str__(self):
+		return self.email
+
+class Unsubscribed(models.Model):
+    email = models.CharField(max_length=200)
+    created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    updated_at = models.DateTimeField(db_index=True, auto_now_add=True)
+
+    def __str__(self):
+		return self.email
+
 
 class Event(models.Model):
 	user = models.ForeignKey(User)

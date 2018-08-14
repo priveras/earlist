@@ -69,9 +69,9 @@ def unsubscribe(request, id):
     except:
         g = Group.objects.create(name='unsubscribed')
 
-    user = User.objects.filter(id=id)
+    id_user = User.objects.filter(id=id)
     
-    g.user_set.add(user)
+    g.user_set.add(id_user)
 
     return HttpResponseRedirect(reverse('blog:unsubscribed'))
 
@@ -129,7 +129,7 @@ def index(
         'page_template': page_template,
         'meta': meta,
         'panel_count': Post.objects.filter(approved=0).count(),
-        'sponsors': Sponsor.objects.order_by('-created_at'),
+        'sponsors': Sponsor.objects.order_by('-created_at')
     }
 
     if request.user.is_authenticated():
