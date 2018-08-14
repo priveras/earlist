@@ -183,18 +183,18 @@ def status(request, slug, message):
         d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
-        subject = 'Tu publicacion ha sido aprobada'
+        subject = 'Tu post has been approved'
 
-        api.PostMedia("%s: %s http://earlist.xyz/producto/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+        api.PostMedia("%s: %s http://earlist.xyz/company/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
         def main():
         # Fill in the values noted in previous steps here
 
             api = get_api(cfg)
-            msg = "%s: %s http://earlist.xyz/producto/%s" % (p.title, p.slogan, p.slug)
+            msg = "%s: %s http://earlist.xyz/company/%s" % (p.title, p.slogan, p.slug)
             attachment =  {
                 'name': p.title + " | Earlist",
-                'link': "http://earlist.xyz/producto/" + p.slug,
+                'link': "http://earlist.xyz/company/" + p.slug,
                 'caption': p.slogan,
                 'description': p.body,
                 'picture': request.build_absolute_uri(p.image_file.url)
@@ -283,7 +283,7 @@ class DetailView(MetadataMixin, generic.DetailView):
             use_facebook = True,
             use_title_tag = True,
             twitter_card = 'summary_large_image',
-            url = "http://earlist.xyz/producto/" + self.object.slug + '/',
+            url = "http://earlist.xyz/company/" + self.object.slug + '/',
             title = 'Earlist | ' + self.object.title,
             description = self.object.body,
             image = self.object.image_file.url,
