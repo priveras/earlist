@@ -96,7 +96,7 @@
 	          </li>-->
 	          {% if user.is_authenticated %}
 	          <li>
-	          	<a href="{% url 'contribute' %}">Contribute <i class="fa fa-plus-circle fa-lg"></i></a>
+	          	<a href="{% url 'contribute' %}">Publish <i class="fa fa-plus-circle fa-lg"></i></a>
 	          </li>
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i> {% if panel_count != 0 %}{{panel_count}}{% endif %}</a></li>
@@ -186,7 +186,7 @@
 	    <div class="modal-content">
 	    	<div class="modal-header text-center bg-primary">
 	    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	    		<h4 class="modal-title">Contribute</h4>
+	    		<h4 class="modal-title">Publish</h4>
 	    	</div>
 	    	<div class="modal-body text-center m-b">
 	    		<h2>Contribute to Earlist</h2>

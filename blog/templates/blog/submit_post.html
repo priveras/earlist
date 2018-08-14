@@ -12,7 +12,7 @@
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
     			<div class="col-lg-10">
-    				<p class="lead">Share an amazing company with our community and we'll make sure to spread the word about it.</p>
+    				<p class="lead">Share an amazing company with our community and we'll spread the word about it.</p>
     			</div>
     		</div>
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
@@ -30,15 +30,15 @@
 		</div>
 		<div class="form-group">
 			<label for="slogan">Company Slogan</label>
-			{{ form.slogan|attr:"placeholder:ej: Descubre las nuevas ideas"|add_class:"form-control"|attr:"required"|attr:"maxlength:58" }}
+			{{ form.slogan|attr:"placeholder:ej: Discover and Share Amazing Startups"|add_class:"form-control"|attr:"required"|attr:"maxlength:58" }}
 		</div>
 		<div class="form-group">
 			<label for="body">Link to Website</label>
-			{{ form.link|attr:"placeholder:http://earlist.io"|add_class:"form-control"|attr:"required" }}
+			{{ form.link|attr:"placeholder:http://earlist.xyz"|add_class:"form-control"|attr:"required" }}
 		</div>
 		<div class="form-group">
 			<label for="body">Describe the company in a few words startin with its name.</label>
-			{{ form.body|attr:"placeholder:ej: Earlist es el lugar donde descubres..."|add_class:"form-control"|attr:"required"|attr:"rows:3"|attr:"maxlength:300" }}
+			{{ form.body|attr:"placeholder:ej: Earlist is the place where you..."|add_class:"form-control"|attr:"required"|attr:"rows:3"|attr:"maxlength:300" }}
 		</div>
 		<div class="form-group">
 			<label for="body">Cover Image <i class="fa fa-info-circle text-primary" data-toggle="modal" data-target="#myModal"></i></label><small> More Info</small>
@@ -52,7 +52,7 @@
 			{{ form.city|add_class:"form-control"|attr:"placeholder:NYC"|attr:"required" }}
 		</div>
 		<div class="form-group m-t-md m-b-lg">
-			<input type='submit' value='Enviar' class ="btn btn-primary w-full" />
+			<input type='submit' value='Send' class ="btn btn-primary w-full" />
 		</div>
 	</form>
 </div>
