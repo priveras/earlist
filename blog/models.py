@@ -25,7 +25,7 @@ class Post(ModelMeta, models.Model):
 	# category = models.ForeignKey('Category')
 
 	def __str__(self):
-		return self.title.encode('utf-8')
+		return self.title
 
 	def get_absolute_url(self):
 		return reverse('detail', kwargs={'slug':self.slug})
@@ -35,9 +35,6 @@ class Voter(models.Model):
     post = models.ForeignKey(Post)
     created_at = models.DateTimeField(db_index=True, auto_now_add=True)
     updated_at = models.DateTimeField(db_index=True, auto_now_add=True)
-
-    def __str__(self):
-		return self.user
 
 class Newsletter(models.Model):
     email = models.CharField(max_length=200)
