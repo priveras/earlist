@@ -26,7 +26,7 @@
   <div class="container p-t-md">
     <div class="row">
       <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
-          {% if fetured_list %}
+          {% if featured_list %}
           <h5><i class="fa fa-star" style="color:#e5e500"></i> Featured Startups</h5>
           {% endif %}
           <ul class="list-group media-list media-list-stream">
@@ -62,6 +62,7 @@
                           {% endif %}
 
                           <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                          <i class="fa fa-star"style="color:#e5e500"></i> Featured Startup
                           {% for account in item.user.socialaccount_set.all %}
                           <div data-toggle="tooltip" data-placement="bottom" title="{{account.user}}" class="pull-right"style="
                                 width:22px;
