@@ -1,5 +1,20 @@
 {% extends "blog/base.html" %}
+{% block meta %}
+<meta name="description" content="{{post.body|truncatechars:150}}">
 
+<meta property="og:title" content="{{post.title}} | Earlist"/>
+<meta property="og:description" content="{{post.body|truncatechars:150}}"/>
+<meta name="twitter:description" content="{{post.body|truncatechars:150}}">
+
+<meta property="og:image" content="http://earlist.xyz/media/images/20180815/earlist.png"/>
+<meta property="og:url" content="http://earlist.xyz/company/{{post.slug}}/"/>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="http://earlist.xyz/company/{{post.slug}}/">
+<meta name="twitter:title" content="{{post.title}} | Earlist">
+<meta name="twitter:image" content="{{post.image_file.url}}">
+
+<title>{{post.title}} | Earlist</title>
+{% endblock %}
 {% block content %}
 {% if post.approved == 1 %}
 <div class="container p-t-md">

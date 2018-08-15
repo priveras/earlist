@@ -282,20 +282,20 @@ class DetailView(MetadataMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
 
-        meta = Meta(
-            use_og = True,
-            use_twitter = True,
-            use_facebook = True,
-            use_title_tag = True,
-            twitter_card = 'summary_large_image',
-            url = "http://earlist.xyz/company/" + self.object.slug + '/',
-            title = self.object.title + ' | Earlist' ,
-            description = self.object.body,
-            image = self.object.image_file.url,
-            )
+        #meta = Meta(
+        #    use_og = True,
+        #    use_twitter = True,
+        #    use_facebook = True,
+        #    use_title_tag = True,
+        #    twitter_card = 'summary_large_image',
+        #    url = "http://earlist.xyz/company/" + self.object.slug + '/',
+        #    title = self.object.title + ' | Earlist' ,
+        #    description = self.object.body,
+        #    image = self.object.image_file.url,
+        #    )
 
         context = super(DetailView, self).get_context_data(**kwargs)
-        context['meta'] = meta
+        #context['meta'] = meta
         context['sponsors'] = Sponsor.objects.order_by('-created_at')
         return context
 
