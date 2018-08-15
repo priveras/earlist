@@ -32,7 +32,7 @@ meta = Meta(
         use_facebook = True,
         use_title_tag = True,
         url = "http://earlist.xyz/",
-        title = 'Earlist | Descubre Startups y Eventos de innovación en México',
+        title = 'Earlist | Discover And Share Amazing Startups',
         description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología en Mexico.',
         image = 'https://scontent.fmex8-2.fna.fbcdn.net/v/t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039baa120da86bc14fdf&oe=5A077A72',
         )
@@ -127,12 +127,17 @@ def index(
 
     orders = [ '-created_at', 'name' ]
 
+    how_many_days = 7
+    today = dt.date.today()
+    featured_list = Post.objects.order_by('-votes').filter(approved=1).filter(sponsored=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))
+
     context = {
         'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
         'page_template': page_template,
         'meta': meta,
         'panel_count': Post.objects.filter(approved=0).count(),
-        'sponsors': Sponsor.objects.order_by('-created_at')
+        'sponsors': Sponsor.objects.order_by('-created_at'),
+        'featured_list': featured_list
     }
 
     if request.user.is_authenticated():
@@ -183,7 +188,7 @@ def status(request, slug, message):
         d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
         plaintext = get_template('blog/emails/approved.txt')
         htmly     = get_template('blog/emails/approved.html')
-        subject = 'Tu post has been approved'
+        subject = 'Your post has been approved'
 
         api.PostMedia("%s: %s http://earlist.xyz/company/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
 
@@ -284,7 +289,7 @@ class DetailView(MetadataMixin, generic.DetailView):
             use_title_tag = True,
             twitter_card = 'summary_large_image',
             url = "http://earlist.xyz/company/" + self.object.slug + '/',
-            title = 'Earlist | ' + self.object.title,
+            title = self.object.title + ' | Earlist' ,
             description = self.object.body,
             image = self.object.image_file.url,
             )

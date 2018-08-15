@@ -6,9 +6,9 @@
 {% regroup posts_list by date as regrouped_posts_list %}
 {% for post in regrouped_posts_list %}
 	{% if post.grouper|naturalday == 'today'%}
-  <h5>Hoy</h5>
+  <h5>Today</h5>
   {% elif post.grouper|naturalday == 'yesterday' %}
-  <h5>Ayer</h5>
+  <h5>Yesterday</h5>
   {% else %}
   <h5>{{ post.grouper|naturalday }}</h5>
   {% endif %}
