@@ -33,7 +33,7 @@ meta = Meta(
         use_title_tag = True,
         url = "http://earlist.xyz/",
         title = 'Earlist | Discover And Share Amazing Startups',
-        description = 'Earlist is the place where you can find amazing startups doing a wide range of innovative products. ',
+        description = 'Earlist is the best place to find amazing new products and startups. Share, discover and get access to great companies every day.',
         image = 'http://earlist.xyz/media/images/20180815/earlist.png',
         )
 
