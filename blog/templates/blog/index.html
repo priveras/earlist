@@ -1,4 +1,21 @@
 {% extends "blog/base.html" %}
+{% block meta %}
+    <meta name="description" content="Earlist is the place where you can find amazing startups doing a wide range of innovative products.">
+
+    <meta property="og:title" content="Earlist | Discover And Share Startups"/>
+    <meta property="og:description" content="Earlist is the place where you can find amazing startups doing a wide range of innovative products. "/>
+    <meta name="twitter:description" content="Earlist is the place where you can find amazing startups doing a wide range of innovative products. ">
+
+    <meta property="og:image" content="https://ibb.co/ioo5vF"/>
+    <meta property="og:url" content="http://earlist.xyz"/>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://earlist.xyz">
+    <meta name="twitter:title" content="Earlist | Discover And Share Startups">
+    <meta name="twitter:image" content="https://scontent.fmex8-2.fna.fbcdn.net/v/
+    t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039baa120da86bc14fdf&oe=5A077A72">
+
+    <title>Earlist | Discover And Share Startups</title>
+{% endblock %}
 
 {% load staticfiles %}
 {% load socialaccount %}
@@ -14,7 +31,7 @@
     <div class="container">
       <div class="row text-justify">
         <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
-        <h1 style="font-size:30px">Find and Share Amazing Startups</h1>
+        <h1 style="font-size:30px">Find and Share Startups</h1>
         <p style="font-size:16px">Earlist is the place where you can find amazing startups doing a wide range of innovative products. Unlike other startup submission blogs, we like to share companies that are game changers in tech, blockchain, food and beverage, ecommerce, and more.</p>
           <p><a class="btn btn-primary btn-md" data-toggle="modal" data-target=".login-modal" role="button">Create an account</a></p>
         </div>
@@ -62,7 +79,7 @@
                           {% endif %}
 
                           <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
-                          <i class="fa fa-star"style="color:#e5e500"></i> Featured Startup
+                          <i class="fa fa-star"style="color:#e5e500"></i> Featured
                           {% for account in item.user.socialaccount_set.all %}
                           <div data-toggle="tooltip" data-placement="bottom" title="{{account.user}}" class="pull-right"style="
                                 width:22px;

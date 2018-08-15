@@ -390,7 +390,8 @@ def post(request):
                     # image_url = form.cleaned_data['image_url'],
                     city = form.cleaned_data['city'],
                     approved = 0,
-                	created_at = timezone.now()
+                    votes = 0,
+                    created_at = timezone.now()
                 	)
 
                 url = reverse('success-post', kwargs={'slug':post.slug})

@@ -50,7 +50,7 @@
 
                     <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
                     {% if item.sponsored == True %}
-                    <i class="fa fa-star"style="color:#e5e500"></i> Featured Startup
+                    <i class="fa fa-star"style="color:#e5e500"></i> Featured
                     {% endif %}
                     {% for account in item.user.socialaccount_set.all %}
                     <div data-toggle="tooltip" data-placement="bottom" title="{{account.user}}" class="pull-right"style="

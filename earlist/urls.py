@@ -22,8 +22,8 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    url(r'^cuentas/perfil/votes/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
-    url(r'^cuentas/perfil/posts/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
+    url(r'^accounts/profile/votes/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
+    url(r'^accounts/profile/posts/(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)/$', views.vote, name='vote'),
     url(r'^panel/status/(?P<slug>[^\.]+)/(?P<message>[0-9]+)/$', login_required(views.status), name='status'),
     url(r'^admin/', admin.site.urls),
     # url('^', include('django.contrib.auth.urls')),
@@ -31,10 +31,10 @@ urlpatterns = [
     url(r'^cuentas/perfil/(?P<view>[^\.]+)/$', login_required(views.profile), name='profile'),
     url(r'^company/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^exito-producto/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 
-    url(r'^exito-evento/(?P<pk>\d+)/$', login_required(views.SuccessEventView.as_view()), name='success-event'), 
+    url(r'^success-post/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 
+    url(r'^success-event/(?P<pk>\d+)/$', login_required(views.SuccessEventView.as_view()), name='success-event'), 
     url(r'^publish/', views.ContributeView.as_view(), name='contribute'), 
-    url(r'^actualizar-producto/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 
+    url(r'^update-post/(?P<slug>[^\.]+)/$', login_required(views.PostUpdateView.as_view()), name='update-post'), 
     url(r'^delete-post/(?P<slug>[^\.]+)/$', login_required(views.PostDeleteView.as_view()), name='delete-post'),
     url(r'^(?P<slug>[^\.]+)/vote/(?P<direction>[^\.]+)$', views.vote, name='vote'),
     # url(r'^newsletter', views.newsletter, name='newsletter'),
