@@ -15,7 +15,11 @@
 	<ul class="list-group media-list media-list-stream">
     {% for item in post.list %}
       {% if item.approved == 1 %}
+          {% if item.sponsored == True %}
+          <li class="media list-group-item p-a" style="background-color:#ffffe5">
+          {% else %}
           <li class="media list-group-item p-a">
+          {% endif %}
             <a class="media-left" href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
               <div class="thumbnail-custom">
                 <div title="{{item.title}}" style="
@@ -45,6 +49,9 @@
                     {% endif %}
 
                     <a href="{{item.link}}?ref=earlist" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'external-link');" target="_blank" type="button" class="btn btn-xs btn-default" style="padding:4 4 4 4"><i class="fa fa-external-link"></i></a>
+                    {% if item.sponsored == True %}
+                    <i class="fa fa-star"style="color:#e5e500"></i> Featured Startup
+                    {% endif %}
                     {% for account in item.user.socialaccount_set.all %}
                     <div data-toggle="tooltip" data-placement="bottom" title="{{account.user}}" class="pull-right"style="
                           width:22px;

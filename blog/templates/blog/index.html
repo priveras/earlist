@@ -26,7 +26,9 @@
   <div class="container p-t-md">
     <div class="row">
       <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-8">
+          {% if fetured_list %}
           <h5><i class="fa fa-star" style="color:#e5e500"></i> Featured Startups</h5>
+          {% endif %}
           <ul class="list-group media-list media-list-stream">
           {% for item in featured_list %}
             {% if item.approved == 1 %}
