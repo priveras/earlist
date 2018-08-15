@@ -61,7 +61,7 @@
               <a href="{% url 'delete-post' vote.slug %}" class="btn btn-xs btn-danger-outline"><i class="fa fa-trash"></i></a>
               {% if vote.approved == 0 %}
                 {% if vote.sponsored == False %}
-                <a href="{% url 'success-post' vote.slug %}" class="btn btn-xs btn-success-outline">Expedite Review</a>
+                <a href="{% url 'success-post' vote.slug %}" class="btn btn-xs btn-success-outline">Expedite</a>
                 {% endif %}
                 <button type="button" class="btn btn-xs btn-warning pull-right">Pending</button>
               {% elif vote.approved == 1 %}

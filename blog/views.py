@@ -33,8 +33,8 @@ meta = Meta(
         use_title_tag = True,
         url = "http://earlist.xyz/",
         title = 'Earlist | Discover And Share Amazing Startups',
-        description = 'Earlist es el lugar donde podrás publicar, votar o enterarte de las mejores startups, eventos y productos de tecnología en Mexico.',
-        image = 'https://scontent.fmex8-2.fna.fbcdn.net/v/t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039baa120da86bc14fdf&oe=5A077A72',
+        description = 'Earlist is the place where you can find amazing startups doing a wide range of innovative products. ',
+        image = 'http://earlist.xyz/media/images/20180815/earlist.png',
         )
 
 class NewsletterView(generic.TemplateView):
@@ -196,7 +196,7 @@ def status(request, slug, message):
         # Fill in the values noted in previous steps here
 
             api = get_api(cfg)
-            msg = "%s: %s http://earlist.xyz/company/%s" % (p.title, p.slogan, p.slug)
+            msg = "%s: %s http://earlist.xyz/company/%s/" % (p.title, p.slogan, p.slug)
             attachment =  {
                 'name': p.title + " | Earlist",
                 'link': "http://earlist.xyz/company/" + p.slug,
