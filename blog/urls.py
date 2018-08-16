@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^panel/', login_required(views.PanelListView.as_view()), name='panel'), 
     # url(r'^dashboard/', views.dashboard, name='dashboard'), 
     url(r'^about/', views.AboutView.as_view(), name='about'), 
+    url(r'^share/', views.ShareView.as_view(), name='share'), 
     url(r'^bye/', views.UnsubscribedView.as_view(), name='unsubscribed'), 
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'^newsletter/', views.NewsletterView.as_view(), name='newsletter'), 
