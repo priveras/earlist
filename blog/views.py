@@ -63,6 +63,9 @@ def events(
 class AboutView(generic.TemplateView):
     template_name = "blog/about.html"
 
+class FaqView(generic.TemplateView):
+    template_name = "blog/faq.html"
+
 class TermsView(generic.TemplateView):
     template_name = "blog/terms.html"
 

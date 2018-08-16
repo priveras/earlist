@@ -1,24 +1,54 @@
 {% extends "blog/base.html" %}
+{% block meta %}
+    <meta name="description" content="Earlist was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. ">
+
+    <meta property="og:title" content="About Us | Earlist"/>
+    <meta property="og:description" content="Earlist was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. "/>
+    <meta name="twitter:description" content="Earlist was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. ">
+
+    <meta property="og:image" content="http://earlist.xyz/media/images/20180815/earlist.png"/>
+    <meta property="og:url" content="http://earlist.xyz"/>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://earlist.xyz/share/">
+    <meta name="twitter:title" content="About Us | Earlist">
+    <meta name="twitter:image" content="http://earlist.xyz/media/images/20180815/earlist.png">
+
+    <title>Terms of Service | Earlist</title>
+{% endblock %}
 {% load staticfiles %}
 {% block content %}
-<div class="col-sm-1"></div>
-<div class="col-sm-7">
-	<div class="panel panel-default">
-		<div class="panel-body text-center">
-			<h1>Earlist</h1>
-			<p class="lead m-t">Somos...</p>
-			<div class="thumbnail m-t-md" style="background-color:white">
-				<div style="
-                        background: url('http://rack.0.mshcdn.com/media/ZgkyMDE0LzA0LzI1L2EwL3N0YXJ0dXB0ZWFtLjA0NGM5LmpwZwpwCXRodW1iCTk1MHg1MzQjCmUJanBn/978012c3/afa/startup-team.jpg');
-                        background-size:cover;
-                        background-position:center;
-                        ">
-                </div>
-			</div>
-			<p class="lead m-t-md">Hello</p>
-		</div>
-	</div>
-</div>
+<div class="profile-header text-center"
+     style="background-image: url('{% static 'blog/assets/img/earlist.png' %}');">
+  <div class="container">
+    <div class="container-inner">
+      <h1 class="profile-header-user">About Us</h1>
+      <p class="profile-header-bio">
+        We are a team of entrepreneurs who are exited about new products.
+      </p>
+    </div>
+  </div>
 
-{% include 'blog/right-col.html' %}
+  <nav class="profile-header-nav">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#">Read More</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3 text-justify" style="margin-top:100px; margin-bottom:100px">
+		<p class="lead"><a href="{% url 'blog:index' %}">
+			<b>Earlist</b></a> was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. 
+			<br>
+			<br>
+			As founders ourselves, we know how difficult is can sometimes be to get your product in front of people. We developed this community to help builders share their projects, and users find amazing companies.
+			<br>
+			<br>
+			Earlist is the ultimate go-to place if you want to discover what’s next on blockchain,  technology, food and beverage, trends and much more. Here you can find all the awesome ideas you are looking for, and best of all, you can launch your own. 
+			<br><br>
+		</p>	
+	</div>
+	
+</div>
 {% endblock %}

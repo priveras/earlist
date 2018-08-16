@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^panel/', login_required(views.PanelListView.as_view()), name='panel'), 
     # url(r'^dashboard/', views.dashboard, name='dashboard'), 
     url(r'^about/', views.AboutView.as_view(), name='about'), 
+    url(r'^faq/', views.FaqView.as_view(), name='faq'), 
     url(r'^terms/', views.TermsView.as_view(), name='terms'), 
     url(r'^privacy/', views.PrivacyView.as_view(), name='privacy'), 
     url(r'^bye/', views.UnsubscribedView.as_view(), name='unsubscribed'), 

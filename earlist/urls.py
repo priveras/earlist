@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url('^', include('django.contrib.auth.urls')),
 	url(r'^', include('blog.urls')),
-    url(r'^cuentas/perfil/(?P<view>[^\.]+)/$', login_required(views.profile), name='profile'),
+    url(r'^accounts/profile/(?P<view>[^\.]+)/$', login_required(views.profile), name='profile'),
     url(r'^company/(?P<slug>[^\.]+)/$', views.DetailView.as_view(), name='detail'), 
     url(r'^accounts/', include('allauth.urls')),
     url(r'^success-post/(?P<slug>[^\.]+)/$', login_required(views.SuccessPostView.as_view()), name='success-post'), 

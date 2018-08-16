@@ -74,7 +74,22 @@
 
 	        <ul class="nav navbar-nav hidden-xs">
 	          <li>
-	            <a href="{% url 'blog:index' %}">Startups</a>
+	            <a href="{% url 'blog:index' %}">Home</a>
+	          </li>
+	          {% if user.is_authenticated %}
+		          <li>
+		          	<a href="{% url 'blog:post' %}">Share</a>
+		          </li>
+	          {% else %}
+		          <li>
+		          	<a href="" data-toggle="modal" data-target=".add-modal">Share</a>
+		          </li>
+	          {% endif %}
+	          <li>
+	            <a href="{% url 'blog:about' %}">About Us</a>
+	          </li>
+	          <li>
+	            <a href="{% url 'blog:faq' %}">FAQ</a>
 	          </li>
 	          <!-- <li>
 	            <a href="">Agregar</a>
@@ -94,26 +109,20 @@
 	            </a>
 	          </li>-->
 	          {% if user.is_authenticated %}
-	          <li>
-	          	<a href="{% url 'contribute' %}">Publish <i class="fa fa-plus-circle fa-lg"></i></a>
-	          </li>
-	          {% if user.is_staff %}
-	          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i> {% if panel_count != 0 %}{{panel_count}}{% endif %}</a></li>
-	          {% endif %}
-	          <li>
-	          	{% for account in user.socialaccount_set.all %}
-	          		<button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
-		              <img class="img-circle" src="{{ account.get_avatar_url }}" alt="Perfil">
-		            </button>
-			    {% endfor %}
-	          </li>
+		          {% if user.is_staff %}
+		          <li><a href="{% url 'blog:panel' %}"><i class="fa fa-bell"></i> {% if panel_count != 0 %}{{panel_count}}{% endif %}</a></li>
+		          {% endif %}
+		          <li>
+		          	{% for account in user.socialaccount_set.all %}
+		          		<button class="btn btn-default navbar-btn navbar-btn-avitar" data-toggle="popover">
+			              <img class="img-circle" src="{{ account.get_avatar_url }}" alt="Perfil">
+			            </button>
+				    {% endfor %}
+		          </li>
 	          {% else %}
-	          <li>
-	          	<a href="" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus-circle fa-lg"></i> Publish</a>
-	          </li>
-	          <li>
-	          	<a href="" data-toggle="modal" data-target=".login-modal"><i class="fa fa-twitter-square"></i> Login </a>
-	          </li>
+		          <li>
+		          	<a href="" data-toggle="modal" data-target=".login-modal"><i class="fa fa-twitter-square"></i> Login </a>
+		          </li>
 	          {% endif %}
 	        </ul>
 
@@ -125,7 +134,7 @@
 
 	        <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
 	          <li>
-	            <a href="{% url 'blog:index' %}">Startups</a>
+	            <a href="{% url 'blog:index' %}">Home</a>
 	          </li>
 	          <!--<li>
 	            <a href="{% url 'blog:events' %}">Eventos</a>
