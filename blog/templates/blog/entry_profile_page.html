@@ -24,11 +24,11 @@
           <div class="media">
             <div class="media-body">
               {% if vote.post.slug in votes_list %}
-                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'down', {{ vote.post.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.post.id}}"> {{vote.post.votes}}</span></button>
+                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'down', {{ vote.post.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-save"></i><!--<span id="votes-{{vote.post.id}}"> {{vote.post.votes}}--></span></button>
               {% else %}
-                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'up', {{ vote.post.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.post.id}}"> {{vote.post.votes}}</span></button>
+                <button id="votes-button-{{vote.post.id}}" onclick="vote('{{ vote.post.slug }}', 'up', {{ vote.post.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-save"></i><!--<span id="votes-{{vote.post.id}}"> {{vote.post.votes}}--></span></button>
               {% endif %}
-              <a href="{{vote.post.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default"><i class="fa fa-external-link"></i></a>
+              <a href="{{vote.post.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default"><i class="fa fa-save"></i></a>
             </div>
           </div>
         </div>
@@ -52,9 +52,9 @@
           <div class="media">
             <div class="media-body">
               {% if vote.slug in votes_list %}
-                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'down', {{ vote.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.id}}"> {{vote.votes}}</span></button>
+                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'down', {{ vote.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-save"></i><!--<span id="votes-{{vote.id}}"> {{vote.votes}}</span>--></button>
               {% else %}
-                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'up', {{ vote.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-arrow-up"></i><span id="votes-{{vote.id}}"> {{vote.votes}}</span></button>
+                <button id="votes-button-{{vote.id}}" onclick="vote('{{ vote.slug }}', 'up', {{ vote.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-save"></i><!--<span id="votes-{{vote.id}}"> {{vote.votes}}</span>--></button>
               {% endif %}
               <a href="{{vote.link}}?ref=earlist" target="_blank" type="button" class="btn btn-xs btn-default"><i class="fa fa-external-link"></i></a>
               <a href="{% url 'update-post' vote.slug %}" class="btn btn-xs btn-primary-outline"><i class="fa fa-pencil"></i></a>
