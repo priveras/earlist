@@ -10,13 +10,13 @@
 <div class="col-md-8">
   <div class="panel panel-default">
   	<div class="panel-body text-center m-t">
-		<h2>¡Bienvenido a Earlist!</h2>
+		<h2>Welcome to Earlist!</h2>
 		<i class="fa fa-hand-peace-o fa-5x text-primary m-t-md"></i>
 		<p class="lead m-t-md">
 		{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}
 
-		Ya casi terminas tu registro usando {{provider_name}}.
-		<!-- {{site_name}} --> <br>Para terminar completa la siguiente información...
+		You are about to complete your signup with {{provider_name}}.
+		<!-- {{site_name}} --> <br>Please complete the following information:
 
 		{% endblocktrans %}</p>
 		<div class="row m-t-md m-b-md">
@@ -27,7 +27,7 @@
 					{# {{ form.as_p }} #}
 					<div class="form-group text-left">
 						{{ form.username.errors }}
-						<label for="title">Usuario</label>
+						<label for="title">Username</label>
 						{{ form.username|attr:"Usuario"|add_class:"form-control"|attr:"disabled" }} <!--|attr:"disabled" -->
 						{{ form.username|attr:"type:hidden" }}
 					</div>
@@ -39,7 +39,7 @@
 					{% if redirect_field_value %}
 					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 					{% endif %}
-					<button type="submit" class="btn btn-lg btn-pill btn-primary m-t">{% trans "Continuar" %}</button>
+					<button type="submit" class="btn btn-lg btn-pill btn-primary m-t">{% trans "Continue" %}</button>
 				</form>
 			</div>
 		</div>
