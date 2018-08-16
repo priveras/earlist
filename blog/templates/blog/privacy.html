@@ -1,5 +1,21 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
+{% block meta %}
+    <meta name="description" content="Earlist is the place where you can find amazing startups doing a wide range of innovative products.">
+
+    <meta property="og:title" content="Privacy | Earlist"/>
+    <meta property="og:description" content="Share an amazing startup with the Earlist community. Remember we love Blockchain, Food and Beverage, Ecommerce and overall tech companies."/>
+    <meta name="twitter:description" content="Share an amazing startup with the Earlist community. Remember we love Blockchain, Food and Beverage, Ecommerce and overall tech companies.">
+
+    <meta property="og:image" content="http://earlist.xyz/media/images/20180815/earlist.png"/>
+    <meta property="og:url" content="http://earlist.xyz"/>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://earlist.xyz/share/">
+    <meta name="twitter:title" content="Share Startup | Earlist">
+    <meta name="twitter:image" content="http://earlist.xyz/media/images/20180815/earlist.png">
+
+    <title>Privacy | Earlist</title>
+{% endblock %}
 {% block content %}
 <div class="container p-t-md">
     <div class="row">
