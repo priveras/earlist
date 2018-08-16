@@ -40,9 +40,9 @@
 
                     {% if user.is_authenticated %}
                       {% if item.slug in votes_list %}
-                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'down', {{ item.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-save"></i><span id="votes-{{item.id}}"></span></button>
+                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'down', {{ item.id }});" type="button" class="btn btn-xs btn-primary"><i class="fa fa-save"></i><!--<span id="votes-{{item.id}}"></span>--></button>
                       {% else %}
-                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'up', {{ item.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-save"></i><span id="votes-{{item.id}}"></span></button>
+                        <button id="votes-button-{{item.id}}" onclick="vote('{{ item.slug }}', 'up', {{ item.id }});" type="button" class="btn btn-xs btn-default"><i class="fa fa-save"></i><!--<span id="votes-{{item.id}}"></span>--></button>
                       {% endif %}
                     {% else %}
                       <button type="button" data-toggle="modal" data-target=".vote-modal" class="btn btn-xs btn-default"><i class="fa fa-save"></i></button>
