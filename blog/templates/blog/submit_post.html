@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load socialaccount %}
 {% block meta %}
 <meta name="description" content="Earlist is he place where you can share an amazing startups with a great community.">
 
@@ -33,9 +34,14 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
     				<p class="lead">Share an amazing company with our community and we'll spread the word about it.</p>
     			</div>
     		</div>
+            {% if user.is_authenticated %}
+            {% else %}
+            <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-primary"><i class="fa fa-twitter"></i>Login</a>
+            {% endif %}
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
     	</div>
     </div>
+    {% if user.is_authenticated %}
     {% if error %}
         <div class="alert alert-danger" role="alert">{{error}}</div>
     {% endif %}
@@ -73,6 +79,7 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
 			<input type='submit' value='Send' class ="btn btn-primary w-full" />
 		</div>
 	</form>
+    {% endif %}
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
