@@ -135,7 +135,7 @@ def index(
     featured_list = Post.objects.order_by('-votes').filter(approved=1).filter(sponsored=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))
 
     context = {
-        'posts_list': Post.objects.order_by('-date', '-votes').filter(approved=1),
+        'posts_list': Post.objects.order_by('sponsored', '-votes').filter(approved=1),
         'page_template': page_template,
         'meta': meta,
         'panel_count': Post.objects.filter(approved=0).count(),
