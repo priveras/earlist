@@ -140,7 +140,7 @@ def index(
         'meta': meta,
         'panel_count': Post.objects.filter(approved=0).count(),
         'sponsors': Sponsor.objects.order_by('-created_at'),
-        'featured_list': featured_list
+        'featured_list': featured_list.order_by('-date', '-sponsored', '-votes').filter(approved=1)
     }
 
     if request.user.is_authenticated():
