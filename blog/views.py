@@ -66,6 +66,9 @@ class AboutView(generic.TemplateView):
 class FaqView(generic.TemplateView):
     template_name = "blog/faq.html"
 
+class SuccessPaymentView(generic.TemplateView):
+    template_name = "blog/success-payment.html"
+
 class TermsView(generic.TemplateView):
     template_name = "blog/terms.html"
 
@@ -543,7 +546,8 @@ def checkout(request):
         return False, ce
 
     else:
-        return render(request, 'blog/success-payment.html', {'post_id': post_id, 'charge_id': charge.id, 'p':p})
+        url = reverse('success-payment')
+        return HttpResponseRedirect(url)
         # The payment was successfully processed, the user's card was charged.
         # You can now redirect the user to another page or whatever you want
 
