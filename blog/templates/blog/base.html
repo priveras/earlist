@@ -76,15 +76,9 @@
 	          <li>
 	            <a href="{% url 'blog:index' %}">Home</a>
 	          </li>
-	          {% if user.is_authenticated %}
-		          <li>
-		          	<a href="{% url 'blog:post' %}">Share</a>
-		          </li>
-	          {% else %}
-		          <li>
-		          	<a href="" data-toggle="modal" data-target=".add-modal">Share</a>
-		          </li>
-	          {% endif %}
+	          <li>
+	          	<a href="{% url 'blog:post' %}">Share</a>
+	          </li>
 	          <li>
 	            <a href="{% url 'blog:about' %}">About Us</a>
 	          </li>
