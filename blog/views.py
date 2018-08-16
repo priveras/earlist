@@ -518,7 +518,7 @@ def checkout(request):
 
     try:
         charge  = stripe.Charge.create(
-            amount      = 1,
+            amount      = 50,
             currency    = "usd",
             source      = token,
             description = "Earlist Instant Approval"
