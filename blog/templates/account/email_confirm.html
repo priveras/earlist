@@ -12,17 +12,17 @@
 <div class="col-sm-offset-2 col-md-8">
   <div class="panel panel-default">
   	<div class="panel-body text-center m-t">
-		<h2>{% trans "Confirma tu email" %}</h2>
+		<h2>{% trans "Confirm your email" %}</h2>
 		<i class="fa fa-envelope-o fa-5x text-primary m-t-md"></i>
 		{% if confirmation %}
 
 		{% user_display confirmation.email_address.user as user_display %}
 
-		<p class="lead m-t-md">{% blocktrans with confirmation.email_address.email as email %}Por favor confirma que <a href="mailto:{{ email }}">{{ email }}</a> es el email<br> para el usuario {{ user_display }}.{% endblocktrans %}</p>
+		<p class="lead m-t-md">{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is the right email<br> for user {{ user_display }}.{% endblocktrans %}</p>
 
 		<form method="post" action="{% url 'account_confirm_email' confirmation.key %}" class="m-t-md">
 		{% csrf_token %}
-		    <button type="submit" class="btn btn-lg btn-pill btn-primary m-b-md">{% trans 'Confirmar' %}</button>
+		    <button type="submit" class="btn btn-lg btn-pill btn-primary m-b-md">{% trans 'Confirm' %}</button>
 		</form>
 
 		{% else %}
