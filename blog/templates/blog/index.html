@@ -50,7 +50,7 @@
             <div class="col-sm-4">
               <div class="panel panel-default m-b-md">
                 <div class="panel-body">
-                  <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-title');" class="no-text-decoration"><h5 class="m-t-0"><i class="fa fa-star" style="color:#e5e500"></i> {{item.title}}</h5></a>
+                  <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-title');" class="no-text-decoration"><h5 class="m-t-0">{{item.title}}</h5></a>
                   <a class="media-left" href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
                     <div class="thumbnail-custom">
                       <div title="{{item.title}}" style="
