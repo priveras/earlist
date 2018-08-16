@@ -47,13 +47,14 @@
           {% endif %}
           <div class="row">
             {% for item in featured_list %}
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-xs-6">
               <div class="panel panel-default m-b-md">
                 <div class="panel-body">
                   <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-title');" class="no-text-decoration"><h5 class="m-t-0">{{item.title}}</h5></a>
-                  <a class="media-left" href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
-                    <div class="thumbnail-custom">
+                  <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
+                    <div style="width:100%; height:100px">
                       <div title="{{item.title}}" style="
+                              height:100px;
                               background: url('{{item.image_file.url}}');
                               background-size:cover;
                               background-position:center;
