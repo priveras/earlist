@@ -546,7 +546,7 @@ def checkout(request):
         return False, ce
 
     else:
-        url = reverse('success-payment')
+        url = reverse('blog:success-payment')
         return HttpResponseRedirect(url)
         # The payment was successfully processed, the user's card was charged.
         # You can now redirect the user to another page or whatever you want
