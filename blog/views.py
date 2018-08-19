@@ -256,7 +256,7 @@ def status(request, slug, message):
         htmly     = get_template('blog/emails/declined.html')
         subject = 'Tu publicacion ha sido declinada'        
 
-    from_email, to = 'Earlist <hola@earlist.xyz>', email
+    from_email, to = 'Earlist <hello@earlist.xyz>', email
     text_content = plaintext.render(d)
     html_content = htmly.render(d)
     mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
@@ -540,6 +540,57 @@ def checkout(request):
         p.charge_id = charge.id
         p.approved = '1'
         p.sponsored = True
+        p.updated_at = datetime.now()
+        p.date = datetime.now()
+
+        email = p.user.email
+
+        d = Context({ 'first_name': p.user.first_name, 'title': p.title, 'slug': p.slug })
+        plaintext = get_template('blog/emails/approved.txt')
+        htmly     = get_template('blog/emails/approved.html')
+        subject = 'Your post has been approved'
+
+        api.PostMedia("%s: %s http://earlist.xyz/company/%s via @%s" % (p.title, p.slogan, p.slug, p.user), request.build_absolute_uri(p.image_file.url))
+
+        def main():
+        # Fill in the values noted in previous steps here
+
+            api = get_api(cfg)
+            msg = "%s: %s http://earlist.xyz/company/%s/" % (p.title, p.slogan, p.slug)
+            attachment =  {
+                'name': p.title + " | Earlist",
+                'link': "http://earlist.xyz/company/" + p.slug,
+                'caption': p.slogan,
+                'description': p.body,
+                'picture': request.build_absolute_uri(p.image_file.url)
+            }
+            status = api.put_wall_post(msg, attachment)
+
+        def get_api(cfg):
+            graph = facebook.GraphAPI(cfg['access_token'])
+            # Get page token to post as the page. You can skip 
+            # the following if you want to post as yourself. 
+            resp = graph.get_object('me/accounts')
+            page_access_token = None
+            for page in resp['data']:
+                if page['id'] == cfg['page_id']:
+                    page_access_token = page['access_token']
+            graph = facebook.GraphAPI(page_access_token)
+            return graph
+
+            # You can also skip the above if you get a page token:
+            # http://stackoverflow.com/questions/8231877/facebook-access-token-for-pages
+            # and make that long-lived token as in Step 3
+
+        main()       
+
+        from_email, to = 'Earlist <hello@earlist.xyz>', email
+        text_content = plaintext.render(d)
+        html_content = htmly.render(d)
+        mail = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        mail.attach_alternative(html_content, "text/html")
+        mail.send()
+
         p.save()
 
     except stripe.error.CardError as ce:

@@ -12,7 +12,7 @@
 <div class="col-sm-offset-2 col-md-8">
   <div class="panel panel-default">
   	<div class="panel-body text-center m-t">
-		<h2>{% trans "Confirm your email" %}</h2>
+		<h2>{% trans "Verify Your Email Address" %}</h2>
 		<i class="fa fa-envelope-o fa-5x text-primary m-t-md"></i>
 		{% if confirmation %}
 
@@ -22,7 +22,7 @@
 
 		<form method="post" action="{% url 'account_confirm_email' confirmation.key %}" class="m-t-md">
 		{% csrf_token %}
-		    <button type="submit" class="btn btn-lg btn-pill btn-primary m-b-md">{% trans 'Confirm' %}</button>
+		    <button type="submit" class="btn btn-lg btn-primary m-b-md">{% trans 'Confirm' %}</button>
 		</form>
 
 		{% else %}
