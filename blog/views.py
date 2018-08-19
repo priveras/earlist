@@ -386,6 +386,9 @@ class ContributeView(generic.TemplateView):
     
 
 def post(request):
+
+    featured_list = Post.objects.order_by('-votes').filter(approved=1).filter(sponsored=1)[:4]
+
     if request.method == 'GET':
         form = PostForm()
     else:
@@ -421,7 +424,8 @@ def post(request):
 
                 return render(request, 'blog/submit_post.html', {
                         'form': form,
-                        'error': error
+                        'error': error,
+                        'featured_list':featured_list
                         })
         else:
             print form.is_valid()   #form contains data and errors
@@ -429,7 +433,8 @@ def post(request):
  
     return render(request, 'blog/submit_post.html', {
         'form': form,
-        'meta': meta
+        'meta': meta,
+        'featured_list':featured_list
     })
 
 class PostUpdateView(generic.UpdateView):

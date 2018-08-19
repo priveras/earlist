@@ -31,16 +31,41 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
     			<div class="col-lg-10">
-    				<p class="lead">Share an amazing startup with the Earlist community. Remember we love Blockchain, Food and Beverage, Ecommerce and overall tech companies.</p>
+    				<p class="lead text-justify">Earlist was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. Share an amazing startup with the Earlist community, it's free! Remember we love Blockchain, Food and Beverage, Ecommerce and overall tech companies.</p>
     			</div>
     		</div>
             {% if user.is_authenticated %}
             {% else %}
-            <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-lg btn-primary"><i class="fa fa-twitter"></i>Login</a>
+            <p class="text-primary lead"><b>Join now and share!</b></p>
+            <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-md btn-primary m-b-md"><i class="fa fa-twitter"></i>Login</a>
             {% endif %}
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
     	</div>
     </div>
+    <div class="row">
+        {% for item in featured_list %}
+        <div class="col-sm-4 col-xs-6">
+          <div class="panel panel-default m-b-md">
+            <div class="panel-body">
+              <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-title');" class="no-text-decoration"><h5 class="m-t-0">{{item.title}}</h5></a>
+              <a href="{% url 'detail' item.slug %}" onclick="ga('send', 'event', '{{item.slug}}', 'Click', 'post-image');">
+                <div style="width:100%; height:100px">
+                  <div title="{{item.title}}" style="
+                          height:100px;
+                          background: url('{{item.image_file.url}}');
+                          background-size:cover;
+                          background-position:center;
+                          ">
+                  </div>
+                </div>
+              </a>
+              <p style="margin-top:10px">{{item.body|truncatechars:70}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
     {% if user.is_authenticated %}
     {% if error %}
         <div class="alert alert-danger" role="alert">{{error}}</div>
