@@ -27,6 +27,8 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
 	<div class="panel panel-default">
       	<div class="panel-body text-center m-t">
     		<h1>Share a Startup on Earlist</h1>
+            {% if user.is_authenticated %}
+            {% else %}
     		<i class="fa fa-users fa-5x text-primary m-t-md"></i>
     		<div class="row m-t-md m-b">
     			<div class="col-lg-1"></div>
@@ -34,14 +36,14 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
     				<p class="lead text-justify">Earlist was created to give entrepreneurs and business builders the ability to share their amazing projects with a great community. Share an amazing startup with the Earlist community, it's free! Remember we love Blockchain, Food and Beverage, Ecommerce and overall tech companies.</p>
     			</div>
     		</div>
-            {% if user.is_authenticated %}
-            {% else %}
             <p class="text-primary lead"><b>Join now and share!</b></p>
             <a href="{% provider_login_url "twitter" %}" type="button" class="btn btn-md btn-primary m-b-md"><i class="fa fa-twitter"></i>Login</a>
             {% endif %}
     		{# <a href="{% url 'profile' %}"><button type="button" class="btn btn-lg btn-pill btn-primary m-b-md">Finalizar</button></a> #}
     	</div>
     </div>
+    {% if user.is_authenticated %}
+    {% else %}
     <div class="row">
         {% for item in featured_list %}
         <div class="col-sm-4 col-xs-6">
@@ -65,7 +67,7 @@ t31.0-8/19693860_1544598535590554_9103271582238767312_o.png?oh=c46969531924039ba
         </div>
         {% endfor %}
       </div>
-
+    {% endif %}
     {% if user.is_authenticated %}
     {% if error %}
         <div class="alert alert-danger" role="alert">{{error}}</div>
