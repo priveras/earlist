@@ -149,6 +149,7 @@
 	          </li>
 	          {% if user.is_staff %}
 	          <li><a href="{% url 'blog:panel' %}">Panel</a></li>
+	          <li><a href="{% url 'blog:users' %}">Users</a></li>
 	          {% endif %}
 	          <li><a href="{% url 'account_logout' %}">Log Out</a></li>
 	          {% else %}

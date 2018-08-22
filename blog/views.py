@@ -25,6 +25,8 @@ import twitter
 import facebook
 import stripe
 from django.conf import settings
+from django.http.response import HttpResponseForbidden
+from django.contrib.auth.decorators import user_passes_test
 
 meta = Meta(
         use_og = True,
@@ -315,12 +317,27 @@ class DetailView(MetadataMixin, generic.DetailView):
         return context
 
 
-class PanelListView(generic.ListView):
-    template_name = 'blog/panel.html'
-    context_object_name = 'posts_list'
+def panel(request,template='blog/panel.html'):
 
-    def get_queryset(self):
-        return Post.objects.order_by('-created_at')
+    context = {
+        'posts_list': Post.objects.order_by('-created_at'),
+    }
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden('Nope!')
+    else:
+        return render(request, template, context)
+
+def users(request,template='blog/users.html'):
+
+    context = {
+        'users_list': User.objects.order_by('-date_joined'),
+    }
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden('Nope!')
+    else:
+        return render(request, template, context)
 
 
 # class ProfileListView(generic.ListView):
@@ -441,7 +458,7 @@ class PostUpdateView(generic.UpdateView):
     model = Post
     fields = ['slogan', 'body', 'link', 'image_file', 'city']
     template_name = 'blog/update_post.html'
-    success_url = '/cuentas/perfil/posts/'
+    success_url = '/accounts/profile/posts/'
 
 
     def user_passes_test(self, request):
