@@ -42,6 +42,21 @@ meta = Meta(
 class NewsletterView(generic.TemplateView):
     template_name = "blog/emails/newsletter.html"
 
+    def get_context_data(self, **kwargs):
+
+        how_many_days = 100
+        today = dt.date.today()
+        p = Post.objects.order_by('-votes').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days))[:5]
+        events = Event.objects.order_by('date').filter(date__year=today.year, date__month=today.month)[:3]
+        jobs = Job.objects.order_by('-created_at')[:10]
+        sponsors = Sponsor.objects.order_by('-created_at')[:2]
+        special = Post.objects.order_by('-created_at').filter(approved=1).filter(date__gte=datetime.now()-timedelta(days=how_many_days)).filter(sponsored=1)[:5]
+
+
+        context = { 'posts_list': p, 'user_unsubscribe_id': self.request.user.id, 'username': self.request.user.username, 'events': events, 'jobs': jobs, 'sponsors':sponsors, 'special': special }
+
+        return context
+
 def events(
         request,
         template='blog/entry_events.html',
